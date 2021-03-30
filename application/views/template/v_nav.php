@@ -35,34 +35,34 @@
             </a>
           </li>
           
-          <li class="nav-header">EXAMPLES</li>
+          <li class="nav-header">Data Penting</li>
           <li class="nav-item">
-            <a href="pages/calendar.html" class="nav-link">
-              <i class="nav-icon fas fa-calendar-alt"></i>
+            <a href="<?= base_url('Pasien') ?>" class="nav-link">
+              <i class="nav-icon fas fa-user-alt"></i>
               <p>
-                Calendar
+                Pasien
                 <span class="badge badge-info right">2</span>
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
+            <a href="<?= base_url('Penyakit') ?>" class="nav-link">
+              <i class="nav-icon far fa-file"></i>
               <p>
-                Gallery
+                Penyakit
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/kanban.html" class="nav-link">
-              <i class="nav-icon fas fa-columns"></i>
+            <a href="<?= base_url('Medik') ?>" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
               <p>
-                Kanban Board
+                Rekam Medik
               </p>
             </a>
           </li>
           
-          <li class="nav-header">MISCELLANEOUS</li>
+          <li class="nav-header">Data Spasial</li>
           <li class="nav-item">
             <a href="iframe.html" class="nav-link">
               <i class="nav-icon fas fa-ellipsis-h"></i>

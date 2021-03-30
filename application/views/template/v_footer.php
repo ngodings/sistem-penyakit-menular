@@ -16,13 +16,7 @@
   <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2021 <a href="https://adminlte.io">AdminLTE</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.1.0-rc
-    </div>
-  </footer>
+  
 </div>
 <!-- ./wrapper -->
 <!-- REQUIRED SCRIPTS -->
@@ -40,5 +34,23 @@
 <script src="<?= base_url()?>template/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?= base_url()?>template/dist/js/pages/dashboard3.js"></script>
+
+<!-- DataTables -->
+<script src="<?= base_url()?>template/plugins/datatables/jquery.dataTables.js"></script>
+<script src="<?= base_url()?>template/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+    });
+  });
+</script>
 </body>
 </html>
