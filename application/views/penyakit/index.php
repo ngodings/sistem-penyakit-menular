@@ -65,8 +65,15 @@
 				  <?= $row['nama_penyakit']; ?>
 				  </td>
 				<td width="250">
-					<a href="<?php echo site_url('' . $row['id_penyakit']) ?>" class="btn btn-small"><i class="fas fa-edit"></i> Edit</a>
-                  	<a href="<?php echo site_url('' . $row['id_penyakit']) ?>" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
+						<a 
+                            href="javascript:;"
+                            data-id="<?php echo $row['id_penyakit'] ?>"
+                            data-nama="<?php echo $row['nama_penyakit'] ?>"
+                            data-toggle="modal" data-target="#edit-data">
+                            <button  data-toggle="modal" data-target="#ubah-data" class="btn btn-info">Ubah</button>
+                        </a>
+					
+                  	<a href="<?php echo site_url('penyakit/hapus/' . $row['id_penyakit']) ?>" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
 				</td>
                 </tr>
 				<?php endforeach; ?>
@@ -74,6 +81,55 @@
               </table>
             </div>
             <!-- /.card-body -->
+
+			<!-- Modal Ubah -->
+			<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="edit-data" class="modal fade">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+						</div>
+						<form class="form-horizontal" action="<?php echo base_url('penyakit/ubah')?>" method="post" enctype="multipart/form-data" role="form">
+						<div class="modal-body">
+								<div class="form-group">
+									<label class="col-lg-2 col-sm-2 control-label">ID</label>
+									<div class="col-lg-10">
+									<input type="text" class="form-control" id="id_penyakit" value="<?php echo $row['id_penyakit'] ?>" name="id_penyakit" readonly>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-2 col-sm-2 control-label">Nama</label>
+									<div class="col-lg-10">
+									<input type="text" class="form-control" id="nama_penyakit" value="<?php echo $row['nama_penyakit'] ?>" name="nama_penyakit" placeholder="">
+									</div>
+								</div>
+								
+						</div>
+						
+							<div class="modal-footer">
+								<button class="btn btn-info" type="submit"> Simpan&nbsp;</button>
+								<button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
+							</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- END Modal Ubah -->
+			<script>
+			$(document).ready(function() {
+				// Untuk sunting
+				$('#edit-data').on('show.bs.modal', function (event) {
+					var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+					var modal          = $(this)
+
+					// Isi nilai pada field
+					modal.find('#id_penyakit').attr("value",div.data('id_penyakit'));
+					modal.find('#nama_penyakit').attr("value",div.data('nama_penyakit'));
+				});
+			});
+		</script>
+
           </div>
           <!-- /.card -->
         </div>

@@ -46,6 +46,13 @@ class PenyakitM extends CI_Model
 
         $this->db->insert('penyakit', $data);
     }
+
+	function ubah($data, $id){
+		$this->db->where('id_penyakit',$id);
+		$this->db->update('penyakit', $data);
+		return TRUE;
+	}
+
     public function hapusDataPenyakit($id)
     {
        
@@ -54,23 +61,6 @@ class PenyakitM extends CI_Model
         $this->db->delete("penyakit");
     }
     
-    public function edit()
-    {
-        $id_kereta = $this->input->post('id_penyakit');
-        $nama_kereta = $this->input->post('nama_penyakit');
-        $kelas = $this->input->post('kelas');
-
-        $data = [
-            'id_kereta' => $id_kereta,
-            'nama_kereta' => $nama_kereta,
-            'kelas'  => $kelas
-        ];
-
-        
-        $this->db->where('id_kereta', $id_kereta);
-        $this->db->update( 'tbl_kereta', $data);
-
-    }
-
+   
     
 }

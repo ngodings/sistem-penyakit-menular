@@ -37,6 +37,30 @@ class Penyakit extends CI_Controller
 		$this->load->view('template/v_wrapper', $data, FALSE);
 	}
 
-	
+	function ubah(){
+		$data['user'] = $this->db->get_where('user', [
+            'username' => $this->session->userdata('username')
+        ])->row_array();
+
+		$data['penyakit'] = $this->PenyakitM->getAll()->result_array();
+			$id = $this->input->post('id_penyakit');
+		   $data = array(
+			   'nama_penyakit'  => $this->input->post('nama_penyakit')
+		   );
+		   $this->PenyakitM->ubah( $data, $id);
+		   $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert"> Data Berhasil diubah <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+		   redirect('penyakit');
+		   
+	   }
+
+	   public function hapus($id)
+	   {
+		   $this->PenyakitM->hapusDataPenyakit($id);
+   
+		   $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+											   Hapus data berhasil!
+											   </div>');
+		   redirect('penyakit');
+	   }
 
 }
