@@ -24,7 +24,7 @@ class Pasien extends CI_Controller
 		$data['id_unik'] = $this->PasienM->buat_kode();
         $this->form_validation->set_rules('nama', 'Nama Pasien', 'required');
 		//SELECT DATA PASIEN
-		$data['pasien'] = $this->PasienM->getAll()->result_array();
+		$data['pasien'] = $this->PasienM->getJoin()->result_array();
 		//select data kecamatan
 		$data['hasil']=$this->PasienM->Kecamatan();
 		if ($this->form_validation->run() == FALSE) {
@@ -69,11 +69,45 @@ class Pasien extends CI_Controller
 		);
         // echo 'selamat datang ' . $data['user']['nama'];
 		//select data kecamatan
-		$data['hasil']=$this->PasienM->Kecamatan();
+		//$data['hasil']=$this->PasienM->Kecamatan();
+		$data['pasien'] = $this->PasienM->getJoinId($id)->row_array();
+		echo json_encode($data);
 
-        $data['pasien'] = $this->PasienM->getIdPasien($id)->row_array();
+        //$data['pasien'] = $this->PasienM->getIdPasien($id)->row_array();
 
         
+    }
+
+	public function ubah($id)
+    {
+        $this->form_validation->set_rules('id_pasien', 'ID Pasien', 'required');
+        $this->form_validation->set_rules('nik', 'NIK', 'required');
+        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required');
+        $this->form_validation->set_rules('tanggal_lahir', 'tanggal_lahir', 'required');
+		
+
+        if ($this->form_validation->run() == false) {
+            // $data['user'] = $this->db->get_where('user', [
+			// 	'username' => $this->session->userdata('username')
+			// ])->row_array();
+			$data1 = $this->PasienM->getJoinId($id)->result_array();
+			$data = array(
+						'title' => 'Data Pasien Penyakit Menular',
+						'isi' => 'pasien/edit'
+			);
+			echo json_encode($data1);
+			die;
+			
+			$this->load->view('template/v_wrapper', $data, $data1, FALSE);
+			
+        } else {
+
+            $this->PasienM->edit();
+            $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+                                            Data pasien berhasil diupdate!
+                                            </div>');
+            redirect('Pasien/edit');
+        }
     }
 
 }

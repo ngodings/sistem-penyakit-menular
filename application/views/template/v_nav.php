@@ -54,7 +54,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('Medik') ?>" class="nav-link">
+            <a href="<?= base_url('Medis') ?>" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Rekam Medik

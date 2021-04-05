@@ -10,54 +10,54 @@
               </div>
             </div>
             <div class="card-body">
-			<form action="" method="POST">
-							<div class="form-group">
-			  				<label for="id_pasien">ID </label>
-                <input type="text" name="id_pasien" value="<?php echo $id_unik; ?>" class="form-control" id="id_pasien" readonly>
-              </div>
-							<div class="form-group">
-                <label for="nik">NIK Pasien</label>
-                <input type="text" id="nik" class="form-control" name="nik">
-              </div>
-              <div class="form-group">
-                <label for="nama">Nama Pasien</label>
-                <input type="text" id="nama" class="form-control" name="nama">
-              </div>
-							<div class="form-group">
-                <label for="tanggal_lahir">Tanggal Lahir Pasien</label>
-                <input type="date" id="tanggal_lahir" class="form-control" name="tanggal_lahir">
-              </div>
-							<div class="form-group">
-                <label for="jk">Jenis Kelamin</label>
-								<select name="jk" class="form-control" id="jk">
-									<option value="Laki-laki">Laki-laki</option>
-    							<option value="Perempuan">Perempuan</option>
-							</select>
-              </div>
-              <div class="form-group">
-                <label for="kecamatan">Kecamatan</label>
-								<select class="form-control" name="kecamatan" id="kecamatan">
-									<?php
-									foreach ($hasil as $value) {
-											echo "<option value='$value->id_kec'>$value->nama</option>";
-									}
-            			?>
-        				</select>
-              </div>
-							<div class="form-group">
-                <label for="kelurahan">Kelurahan</label>
-								<select class="form-control" name="kelurahan" id="kelurahan">
-           				 <!--  akan diload menggunakan ajax, dan ditampilkan disini -->
-        				</select>
-              </div>
-							<div class="form-group">
-                <label for="alamat">Alamat Lengkap</label>
-                <input type="text" id="alamat" class="form-control" name="alamat">
-              </div>
-			  <div class="col-12">
-          		<input type="submit" value="Tambah Data" class="btn btn-success float-right">
-        	</div>
-			</form>
+							<form action="" method="POST">
+											<div class="form-group">
+												<label for="id_pasien">ID </label>
+												<input type="text" name="id_pasien" value="<?php echo $id_unik; ?>" class="form-control" id="id_pasien" readonly>
+											</div>
+											<div class="form-group">
+												<label for="nik">NIK Pasien</label>
+												<input type="text" id="nik" class="form-control" name="nik">
+											</div>
+											<div class="form-group">
+												<label for="nama">Nama Pasien</label>
+												<input type="text" id="nama" class="form-control" name="nama">
+											</div>
+											<div class="form-group">
+												<label for="tanggal_lahir">Tanggal Lahir Pasien</label>
+												<input type="date" id="tanggal_lahir" class="form-control" name="tanggal_lahir">
+											</div>
+											<div class="form-group">
+												<label for="jk">Jenis Kelamin</label>
+												<select name="jk" class="form-control" id="jk">
+													<option value="Laki-laki">Laki-laki</option>
+													<option value="Perempuan">Perempuan</option>
+											</select>
+											</div>
+											<div class="form-group">
+												<label for="kecamatan">Kecamatan</label>
+												<select class="form-control" name="kecamatan" id="kecamatan">
+													<?php
+													foreach ($hasil as $value) {
+															echo "<option value='$value->id_kec'>$value->nama_kecamatan</option>";
+													}
+													?>
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="kelurahan">Kelurahan</label>
+												<select class="form-control" name="kelurahan" id="kelurahan">
+													<!--  akan diload menggunakan ajax, dan ditampilkan disini -->
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="alamat">Alamat Lengkap</label>
+												<input type="text" id="alamat" class="form-control" name="alamat">
+											</div>
+								<div class="col-12">
+											<input type="submit" value="Tambah Data" class="btn btn-success float-right">
+									</div>
+							</form>
             </div>
             <!-- /.card-body -->
           </div>
@@ -76,29 +76,29 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>ID Pasien</th>
+                  <th>NIK</th>
                   <th>Nama Pasien</th>
                   <th>Tanggal Lahir</th>
                   <th>Jenis Kelamin</th>
+									<th>Kecamatan</th>
+									<th>Kelurahan</th>
+									<th>Alamat Lengkap</th>
                   <th width="250">Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
 								<?php foreach ($pasien as $row) : ?>
                 <tr>
-                  <td><?= $row['id_pasien']; ?></td>
+                  <td><?= $row['nik']; ?></td>
                   <td><?= $row['nama']; ?></td>
                   <td><?= $row['tanggal_lahir']; ?></td>
                   <td><?= $row['jk']; ?> </td>
+									<td><?= $row['nama_kecamatan']; ?> </td>
+									<td><?= $row['nama_kelurahan']; ?> </td>
+									<td><?= $row['alamat']; ?> </td>
                   <td width="250">	
-									<a 
-                            href="javascript:;"
-                            data-id="<?php echo $row['id_pasien'] ?>"
-                            data-nama="<?php echo $row['nama'] ?>"
-                            data-toggle="modal" data-target="#edit-data">
-                            <button  data-toggle="modal" data-target="#ubah-data" class="btn btn-info">Detail</button>
-                  </a>
-									<a href="<?php echo site_url('pasien/ubah/' . $row['id_pasien']) ?>" class="btn btn-small"><i class="fas fa-edit"></i> Edit</a>
+									
+									<a href="<?php echo site_url('pasien/ubah/' . $row['id_pasien']) ?>" class="btn btn-small" id="edit-pasien"><i class="fas fa-edit"></i> Edit</a>
 									<a href="<?php echo site_url('pasien/hapus/' . $row['id_pasien']) ?>" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
 									</td>
                 </tr>
@@ -147,16 +147,9 @@
 													</div>
 											</div>
 											<div class="form-group">
-												<label class="col-lg-2 col-sm-2 control-label" for="kecamatan">Kecamatan</label>
+												<label class="col-lg-2 col-sm-2 control-label" for="nama_kecamatan">Kecamatan</label>
 													<div class="col-lg-10">
-													
-														<select class="form-control" name="kecamatan" id="kecamatan">
-														<?php
-														foreach ($hasil as $value) {
-																echo "<option value='$value->id_kec'>$value->nama</option>";
-														}
-														?>
-														</select>
+													<input type="text" class="form-control" id="nama_kecamatan" value="<?php echo $row['nama_kecamatan'] ?>" name="nama_kecamatan" placeholder="">
 													</div>
 											</div>
 											<div class="form-group">
@@ -208,7 +201,7 @@
 											var i;
 
 											for(i=0; i<data.length; i++){
-													html += '<option value='+data[i].id_kel+'>'+data[i].nama+'</option>';
+													html += '<option value='+data[i].id_kel+'>'+data[i].nama_kelurahan+'</option>';
 											}
 											$('#kelurahan').html(html);
 
@@ -227,8 +220,8 @@
 								modal.find('#nik').attr("value",div.data('nik'));
 								modal.find('#tanggal_lahir').attr("value",div.data('tanggal_lahir'));
 								modal.find('#jk').attr("value",div.data('jk'));
-								modal.find('#kecamatan').attr("value",div.data('kecamatan'));
-								modal.find('#kelurahan').attr("value",div.data('kelurahan'));
+								modal.find('#nama_kecamatan').attr("value",div.data('nama_kecamatan'));
+								modal.find('#nama_kelurahan').attr("value",div.data('nama_kelurahan'));
 								modal.find('#alamat').attr("value",div.data('alamat'));
 							});
 					});

@@ -52,6 +52,27 @@ class PasienM extends CI_Model
             ->result();
     }
 
+	public function getJoinId($id)
+    {
+        $this->db->select('*');
+        $this->db->from('pasien');
+        $this->db->join('kecamatan', 'kecamatan.id_kec=pasien.id_kec');
+        $this->db->join('kelurahan', 'kelurahan.id_kel=pasien.id_kel');
+        $this->db->where('pasien.id_pasien', $id);
+        $query = $this->db->get();
+        return $query;
+    }
+	public function getJoin()
+    {
+        $this->db->select('*');
+        $this->db->from('pasien');
+        $this->db->join('kecamatan', 'kecamatan.id_kec=pasien.id_kec');
+        $this->db->join('kelurahan', 'kelurahan.id_kel=pasien.id_kel');
+        
+        $query = $this->db->get();
+        return $query;
+    }
+
 	public function tambah(){
         
         $data = [
@@ -69,13 +90,36 @@ class PasienM extends CI_Model
         $this->db->insert('pasien', $data);
     }
 
-	
-
     public function hapus($id)
     {
        
         $this->db->from("pasien");
         $this->db->where("id_pasien", $id);
         $this->db->delete("pasien");
+    }
+	public function edit()
+    {
+        $id = $this->input->post('id_pasien');
+        
+
+        $data = [
+        
+            'id_pasien' => $id,
+			'nik' => $this->input->post('nik'),
+			'nama' => $this->input->post('nama'),
+			'tanggal_lahir' => $this->input->post('tanggal_lahir'),
+			'jk' => $this->input->post('jk'),
+			'id_kec' => $this->input->post('kecamatan'),
+			'id_kel' => $this->input->post('kelurahan'),
+			'alamat' => $this->input->post('alamat'),
+            
+
+        
+        ];
+
+        
+        $this->db->where('id_pasien', $id);
+        $this->db->update( 'pasien', $data);
+
     }
 }
