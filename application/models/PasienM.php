@@ -51,4 +51,31 @@ class PasienM extends CI_Model
             ->get()
             ->result();
     }
+
+	public function tambah(){
+        
+        $data = [
+            'id_pasien' => $this->input->post('id_pasien'),
+            'nik' => $this->input->post('nik'),
+			'nama' => $this->input->post('nama'),
+			'tanggal_lahir' => $this->input->post('tanggal_lahir'),
+			'jk' => $this->input->post('jk'),
+			'id_kec' => $this->input->post('kecamatan'),
+			'id_kel' => $this->input->post('kelurahan'),
+			'alamat' => $this->input->post('alamat'),
+            
+        ];
+
+        $this->db->insert('pasien', $data);
+    }
+
+	
+
+    public function hapus($id)
+    {
+       
+        $this->db->from("pasien");
+        $this->db->where("id_pasien", $id);
+        $this->db->delete("pasien");
+    }
 }
