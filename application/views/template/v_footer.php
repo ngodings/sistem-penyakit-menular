@@ -39,6 +39,9 @@
 <script src="<?= base_url()?>template/plugins/datatables/jquery.dataTables.js"></script>
 <script src="<?= base_url()?>template/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
+<!-- Select2 -->
+<script src="<?= base_url()?>template/plugins/select2/js/select2.full.min.js"></script>
+
 <script>
   $(function () {
     $("#example1").DataTable();
@@ -50,6 +53,15 @@
       "info": true,
       "autoWidth": false,
     });
+
+
+	//Initialize Select2 Elements
+	$('.select2').select2()
+
+	//Initialize Select2 Elements
+	$('.select2bs4').select2({
+		theme: 'bootstrap4'
+	})
   });
 </script>
 </body>

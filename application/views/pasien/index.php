@@ -36,14 +36,16 @@
 											</div>
 											<div class="form-group">
 												<label for="kecamatan">Kecamatan</label>
-												<select class="form-control" name="kecamatan" id="kecamatan">
+												<select class="form-control select2bs4" name="kecamatan" id="kecamatan">
 													<?php
 													foreach ($hasil as $value) {
 															echo "<option value='$value->id_kec'>$value->nama_kecamatan</option>";
 													}
 													?>
 												</select>
+												
 											</div>
+											
 											<div class="form-group">
 												<label for="kelurahan">Kelurahan</label>
 												<select class="form-control" name="kelurahan" id="kelurahan">

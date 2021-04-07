@@ -65,7 +65,7 @@
 				  </td>
 				<td width="250">
 					<a href="<?php echo site_url('medis/hapus/' . $row['id_rm']) ?>" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
-						
+					
 				</td>
                 </tr>
 				<?php endforeach; ?>

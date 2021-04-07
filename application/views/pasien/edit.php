@@ -9,7 +9,7 @@
 							
 											<div class="form-group">
 												<label for="id_pasien">ID </label>
-												<input type="text" name="id_pasien" class="form-control" id="id_pasien" value="<?php echo $data1['id_pasien'] ?>" readonly>
+												<input type="text" name="id_pasien" class="form-control" id="id_pasien" value="<?php echo $data['id_pasien'] ?>" readonly>
 											</div>
 											<div class="form-group">
 												<label for="nik">NIK Pasien</label>

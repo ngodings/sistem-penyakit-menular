@@ -87,18 +87,17 @@ class Pasien extends CI_Controller
 		
 
         if ($this->form_validation->run() == false) {
-            // $data['user'] = $this->db->get_where('user', [
-			// 	'username' => $this->session->userdata('username')
-			// ])->row_array();
-			$data1 = $this->PasienM->getJoinId($id)->result_array();
+            $data['user'] = $this->db->get_where('user', [
+				'username' => $this->session->userdata('username')
+			])->row_array();
+			$data['pasien'] = $this->PasienM->getJoinId($id)->result_array();
 			$data = array(
 						'title' => 'Data Pasien Penyakit Menular',
 						'isi' => 'pasien/edit'
 			);
-			echo json_encode($data1);
-			die;
 			
-			$this->load->view('template/v_wrapper', $data, $data1, FALSE);
+			
+			$this->load->view('template/v_wrapper', $data,  FALSE);
 			
         } else {
 
