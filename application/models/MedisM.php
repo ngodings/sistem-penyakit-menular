@@ -68,7 +68,7 @@ class MedisM extends CI_Model
         $query = $this->db->get();
         return $query;
     }
-	public function tambah(){
+	public function add(){
         
         $data = [
             'id_rm' => $this->input->post('id_rm'),
@@ -83,5 +83,20 @@ class MedisM extends CI_Model
         ];
 
         $this->db->insert('rekam_medik', $data);
+		
+    }
+
+	function ubah($data, $id){
+		$this->db->where('id_rm',$id);
+		$this->db->update('rekam_medik', $data);
+		return TRUE;
+	}
+
+	public function hapusData($id)
+    {
+       
+        $this->db->from("rekam_medik");
+        $this->db->where("id_rm", $id);
+        $this->db->delete("rekam_medik");
     }
 }

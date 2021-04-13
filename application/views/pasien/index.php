@@ -36,7 +36,7 @@
 											</div>
 											<div class="form-group">
 												<label for="kecamatan">Kecamatan</label>
-												<select class="form-control select2bs4" name="kecamatan" id="kecamatan">
+												<select class="form-control" name="kecamatan" id="kecamatan">
 													<?php
 													foreach ($hasil as $value) {
 															echo "<option value='$value->id_kec'>$value->nama_kecamatan</option>";
@@ -45,7 +45,6 @@
 												</select>
 												
 											</div>
-											
 											<div class="form-group">
 												<label for="kelurahan">Kelurahan</label>
 												<select class="form-control" name="kelurahan" id="kelurahan">
@@ -82,9 +81,9 @@
                   <th>Nama Pasien</th>
                   <th>Tanggal Lahir</th>
                   <th>Jenis Kelamin</th>
-									<th>Kecamatan</th>
-									<th>Kelurahan</th>
-									<th>Alamat Lengkap</th>
+					<th>Kecamatan</th>
+					<th>Kelurahan</th>
+					<th>Alamat Lengkap</th>
                   <th width="250">Aksi</th>
                 </tr>
                 </thead>
@@ -109,77 +108,7 @@
               </table>
             </div>
             <!-- /.card-body -->
-						<!-- Modal Detail -->
-						<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" name="kecamatan" id="edit-data" class="modal fade">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-									</div>
-									<form class="form-horizontal" action="<?php echo base_url('pasien/detail')?>" method="post" enctype="multipart/form-data" role="form">
-									<div class="modal-body">
-											<div class="form-group">
-												<label class="col-lg-2 col-sm-2 control-label">ID</label>
-												<div class="col-lg-10">
-												<input type="text" class="form-control" id="id_pasien" value="<?php echo $row['id_pasien'] ?>" name="id_pasien" readonly>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-lg-2 col-sm-2 control-label">nik</label>
-												<div class="col-lg-10">
-												<input type="text" class="form-control" id="nik" value="<?php echo $row['nik'] ?>" name="nik" placeholder="">
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-lg-2 col-sm-2 control-label">Nama</label>
-												<div class="col-lg-10">
-												<input type="text" class="form-control" id="nama" value="<?php echo $row['nama'] ?>" name="nama" placeholder="">
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-lg-2 col-sm-2 control-label">Tanggal Lahir</label>
-												<div class="col-lg-10">
-												<input type="date" class="form-control" id="tanggal_lahir" value="<?php echo $row['tanggal_lahir'] ?>" name="tanggal_lahir" placeholder="">
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-lg-2 col-sm-2 control-label" for="jk">Jenis Kelamin</label>
-													<div class="col-lg-10">
-													<input type="date" class="form-control" id="jk" value="<?php echo $row['jk'] ?>" name="jk" placeholder="">
-													</div>
-											</div>
-											<div class="form-group">
-												<label class="col-lg-2 col-sm-2 control-label" for="nama_kecamatan">Kecamatan</label>
-													<div class="col-lg-10">
-													<input type="text" class="form-control" id="nama_kecamatan" value="<?php echo $row['nama_kecamatan'] ?>" name="nama_kecamatan" placeholder="">
-													</div>
-											</div>
-											<div class="form-group">
-												<label class="col-lg-2 col-sm-2 control-label" for="kelurahan">Kelurahan</label>
-													<div class="col-lg-10">
-															<select class="form-control" name="kelurahan" id="kelurahan">
-														<!--  akan diload menggunakan ajax, dan ditampilkan disini -->
-															</select>
-													</div>
-											</div>
-											<div class="form-group">
-												<label class="col-lg-2 col-sm-2 control-label">alamat</label>
-												<div class="col-lg-10">
-												<input type="text" class="form-control" id="alamat" value="<?php echo $row['alamat'] ?>" name="alamat" placeholder="">
-												</div>
-											</div>	
-									</div>
-									
-										<div class="modal-footer">
-											
-											<button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
-										</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- END Modal Detail -->
+						
           </div>
           <!-- /.card -->
         </div>

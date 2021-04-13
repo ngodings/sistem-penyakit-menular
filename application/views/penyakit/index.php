@@ -70,7 +70,7 @@
                             data-id="<?php echo $row['id_penyakit'] ?>"
                             data-nama="<?php echo $row['nama_penyakit'] ?>"
                             data-toggle="modal" data-target="#edit-data">
-                            <button  data-toggle="modal" data-target="#ubah-data" class="btn btn-info">Ubah</button>
+                            <button  data-toggle="modal" data-target="#edit-data"  data-id="<?php echo $row['id_penyakit'] ?>" class="btn btn-info">Ubah</button>
                         </a>
 					
                   	<a href="<?php echo site_url('penyakit/hapus/' . $row['id_penyakit']) ?>" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
@@ -122,7 +122,9 @@
 				$('#edit-data').on('show.bs.modal', function (event) {
 					var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
 					var modal          = $(this)
-
+					
+					id_penyakit = $(this).data('id_penyakit');
+            		// mengambil nilai data-id yang di click
 					// Isi nilai pada field
 					modal.find('#id_penyakit').attr("value",div.data('id_penyakit'));
 					modal.find('#nama_penyakit').attr("value",div.data('nama_penyakit'));
