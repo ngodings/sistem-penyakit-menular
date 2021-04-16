@@ -9,19 +9,19 @@
 							
 											<div class="form-group">
 												<label for="id_pasien">ID </label>
-												<input type="text" name="id_pasien" class="form-control" id="id_pasien" value="<?php echo $data[0]['id_pasien'] ?>" readonly>
+												<input type="text" name="id_pasien" class="form-control" id="id_pasien" value="<?= $pasien['id_pasien']; ?>" readonly>
 											</div>
 											<div class="form-group">
 												<label for="nik">NIK Pasien</label>
-												<input type="text" id="nik" class="form-control" name="nik">
+												<input type="text" id="nik" class="form-control" name="nik" value="<?= $pasien['nik']; ?>">
 											</div>
 											<div class="form-group">
 												<label for="nama">Nama Pasien</label>
-												<input type="text" id="nama" class="form-control" name="nama">
+												<input type="text" id="nama" class="form-control" name="nama" value="<?= $pasien['nama']; ?>">
 											</div>
 											<div class="form-group">
 												<label for="tanggal_lahir">Tanggal Lahir Pasien</label>
-												<input type="date" id="tanggal_lahir" class="form-control" name="tanggal_lahir">
+												<input type="date" id="tanggal_lahir" class="form-control" name="tanggal_lahir" value="<?= $pasien['tanggal_lahir']; ?>">
 											</div>
 											<div class="form-group">
 												<label for="jk">Jenis Kelamin</label>
@@ -32,7 +32,7 @@
 											</div>
 											<div class="form-group">
 												<label for="kecamatan">Kecamatan</label>
-												<select class="form-control" name="kecamatan" id="kecamatan">
+												<select class="form-control" name="kecamatan" id="kecamatan" >
 													<?php
                                                     foreach ($hasil as $value) {
                                                         echo "<option value='$value->id_kec'>$value->nama_kecamatan</option>";
@@ -42,18 +42,53 @@
 											</div>
 											<div class="form-group">
 												<label for="kelurahan">Kelurahan</label>
-												<select class="form-control" name="kelurahan" id="kelurahan">
+												<select class="form-control" name="kelurahan" id="kelurahan" >
 													<!--  akan diload menggunakan ajax, dan ditampilkan disini -->
 												</select>
 											</div>
 											<div class="form-group">
 												<label for="alamat">Alamat Lengkap</label>
-												<input type="text" id="alamat" class="form-control" name="alamat">
+												<input type="text" id="alamat" class="form-control" name="alamat" value="<?= $pasien['alamat']; ?>">
 											</div>
 								<div class="col-12">
-											<input type="submit" value="Tambah Data" class="btn btn-success float-right">
+											<input type="submit" value="Edit Data" class="btn btn-success float-right">
 									</div>
 									
 							</form>
             </div>
             <!-- /.card-body -->
+
+			<script>
+
+					$("#kecamatan").change(function(){
+
+							// variabel dari nilai combo box kecamatan
+							var id_kec = $("#kecamatan").val();
+
+							// Menggunakan ajax untuk mengirim dan dan menerima data dari server
+							$.ajax({
+									url : "<?php echo base_url();?>/pasien/get_kelurahan",
+									method : "POST",
+									data : {id_kec:id_kec},
+									async : false,
+									dataType : 'json',
+									success: function(data){
+											var html = '';
+											var i;
+
+											for(i=0; i<data.length; i++){
+													html += '<option value='+data[i].id_kel+'>'+data[i].nama_kelurahan+'</option>';
+											}
+											$('#kelurahan').html(html);
+
+									}
+							});
+
+
+							// Untuk sunting
+							
+					});
+
+				
+					
+					</script>

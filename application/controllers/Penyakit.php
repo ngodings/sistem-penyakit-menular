@@ -42,7 +42,7 @@ class Penyakit extends CI_Controller
             'username' => $this->session->userdata('username')
         ])->row_array();
 
-		//$data['penyakit'] = $this->PenyakitM->getAll()->result_array();
+		$data['penyakit'] = $this->PenyakitM->getAll()->result_array();
 			$id = $this->input->post('id_penyakit');
 		   $data = array(
 			   'nama_penyakit'  => $this->input->post('nama_penyakit')

@@ -68,6 +68,17 @@ class MedisM extends CI_Model
         $query = $this->db->get();
         return $query;
     }
+	public function getJoinId($id)
+    {
+        $this->db->select('*');
+        $this->db->from('rekam_medik');
+        $this->db->join('pasien', 'pasien.id_pasien=rekam_medik.id_pasien');
+        $this->db->join('penyakit', 'penyakit.id_penyakit=rekam_medik.id_penyakit');
+        $this->db->join('user', 'user.id_user=rekam_medik.id_user');
+        $this->db->where('rekam_medik.id_rm', $id);
+        $query = $this->db->get();
+        return $query;
+    }
 	public function add(){
         
         $data = [
@@ -86,11 +97,30 @@ class MedisM extends CI_Model
 		
     }
 
-	function ubah($data, $id){
-		$this->db->where('id_rm',$id);
-		$this->db->update('rekam_medik', $data);
-		return TRUE;
-	}
+	public function edit()
+    {
+        $id = $this->input->post('id_rm');
+        
+
+        $data = [
+        
+            'id_rm' => $id,
+			'tanggal_terinfeksi' => $this->input->post('tanggal_terinfeksi'),
+			
+			'status' => $this->input->post('status'),
+			'tanggal_sembuh' => $this->input->post('tanggal_sembuh'),
+			'keterangan' => $this->input->post('keterangan'),
+	
+            
+
+        
+        ];
+
+        
+        $this->db->where('id_rm', $id);
+        $this->db->update( 'rekam_medik', $data);
+
+    }
 
 	public function hapusData($id)
     {

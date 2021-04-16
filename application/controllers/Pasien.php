@@ -6,7 +6,7 @@ class Pasien extends CI_Controller
 	public function __construct()
     {
         parent::__construct();
-		$this->load->helper(array('url','form'));
+		$this->load->helper(array('url','form', 'html'));
         $this->load->model('PasienM', '', TRUE);
         $this->load->library('form_validation');
     }
@@ -58,25 +58,7 @@ class Pasien extends CI_Controller
 		redirect('Pasien');
 	}
 
-	public function detail($id)
-    {
-        $data['user'] = $this->db->get_where('user', [
-            'username' => $this->session->userdata('username')
-        ])->row_array();
-		$data = array(
-					'title' => 'Data Pasien Penyakit Menular',
-					'isi' => 'pasien/index'
-		);
-        // echo 'selamat datang ' . $data['user']['nama'];
-		//select data kecamatan
-		//$data['hasil']=$this->PasienM->Kecamatan();
-		$data['pasien'] = $this->PasienM->getJoinId($id)->row_array();
-		echo json_encode($data);
-
-        //$data['pasien'] = $this->PasienM->getIdPasien($id)->row_array();
-
-        
-    }
+	
 
 	public function ubah($id)
     {
@@ -90,14 +72,21 @@ class Pasien extends CI_Controller
             $data['user'] = $this->db->get_where('user', [
 				'username' => $this->session->userdata('username')
 			])->row_array();
-			$data['pasien'] = $this->PasienM->getJoinId($id)->result_array();
-			$data = array(
-						'title' => 'Data Pasien Penyakit Menular',
-						'isi' => 'pasien/edit'
-			);
+			//select data kecamatan
 			
+			$data = [
+				'title' => 'Data Pasien Penyakit Menular',
+				'pasien' => $this->PasienM->getJoinId($id)->row_array(),
+				'hasil' => $this->PasienM->Kecamatan()
+			];
+			// var_dump($data);     
+			// die();
 			
-			$this->load->view('template/v_wrapper', $data,  FALSE);
+			$this->load->view('template/v_head', $data,  FALSE);
+			$this->load->view('template/v_header', $data,  FALSE);
+			$this->load->view('template/v_nav', $data,  FALSE);
+			$this->load->view('pasien/edit', $data);
+			$this->load->view('template/v_footer', $data,  FALSE);
 			
         } else {
 
@@ -105,7 +94,7 @@ class Pasien extends CI_Controller
             $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
                                             Data pasien berhasil diupdate!
                                             </div>');
-            redirect('Pasien/edit');
+            redirect('Pasien');
         }
     }
 

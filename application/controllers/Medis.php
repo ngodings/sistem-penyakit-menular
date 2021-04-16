@@ -49,7 +49,7 @@ class Medis extends CI_Controller
 		$this->load->view('template/v_wrapper', $data, FALSE);
 	}
 
-	function ubah(){
+	function ubahs(){
 		$data['user'] = $this->db->get_where('user', [
             'username' => $this->session->userdata('username')
         ])->row_array();
@@ -78,5 +78,41 @@ class Medis extends CI_Controller
 											</div>');
 		redirect('medis');
 	}
+
+	public function ubah($id)
+    {
+        $this->form_validation->set_rules('id_rm', 'ID ', 'required');
+     
+        $this->form_validation->set_rules('tanggal_sembuh', 'tanggal_sembuh', 'required');
+		
+
+        if ($this->form_validation->run() == false) {
+            $data['user'] = $this->db->get_where('user', [
+				'username' => $this->session->userdata('username')
+			])->row_array();
+			//select data kecamatan
+			
+			$data = [
+				'title' => 'Data Rekam Medik Pasien Penyakit Menular',
+				'rm' => $this->MedisM->getJoinId($id)->row_array()
+			];
+			// var_dump($data);     
+			// die();
+			
+			$this->load->view('template/v_head', $data,  FALSE);
+			$this->load->view('template/v_header', $data,  FALSE);
+			$this->load->view('template/v_nav', $data,  FALSE);
+			$this->load->view('medis/edit', $data);
+			$this->load->view('template/v_footer', $data,  FALSE);
+			
+        } else {
+
+            $this->MedisM->edit();
+            $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+                                            Data rekam medis berhasil diupdate!
+                                            </div>');
+            redirect('Medis');
+        }
+    }
 
 }

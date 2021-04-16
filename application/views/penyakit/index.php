@@ -68,9 +68,8 @@
 						<a 
                             href="javascript:;"
                             data-id="<?php echo $row['id_penyakit'] ?>"
-                            data-nama="<?php echo $row['nama_penyakit'] ?>"
                             data-toggle="modal" data-target="#edit-data">
-                            <button  data-toggle="modal" data-target="#edit-data"  data-id="<?php echo $row['id_penyakit'] ?>" class="btn btn-info">Ubah</button>
+                            <button  data-toggle="modal" id="tombol-ubah" data-target="#edit-data" data-nama="<?php echo $row['nama_penyakit'] ?>" data-id="<?php echo $row['id_penyakit'] ?>" class="btn btn-info">Ubah</button>
                         </a>
 					
                   	<a href="<?php echo site_url('penyakit/hapus/' . $row['id_penyakit']) ?>" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
@@ -89,18 +88,18 @@
 						<div class="modal-header">
 							<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
 						</div>
-						<form class="form-horizontal" action="<?php echo base_url('penyakit/ubah')?>" method="post" enctype="multipart/form-data" role="form">
+						<form class="form-horizontal"  action="<?php echo base_url('penyakit/ubah')?>" method="post" enctype="multipart/form-data" role="form">
 						<div class="modal-body">
 								<div class="form-group">
 									<label class="col-lg-2 col-sm-2 control-label">ID</label>
 									<div class="col-lg-10">
-									<input type="text" class="form-control" id="id_penyakit" value="<?php echo $row['id_penyakit'] ?>" name="id_penyakit" readonly>
+									<input type="text" class="form-control" id="id_penyakit" name="id_penyakit" readonly>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-lg-2 col-sm-2 control-label">Nama</label>
 									<div class="col-lg-10">
-									<input type="text" class="form-control" id="nama_penyakit" value="<?php echo $row['nama_penyakit'] ?>" name="nama_penyakit" placeholder="">
+									<input type="text" class="form-control" id="nama_penyakit" name="nama_penyakit" placeholder="Nama">
 									</div>
 								</div>
 								
@@ -119,15 +118,21 @@
 			<script>
 			$(document).ready(function() {
 				// Untuk sunting
+				console.log("Hello, WOrld")
 				$('#edit-data').on('show.bs.modal', function (event) {
 					var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
-					var modal          = $(this)
-					
-					id_penyakit = $(this).data('id_penyakit');
+					id_penyakit = div.data('id');
+					nama_penyakit = div.data('nama');
+					console.log("id penyakit :" + id_penyakit)
+					console.log("nama penyakit : " + nama_penyakit)
+					// console.log(modal.find('#id_penyakit').attr("value"))
+					// console.log(div)
+					// console.log(modal)
             		// mengambil nilai data-id yang di click
 					// Isi nilai pada field
-					modal.find('#id_penyakit').attr("value",div.data('id_penyakit'));
-					modal.find('#nama_penyakit').attr("value",div.data('nama_penyakit'));
+					// console.log($('input#id_penyakit').val('Uji coba'))
+					$('input#id_penyakit').val(div.data('id'));
+					$('input#nama_penyakit').val(div.data('nama'));
 				});
 			});
 		</script>
