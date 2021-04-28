@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Sistem Penyakit Menular - Dinas Kesehatan Surakarta</title>
+  <title>Peta Penyakit Menular - Dinas Kesehatan Surakarta</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -28,6 +28,9 @@
 
   <!-- Template Main CSS File -->
   <link href="<?= base_url()?>template/front/assets/css/style.css" rel="stylesheet">
+  
+  <!-- map -->
+  <link href="<?php echo base_url("assets/leaflet/leaflet.css"); ?>" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Medicio - v2.1.1
@@ -36,6 +39,16 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
+
+<style type="text/css">
+	.user{
+		padding:5px;
+		margin-bottom: 5px;
+	}
+	#solo { 
+		height: 480px; 
+	}
+</style>
 
 <body>
 
@@ -62,10 +75,11 @@
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           <li class="active"><a href="index.html">Beranda</a></li>
-          <li><a href="#about">Profil</a></li>
-          <li><a href="#services">Berita</a></li>
-          <li><a href="<?= base_url('peta/data'); ?>">Data</a></li>
-          <li><a href="#doctors">Layanan</a></li>
+          <li><a href="#covid">COVID-19</a></li>
+          <li><a href="#tbc">TBC</a></li>
+          <li><a href="#ims">IMS</a></li>
+          <li><a href="#diare">Diare</a></li>
+		  <li><a href="#dbd">DBD</a></li>
           <!-- <li class="drop-down"><a href="">Drop Down</a>
           <ul>
             <li><a href="#">Drop Down 1</a></li>
