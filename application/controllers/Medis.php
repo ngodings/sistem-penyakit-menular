@@ -49,25 +49,7 @@ class Medis extends CI_Controller
 		$this->load->view('template/v_wrapper', $data, FALSE);
 	}
 
-	function ubahs(){
-		$data['user'] = $this->db->get_where('user', [
-            'username' => $this->session->userdata('username')
-        ])->row_array();
-		$data['pasien']=$this->MedisM->Pasien();
-		//select data penyakit
-		$data['penyakit']=$this->MedisM->Penyakit();
-		$data['user']=$this->MedisM->User();
-
-		$data['rm'] = $this->MedisM->getJoin()->result_array();
-			$id = $this->input->post('id_penyakit');
-		   $data = array(
-			   'nama_penyakit'  => $this->input->post('nama_penyakit')
-		   );
-		   $this->PenyakitM->ubah( $data, $id);
-		   $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert"> Data Berhasil diubah <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-		   redirect('penyakit');
-		   
-	   }
+	
 	
 	public function hapus($id)
 	{

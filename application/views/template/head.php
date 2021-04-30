@@ -74,7 +74,7 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="index.html">Beranda</a></li>
+          <li class="active"><a href="">Beranda</a></li>
           <li><a href="#covid">COVID-19</a></li>
           <li><a href="#tbc">TBC</a></li>
           <li><a href="#ims">IMS</a></li>

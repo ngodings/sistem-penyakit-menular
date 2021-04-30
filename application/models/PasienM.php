@@ -122,4 +122,17 @@ class PasienM extends CI_Model
         $this->db->update( 'pasien', $data);
 
     }
+
+	public function Percobaan (){
+		// $this->db->select('count(*)');
+		// $this->db->from('rekam_medik');
+		$this->db->join('penyakit', 'rekam_medik.id_penyakit = penyakit.id_penyakit');
+		$this->db->join('pasien','rekam_medik.id_pasien = pasien.id_pasien');
+		$this->db->join('kecamatan', ' pasien.id_kec = kecamatan.id_kec');
+		$this->db->where('penyakit.nama_penyakit', 'coronos');
+		$this->db->where('rekam_medik.status', 'Dalam Perawatan');
+		$this->db->where('kecamatan.nama_kecamatan', 'Jebres');
+
+		return $this->db->count_all_results('rekam_medik');
+	}
 }

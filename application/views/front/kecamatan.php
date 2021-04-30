@@ -74,7 +74,7 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="index.html">Beranda</a></li>
+          <li class="active"><a href="">Beranda</a></li>
           <li><a href="#covid">COVID-19</a></li>
           <li><a href="#tbc">TBC</a></li>
           <li><a href="#ims">IMS</a></li>
@@ -116,15 +116,14 @@
       <div class="carousel-inner" role="listbox">
 
         <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(<?= base_url()?>template/front/assets/img/slide/slide-1.jpg)">
+        <div class="carousel-item active" style="background-image: url(<?= base_url()?>template/front/assets/img/slide/slide-2.jpg)">
           <div class="container">
-            <h2> <span>Data Penyakit Menular di Surakarta</span></h2>
+            <h2> <span>Data Penyakit Menular </span></h2>
             
           </div>
         </div>
 
-        
-
+  
       </div>
 
       <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
@@ -145,7 +144,7 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>KOTA SURAKARTA</h2>
+          <h2>Penyakit COVID-19</h2>
           <p>Berikut </p>
 		  
         </div>
@@ -250,7 +249,7 @@
 						fillColor: "",
 						weight: 1,
 						opacity: 1,
-						color: "#11f43e"
+						color: "#ff3333"
 
 					};
 

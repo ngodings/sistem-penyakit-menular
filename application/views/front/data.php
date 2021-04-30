@@ -7,7 +7,7 @@
       <div class="carousel-inner" role="listbox">
 
         <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(<?= base_url()?>template/front/assets/img/slide/slide-1.jpg)">
+        <div class="carousel-item active" style="background-image: url(<?= base_url()?>template/front/assets/img/suntik.jpg)">
           <div class="container">
             <h2> <span>Data Penyakit Menular di Surakarta</span></h2>
             
