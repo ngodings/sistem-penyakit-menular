@@ -38,11 +38,11 @@ class Peta extends CI_Controller
         $this->load->view('front/kecamatan', $data);
     }
 
-    public function nama($id_kec=null)
+    public function corona($id_kec=null)
     {
-		$hell = $this->PasienM->Percobaan();
-        $data=$this->db->limit(1)->get_where('kecamatan', array('id_kec'=>$id_kec))->row()->nama_kecamatan;
-        echo json_encode($data, $hell);
+		$data = $this->PasienM->Percobaan($id_kec);
+        //$data=$this->db->limit(1)->get_where('kecamatan', array('id_kec'=>$id_kec))->row()->nama_kecamatan;
+        echo json_encode($data);
     }
 
     public function getCountKecamatan()

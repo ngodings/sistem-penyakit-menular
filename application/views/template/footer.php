@@ -171,10 +171,10 @@
 				var hell = hell;
 				var id_kec = parseFloat(feature.properties.id_kec);
 
-				$.getJSON(base_url+"peta/nama/"+id_kec, function(data){
+				$.getJSON(base_url+"peta/corona/"+id_kec, function(data){
 				
-					var info_bidang ="<h5 style='text-align:center'>Informasi Penyakit Menular</h5>"+hell;
-				
+					var info_bidang ="<h5 style='text-align:center'>Informasi Penyakit Menular</h5>";
+					info_bidang+="coba";
 					info_bidang+="<a href='<?=base_url()?>peta/bidang_detail/'"+id_kec+"'></a>";
 					info_bidang+="<div style='width:100%;text-align:center;margin-top:10px;'><a href='<?=base_url()?>peta/bidang_detail/"+id_kec+"'> Detail </a></div>";
 					layer.bindPopup(info_bidang, {
