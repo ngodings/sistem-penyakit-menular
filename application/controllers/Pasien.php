@@ -98,4 +98,21 @@ class Pasien extends CI_Controller
         }
     }
 
+
+	//jumlah
+	public function get_count($id_kec=null)
+    {
+		
+
+		$data = [
+			'pasien_covid' => $this->PasienM->get_count_covid($id_kec),
+			'pasien_tbc' => $this->PasienM->get_count_tbc($id_kec),
+			'pasien_ims' => $this->PasienM->get_count_ims($id_kec),
+			'pasien_diare' => $this->PasienM->get_count_diare($id_kec),
+			'pasien_dbd' => $this->PasienM->get_count_dbd($id_kec),
+			'nama_kecamatan' => $this->db->limit(1)->get_where('kecamatan', array('id_kec'=>$id_kec))->row()->nama_kecamatan
+		];
+        echo json_encode($data);
+    }
+
 }

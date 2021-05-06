@@ -26,3 +26,13 @@
 	
   <script src="<?= base_url()?>leaflet/leaflet.js"></script>
 </head>
+
+<style type="text/css">
+	.user{
+		padding:5px;
+		margin-bottom: 5px;
+	}
+	#solo { 
+		height: 480px; 
+	}
+</style>

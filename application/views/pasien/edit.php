@@ -33,6 +33,7 @@
 											<div class="form-group">
 												<label for="kecamatan">Kecamatan</label>
 												<select class="form-control" name="kecamatan" id="kecamatan" >
+													<option value="<?= $pasien['id_kec'] ?>"><?= $pasien['nama_kecamatan']?></option>
 													<?php
                                                     foreach ($hasil as $value) {
                                                         echo "<option value='$value->id_kec'>$value->nama_kecamatan</option>";
@@ -42,8 +43,13 @@
 											</div>
 											<div class="form-group">
 												<label for="kelurahan">Kelurahan</label>
+												<div 
+													id="kelurahan_pasien" 
+													data-id_kelurahan="<?= $pasien['id_kel'] ?>" 
+													data-nama_kelurahan="<?= $pasien['nama_kelurahan'] ?>"></div>
 												<select class="form-control" name="kelurahan" id="kelurahan" >
 													<!--  akan diload menggunakan ajax, dan ditampilkan disini -->
+
 												</select>
 											</div>
 											<div class="form-group">
@@ -60,7 +66,7 @@
 
 			<script>
 
-					$("#kecamatan").change(function(){
+					// $("#kecamatan").change(function(){
 
 							// variabel dari nilai combo box kecamatan
 							var id_kec = $("#kecamatan").val();
@@ -69,11 +75,13 @@
 							$.ajax({
 									url : "<?php echo base_url();?>/pasien/get_kelurahan",
 									method : "POST",
-									data : {id_kec:id_kec},
+									data : {id_kec: id_kec},
 									async : false,
 									dataType : 'json',
 									success: function(data){
-											var html = '';
+											let id_kel_terpilih = $('#kelurahan_pasien').data('id_kelurahan');
+											let nama_kel_terpilih = $('#kelurahan_pasien').data('nama_kelurahan');
+											var html = '<option value='+ id_kel_terpilih +'>'+ nama_kel_terpilih +'</option>';
 											var i;
 
 											for(i=0; i<data.length; i++){
@@ -87,7 +95,7 @@
 
 							// Untuk sunting
 							
-					});
+					// });
 
 				
 					

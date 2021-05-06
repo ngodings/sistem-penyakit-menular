@@ -29,6 +29,9 @@
   <!-- Template Main CSS File -->
   <link href="<?= base_url()?>template/front/assets/css/style.css" rel="stylesheet">
 
+	<!-- map -->
+  <link href="<?php echo base_url("assets/leaflet/leaflet.css"); ?>" rel="stylesheet">
+
   <!-- =======================================================
   * Template Name: Medicio - v2.1.1
   * Template URL: https://bootstrapmade.com/medicio-free-bootstrap-theme/
@@ -36,6 +39,15 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
+<style type="text/css">
+	.user{
+		padding:5px;
+		margin-bottom: 5px;
+	}
+	#solo { 
+		height: 480px; 
+	}
+</style>
 
 <body>
 

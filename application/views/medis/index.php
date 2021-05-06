@@ -21,7 +21,7 @@
 												<select class="form-control select2bs4" name="pasien" id="pasien">
 													<?php
 													foreach ($pasien as $value) {
-															echo "<option value='$value->id_pasien'> $value->nama</option>";
+															echo "<option value='$value->id_pasien'>$value->nik - $value->nama</option>";
 													}
 													?>
 												</select>
