@@ -50,6 +50,18 @@ class Peta extends CI_Controller
         echo json_encode($data);
     }
 
+	public function corona_kel($id_kel=null)
+    {
+		// $data =  // jumlah pasien
+        // $data_nama=$this->db->limit(1)->get_where('kecamatan', array('id_kec'=>$id_kec))->row()->nama_kecamatan;
+
+		$data = [
+			'jumlah_pasien' => $this->PasienM->get_count_kel($id_kel),
+			'nama_kelurahan' => $this->db->limit(1)->get_where('kelurahan', array('id_kel'=>$id_kel))->row()->nama_kelurahan
+		];
+        echo json_encode($data);
+    }
+
     public function getCountKecamatan()
     {
 		$data = $this->PasienM->Percobaan();

@@ -235,7 +235,7 @@
 			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 		}).addTo(map);
 
-		$.getJSON(base_url+"assets/geojson/solo.geojson", function(data){
+		$.getJSON(base_url+"assets/geojson/detail-solo.geojson", function(data){
 		//untuk konfigurasi tampilan map mark atau multi polygon
 		getLayer = L.geoJson(data, {
 			style: function(feature, layer) {
@@ -245,11 +245,12 @@
 				var id_kec = feature.properties.id_kec;
 				if (id_kec == id_kecamatan){
 					return{
-						fillOpacity: 0.8,
-						fillColor: "",
+						fillOpacity: 0.4,
+						fillColor: 0.1,
 						weight: 1,
 						opacity: 1,
-						color: "#ff3333"
+				
+						color: "#1e90ff"
 
 					};
 
@@ -262,31 +263,43 @@
 						};
 
 				}
+
+				var id_kel = feature.properties.id_kel;
+
+				
+
+				
+			},
+
+				//untuk setiap bidang menambahkan layer
+				onEachFeature: function(feature, layer){
+				// mendapatkan kode
+		
+				var id_kel = parseFloat(feature.properties.id_kel);
+
+				$.getJSON(base_url+"peta/corona_kel/"+id_kel, function(data){
+				
+					var info_bidang ="<h5 style='text-align:center'>Informasi Penyakit Menular</h5>";
+					info_bidang+="Kelurahan	: " + data.nama_kelurahan
+					info_bidang+="<br>Jumlah Pasien : " + data.jumlah_pasien;
+				
+					layer.bindPopup(info_bidang, {
+						maxWidth : 260,
+						closeButton : true,
+						offset : L.point(0, -20)
+					});
+
+					layer.on('click', function(){
+						layer.openPopup();
+					});
+
+				});
+
 				
 
 				
 			}
-			// //untuk setiap bidang menambahkan layer
-			// onEachFeature: function(feature, layer){
-			// 	// mendapatkan kode
-			// 	var id_kec = feature.properties.id_kec;
-			// 	var long = parseFloat(feature.properties.longitude);
-			// 	var latt = parseFloat(feature.properties.latitude);
-			// 	//untuk memfokuskan daerah
-			// 	if (id_kec == id_kec){
-			// 		map.flyTo([long, latt], 14, {
-			// 			animate: true,
-			// 			duration: 2
-			// 		});
-
-			// 		//membuat tanda marker agar dapat di tengah plotygon
-			// 		var center = getCenteroid(feature.geometry.coordinates[0]);
-			// 		L.marker([center[1],center[0]]).addTo(map);
-			// 		//dibalik jadi 0 latitude
-			// 	}
-				
-			// }
-
+		
 		}).addTo(map);
 	}); 
 	

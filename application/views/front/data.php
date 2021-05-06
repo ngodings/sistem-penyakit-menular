@@ -50,6 +50,26 @@
       </div>
     </section><!-- End Departments Section -->
 
+		<!-- ======= covid Section ======= -->
+    <section id="tbc" class="tbc">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Data Penyakit TBC di Kota Surakarta</h2>
+          <p>Berikut </p>
+		  
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+			<div class="col-md-12">
+	  			<div id="tbc"></div>
+     	 	</div>
+        </div>
+
+      </div>
+    </section><!-- End Departments Section -->
+
+
 </main><!-- End #main -->
 
 

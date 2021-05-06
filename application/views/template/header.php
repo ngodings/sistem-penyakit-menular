@@ -47,6 +47,9 @@
 	#solo { 
 		height: 480px; 
 	}
+	#tbc { 
+		height: 480px; 
+	}
 </style>
 
 <body>
@@ -67,17 +70,17 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <a href="index.html" class="logo mr-auto"><img src="<?= base_url()?>template/front/assets/img/logo-dinkes.png" alt=""></a>
+      <a href="" class="logo mr-auto"><img src="<?= base_url()?>template/front/assets/img/logo-dinkes.png" alt=""></a>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <h1 class="logo mr-auto"><a href="index.html">Medicio</a></h1> -->
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="index.html">Beranda</a></li>
+          <li class="active"><a href="">Beranda</a></li>
           <li><a href="#about">Profil</a></li>
-          <li><a href="#services">Berita</a></li>
+          <li><a href="#berita">Berita</a></li>
           <li><a href="<?= base_url('peta/data'); ?>">Data</a></li>
-          <li><a href="#doctors">Layanan</a></li>
+          <li><a href="#layanan">Layanan</a></li>
           <!-- <li class="drop-down"><a href="">Drop Down</a>
           <ul>
             <li><a href="#">Drop Down 1</a></li>

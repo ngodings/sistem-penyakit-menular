@@ -68,13 +68,13 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <a href="index.html" class="logo mr-auto"><img src="<?= base_url()?>template/front/assets/img/logo-dinkes.png" alt=""></a>
+      <a href="" class="logo mr-auto"><img src="<?= base_url()?>template/front/assets/img/logo-dinkes.png" alt=""></a>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <h1 class="logo mr-auto"><a href="index.html">Medicio</a></h1> -->
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="">Beranda</a></li>
+          <li class="active"><a href="http://localhost:81/sistem-penyakit-menular/">Beranda</a></li>
           <li><a href="#covid">COVID-19</a></li>
           <li><a href="#tbc">TBC</a></li>
           <li><a href="#ims">IMS</a></li>
