@@ -235,7 +235,7 @@
 			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 		}).addTo(map);
 
-		$.getJSON(base_url+"assets/geojson/detail-solo.geojson", function(data){
+		$.getJSON(base_url+"assets/geojson/detail-solo-color.geojson", function(data){
 		//untuk konfigurasi tampilan map mark atau multi polygon
 		getLayer = L.geoJson(data, {
 			style: function(feature, layer) {
@@ -243,14 +243,32 @@
 
 				//membedakan multi polygon
 				var id_kec = feature.properties.id_kec;
+				var id_kel = feature.properties.id_kel;
+				var fill = feature.properties.fill;
+			
+			
+
 				if (id_kec == id_kecamatan){
+					if (id_kel)
+						{
+							return{
+
+							fillOpacity: 0.8,
+							weight: 1,
+							opacity: 0.4,
+							color: fill
+
+							};
+							
+						}				
 					return{
+
 						fillOpacity: 0.4,
-						fillColor: 0.1,
+						fillColor: 0.4,
 						weight: 1,
 						opacity: 1,
 				
-						color: "#1e90ff"
+						color: fill
 
 					};
 

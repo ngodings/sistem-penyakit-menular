@@ -27,6 +27,7 @@
 												</select>
 												
 											</div>
+											
 											<div class="form-group">
 												<label for="tanggal_terinfeksi">Tanggal Terinfeksi Penyakit</label>
 												<input type="date" id="tanggal_terinfeksi" class="form-control" name="tanggal_terinfeksi">
@@ -93,9 +94,10 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>ID </th>
+                  
                   <th>NIK Pasien</th>
 				  <th>Nama Pasien</th>
+				  <th>Alamat</th>
 				  <th>Tanggal Terinfeksi</th>
 				  <th>Status</th>
 				  <th>Penyakit </th>
@@ -110,14 +112,15 @@
 				<tbody>
 				<?php foreach ($rm as $row) : ?>
                 <tr>
-                  <td> 
-					<?= $row['id_rm']; ?>
-				 </td>
+                  
                   <td>
 				  	<?= $row['nik']; ?>
 				  </td>
 				  <td>
 				  	<?= $row['nama']; ?>
+				  </td>
+				  <td>
+				  	<?= $row['alamat']; ?>
 				  </td>
 				  <td>
 				  	<?= $row['tanggal_terinfeksi']; ?>
