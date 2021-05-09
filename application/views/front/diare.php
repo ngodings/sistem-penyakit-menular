@@ -45,7 +45,7 @@
 		padding:5px;
 		margin-bottom: 5px;
 	}
-	#ims { 
+	#diare { 
 		height: 480px; 
 	}
 </style>
@@ -100,7 +100,7 @@
         <!-- Slide 1 -->
         <div class="carousel-item active" style="background-image: url(<?= base_url()?>template/front/assets/img/std.jpg)">
           <div class="container">
-            <h2><span>Data Penyakit IMS (Infeksi Menular Seksual) di Kota Surakarta</span></h2>
+            <h2><span>Data Penyakit Diare di Kota Surakarta</span></h2>
             
           </div>
         </div>
@@ -126,8 +126,8 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-		<h2>Peta Sebaran Kasus IMS Kota Surakarta </h2>
-          <p>Data berikut merupakan akumulasi data pasien IMS di Kota Surakarta </p>
+		<h2>Peta Sebaran Kasus Diare Kota Surakarta </h2>
+          <p>Data berikut merupakan akumulasi data pasien Diare di Kota Surakarta </p>
 				
 				
 		  
@@ -142,7 +142,7 @@
 						<br>
         <div class="row" data-aos="fade-up" data-aos-delay="100">
 			<div class="col-md-12">
-	  			<div id="ims"></div>
+	  			<div id="diare"></div>
      	 	</div>
         </div>
 
@@ -219,7 +219,7 @@
 	
 	
 	//menampilkan map
-	var map = L.map('ims').setView([-7.5595759, 110.8541984], 13);
+	var map = L.map('diare').setView([-7.5595759, 110.8541984], 13);
 	var base_url ="<?= base_url() ?>";
 	
 
@@ -293,17 +293,17 @@
 		
 				var id_kec = parseFloat(feature.properties.id_kec);
 
-				$.getJSON(base_url+"peta/get_ims/"+id_kec, function(data){
+				$.getJSON(base_url+"peta/get_diare/"+id_kec, function(data){
 				
-					var info_bidang ="<h4 style='text-align:center'>Akumulasi Data Pasien IMS</h4>";
+					var info_bidang ="<h4 style='text-align:center'>Akumulasi Data Pasien Diare</h4>";
 					info_bidang+="<h6 style='text-align:center'>Data Kecamatan " + data.nama_kecamatan + "</h6>"
 					
 					info_bidang+="<h6><br>Jumlah Seluruh Kasus 		: " + data.jumlah_pasien + "</h6>";
 					info_bidang+="<h6>Jumlah Pasien Aktif 	: " + data.aktif + "</h6>";
 					info_bidang+="<h6>Jumlah Pasien Sembuh 	: " + data.sembuh + "</h6>";
 					info_bidang+="<h6>Jumlah Pasien Meninggal	: " + data.die + "</h6>";
-					info_bidang+="<a href='<?=base_url()?>peta/get_detail_ims/'"+id_kec+"'></a>";
-					info_bidang+="<div style='width:100%;text-align:center;margin-top:10px;'><a href='<?=base_url()?>peta/get_detail_ims/"+id_kec+"'> Detail </a></div>";
+					info_bidang+="<a href='<?=base_url()?>peta/get_detail_diare/'"+id_kec+"'></a>";
+					info_bidang+="<div style='width:100%;text-align:center;margin-top:10px;'><a href='<?=base_url()?>peta/get_detail_diare/"+id_kec+"'> Detail </a></div>";
 					layer.bindPopup(info_bidang, {
 						maxWidth : 260,
 						closeButton : true,

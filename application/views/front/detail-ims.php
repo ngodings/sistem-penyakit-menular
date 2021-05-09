@@ -99,7 +99,7 @@
       <div class="carousel-inner" role="listbox">
 
         <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(<?= base_url()?>template/front/assets/img/tbc-1.gif)">
+        <div class="carousel-item active" style="background-image: url(<?= base_url()?>template/front/assets/img/std-2.jpg)">
           <div class="container">
             <h2> <span>Peta Sebaran Kasus IMS (Infeksi Menular Seksual) </span></h2>
             
@@ -142,7 +142,7 @@
 						<br>
         <div class="row" data-aos="fade-up" data-aos-delay="100">
 			<div class="col-md-12">
-	  			<div id="tbc"></div>
+	  			<div id="ims"></div>
      	 	</div>
         </div>
 
@@ -285,9 +285,9 @@
 		
 				var id_kel = parseFloat(feature.properties.id_kel);
 
-				$.getJSON(base_url+"peta/tbc_kel/"+id_kel, function(data){
+				$.getJSON(base_url+"peta/ims_kel/"+id_kel, function(data){
 				
-					var info_bidang ="<h4 style='text-align:center'>Akumulasi Data Pasien TBC</h4>";
+					var info_bidang ="<h4 style='text-align:center'>Akumulasi Data Pasien IMS</h4>";
 					info_bidang+="<h5 style='text-align:center'>Data Kelurahan " + data.nama_kelurahan + "</h5>"
 					info_bidang+="<h6>Jumlah Pasien di seluruh Kasus : " + data.jumlah_pasien + "</h6>"
 					info_bidang+="<h6>Data Pasien Terkonfirmasi: Dirawat (Kasus Aktif) <br></h6> "

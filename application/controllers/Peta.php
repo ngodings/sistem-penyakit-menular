@@ -160,6 +160,69 @@ class Peta extends CI_Controller
 			
 			$this->load->view('front/detail-ims', $data);
 		}
+		public function ims_kel($id_kel=null)
+    {
+		
+		$data = [
+			'jumlah_pasien' => $this->PasienM->get_ims_kel($id_kel),
+			'pr_aktif' => $this->PasienM->ims_kel ($id_kel, 'Dalam Perawatan', 'Perempuan'),
+			'lk_aktif' => $this->PasienM->ims_kel ($id_kel, 'Dalam Perawatan', 'Laki-laki'),
+			'pr_sembuh' => $this->PasienM->ims_kel ($id_kel, 'Sembuh', 'Perempuan'),
+			'lk_sembuh' => $this->PasienM->ims_kel ($id_kel, 'Sembuh', 'Laki-laki'),
+			'pr_die' => $this->PasienM->ims_kel ($id_kel, 'Meninggal', 'Perempuan'),
+			'lk_die' => $this->PasienM->ims_kel ($id_kel, 'Meninggal', 'Laki-laki'),
+			'nama_kelurahan' => $this->db->limit(1)->get_where('kelurahan', array('id_kel'=>$id_kel))->row()->nama_kelurahan
+		];
+        echo json_encode($data);
+    }
+
+		//Diare DAN DETAIL Diare
+		public function Diare()
+		{
+		$data['judul'] = "Data Penyakit Menular";
+
+
+		$this->load->view('front/diare', $data);
+		
+		}
+
+		public function get_diare($id_kec=null)
+		{
+		
+	
+			$data = [
+				'jumlah_pasien' => $this->PasienM->get_diare($id_kec),
+				'aktif' => $this->PasienM->get_all_diare($id_kec, 'Dalam Perawatan'),
+				'sembuh' => $this->PasienM->get_all_diare($id_kec, 'Sembuh'),
+				'die' => $this->PasienM->get_all_diare($id_kec, 'Meninggal'),
+				
+				'nama_kecamatan' => $this->db->limit(1)->get_where('kecamatan', array('id_kec'=>$id_kec))->row()->nama_kecamatan
+			];
+			echo json_encode($data);
+		}
+		public function get_detail_diare($id_kec=null)
+		{
+			$data['id_kec'] = $id_kec;
+			$data['kec'] = $this->db->get_where('kecamatan', array('id_kec'=>$id_kec))->result();
+			
+			
+			$this->load->view('front/detail-diare', $data);
+		}
+		public function diare_kel($id_kel=null)
+    {
+		
+		$data = [
+			'jumlah_pasien' => $this->PasienM->get_diare_kel($id_kel),
+			'pr_aktif' => $this->PasienM->diare_kel ($id_kel, 'Dalam Perawatan', 'Perempuan'),
+			'lk_aktif' => $this->PasienM->diare_kel ($id_kel, 'Dalam Perawatan', 'Laki-laki'),
+			'pr_sembuh' => $this->PasienM->diare_kel ($id_kel, 'Sembuh', 'Perempuan'),
+			'lk_sembuh' => $this->PasienM->diare_kel ($id_kel, 'Sembuh', 'Laki-laki'),
+			'pr_die' => $this->PasienM->diare_kel ($id_kel, 'Meninggal', 'Perempuan'),
+			'lk_die' => $this->PasienM->diare_kel ($id_kel, 'Meninggal', 'Laki-laki'),
+			'nama_kelurahan' => $this->db->limit(1)->get_where('kelurahan', array('id_kel'=>$id_kel))->row()->nama_kelurahan
+		];
+        echo json_encode($data);
+    }
 
 
 	
