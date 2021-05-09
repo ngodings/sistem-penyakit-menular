@@ -74,31 +74,13 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="http://localhost:81/sistem-penyakit-menular/">Beranda</a></li>
-          <li><a href="#covid">COVID-19</a></li>
-          <li><a href="#tbc">TBC</a></li>
-          <li><a href="#ims">IMS</a></li>
-          <li><a href="#diare">Diare</a></li>
-		  <li><a href="#dbd">DBD</a></li>
-          <!-- <li class="drop-down"><a href="">Drop Down</a>
-          <ul>
-            <li><a href="#">Drop Down 1</a></li>
-            <li class="drop-down"><a href="#">Deep Drop Down</a>
-              <ul>
-                <li><a href="#">Deep Drop Down 1</a></li>
-                <li><a href="#">Deep Drop Down 2</a></li>
-                <li><a href="#">Deep Drop Down 3</a></li>
-                <li><a href="#">Deep Drop Down 4</a></li>
-                <li><a href="#">Deep Drop Down 5</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Drop Down 2</a></li>
-            <li><a href="#">Drop Down 3</a></li>
-            <li><a href="#">Drop Down 4</a></li>
-          </ul>
-        </li> -->
-          <li><a href="#contact">Contact</a></li>
-
+				<li class="active"><a href="<?= base_url('peta'); ?>">Beranda</a></li>
+          <li><a href="<?= base_url('peta/data'); ?>">COVID-19</a></li>
+          <li><a href="<?= base_url('peta/tbc'); ?>">TBC</a></li>
+          <li><a href="<?= base_url('peta/ims'); ?>">IMS</a></li>
+          <li><a href="<?= base_url('peta/diare'); ?>">Diare</a></li>
+		  		<li><a href="<?= base_url('peta/dbd'); ?>">DBD</a></li>
+         
         </ul>
       </nav><!-- .nav-menu -->
 

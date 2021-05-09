@@ -7,9 +7,9 @@
       <div class="carousel-inner" role="listbox">
 
         <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(<?= base_url()?>template/front/assets/img/suntik.jpg)">
+        <div class="carousel-item active" style="background-image: url(<?= base_url()?>template/front/assets/img/covid.gif)">
           <div class="container">
-            <h2> <span>Data Penyakit Menular di Surakarta</span></h2>
+            <h2> <span>Data Penyakit COVID-19 di Kota Surakarta</span></h2>
             
           </div>
         </div>
@@ -36,10 +36,21 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>KOTA SURAKARTA</h2>
-          <p>Berikut </p>
+          <h2>Peta Sebaran Kasus COVID-19 Kota Surakarta </h2>
+          <p>Data berikut merupakan akumulasi data pasien COVID-19 di Kota Surakarta </p>
+				
+				
 		  
         </div>
+				<ul>
+							<li> Data yang diambil adalah akumulasi data yang masuk dari tahun 2020 hingga sekarang</li>
+              <li> Seluruh data ditulis/ dihitung berdasarkan status terakhir pasien</li>
+              <li> Data Total Terkonfirmasi dapat berubah menyesuaikan status terakhir pasien</li>
+							<li> Klik bagian peta untuk melihat detail informasi</li>
+              
+            </ul>
+						<br>
+
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
 			<div class="col-md-12">
@@ -50,24 +61,7 @@
       </div>
     </section><!-- End Departments Section -->
 
-		<!-- ======= covid Section ======= -->
-    <section id="tbc" class="tbc">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Data Penyakit TBC di Kota Surakarta</h2>
-          <p>Berikut </p>
-		  
-        </div>
-
-        <div class="row" data-aos="fade-up" data-aos-delay="100">
-			<div class="col-md-12">
-	  			<div id="tbc"></div>
-     	 	</div>
-        </div>
-
-      </div>
-    </section><!-- End Departments Section -->
+		
 
 
 </main><!-- End #main -->

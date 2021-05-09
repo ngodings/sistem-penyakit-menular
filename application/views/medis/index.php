@@ -46,9 +46,11 @@
 											<div class="form-group">
 												<label for="status">Status</label>
 												<select name="status" class="form-control" id="status">
-													<option value="Dalam Perawatan">Dalam Perawatan</option>
 													<option value="Sembuh">Sembuh</option>
-											</select>
+													<option value="Dalam Perawatan">Dalam Perawatan</option>
+													<option value="Meninggal">Meninggal</option>
+													
+												</select>
 											</div>
 											<div class="form-group">
 												<label for="tanggal_sembuh">Tanggal Dinyatakan Sembuh</label>

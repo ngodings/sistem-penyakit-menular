@@ -74,31 +74,12 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="">Beranda</a></li>
-          <li><a href="#covid">COVID-19</a></li>
-          <li><a href="#tbc">TBC</a></li>
-          <li><a href="#ims">IMS</a></li>
-          <li><a href="#diare">Diare</a></li>
-		  <li><a href="#dbd">DBD</a></li>
-          <!-- <li class="drop-down"><a href="">Drop Down</a>
-          <ul>
-            <li><a href="#">Drop Down 1</a></li>
-            <li class="drop-down"><a href="#">Deep Drop Down</a>
-              <ul>
-                <li><a href="#">Deep Drop Down 1</a></li>
-                <li><a href="#">Deep Drop Down 2</a></li>
-                <li><a href="#">Deep Drop Down 3</a></li>
-                <li><a href="#">Deep Drop Down 4</a></li>
-                <li><a href="#">Deep Drop Down 5</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Drop Down 2</a></li>
-            <li><a href="#">Drop Down 3</a></li>
-            <li><a href="#">Drop Down 4</a></li>
-          </ul>
-        </li> -->
-          <li><a href="#contact">Contact</a></li>
-
+					<li class="active"><a href="<?= base_url('peta'); ?>">Beranda</a></li>
+          <li><a href="<?= base_url('peta/data'); ?>">COVID-19</a></li>
+          <li><a href="<?= base_url('peta/tbc'); ?>">TBC</a></li>
+          <li><a href="<?= base_url('peta/ims'); ?>">IMS</a></li>
+          <li><a href="<?= base_url('peta/diare'); ?>">Diare</a></li>
+		  		<li><a href="<?= base_url('peta/dbd'); ?>">DBD</a></li>
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -116,9 +97,9 @@
       <div class="carousel-inner" role="listbox">
 
         <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(<?= base_url()?>template/front/assets/img/slide/slide-2.jpg)">
+        <div class="carousel-item active" style="background-image: url(<?= base_url()?>template/front/assets/img/covid-detail.gif)">
           <div class="container">
-            <h2> <span>Data Penyakit Menular </span></h2>
+            <h2> <span>Peta Sebaran Kasus COVID-19 </span></h2>
             
           </div>
         </div>
@@ -144,10 +125,19 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Penyakit COVID-19</h2>
-          <p>Berikut </p>
+          <h2>COVID-19</h2>
+          <p>Data berikut merupakan akumulasi data pasien COVID-19 yang masuk di sistem </p>
 		  
         </div>
+				
+				<ul>
+							<li> Data yang diambil adalah akumulasi data yang masuk dari tahun 2020 hingga sekarang</li>
+              <li> Seluruh data ditulis/ dihitung berdasarkan status terakhir pasien</li>
+              <li> Data Total Terkonfirmasi dapat berubah menyesuaikan status terakhir pasien</li>
+							<li> Klik bagian peta untuk melihat detail informasi</li>
+              
+            </ul>
+						<br>
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
 			<div class="col-md-12">
@@ -169,19 +159,18 @@
 
           <div class="col-lg-3 col-md-6">
             <div class="footer-info">
-              <h3>Medicio</h3>
+						<h3>Dinas Kesehatan Surakarta</h3>
               <p>
-                A108 Adam Street <br>
-                NY 535022, USA<br><br>
-                <strong>Phone:</strong> +1 5589 55488 55<br>
-                <strong>Email:</strong> info@example.com<br>
+								Jln.Jendral Sudirman No:2;<br>
+								Telp. (0271) 632202 Fax. (0271) 632202<br>
+								SURAKARTA 57111<br>
+								Hubungi kami: dinaskesehatan@surakarta.go.id
               </p>
               <div class="social-links mt-3">
-                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                <a href="https://twitter.com/DkkSurakarta" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="https://www.facebook.com/dinkessurakarta" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="https://www.instagram.com/dinkessurakarta/" class="instagram"><i class="bx bxl-instagram"></i></a>
+                
               </div>
             </div>
           </div>
@@ -297,12 +286,23 @@
 
 				$.getJSON(base_url+"peta/corona_kel/"+id_kel, function(data){
 				
-					var info_bidang ="<h5 style='text-align:center'>Informasi Penyakit Menular</h5>";
-					info_bidang+="Kelurahan	: " + data.nama_kelurahan
-					info_bidang+="<br>Jumlah Pasien : " + data.jumlah_pasien;
+					var info_bidang ="<h4 style='text-align:center'>Akumulasi Data Pasien COVID-19</h4>";
+					info_bidang+="<h5 style='text-align:center'>Data Kelurahan " + data.nama_kelurahan + "</h5>"
+					info_bidang+="<h6>Jumlah Pasien di seluruh Kasus : " + data.jumlah_pasien + "</h6>"
+					info_bidang+="<h6>Data Pasien Terkonfirmasi: Dirawat (Kasus Aktif) <br></h6> "
+					info_bidang+="Perempuan : " + data.pr_aktif + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_aktif + "<br>"
+					info_bidang+="<h6>Data Pasien Terkonfirmasi: Sembuh <br></h6> "
+					info_bidang+="Perempuan : " + data.pr_sembuh + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_sembuh + "<br>"
+					info_bidang+="<h6>Data Pasien Terkonfirmasi: Meninggal <br></h6> "
+					info_bidang+="Perempuan : " + data.pr_die + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_die + "<br>"
+					
+					
 				
 					layer.bindPopup(info_bidang, {
-						maxWidth : 260,
+						maxWidth : 360,
 						closeButton : true,
 						offset : L.point(0, -20)
 					});
