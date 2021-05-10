@@ -26,6 +26,7 @@
 											<div class="form-group">
 												<label for="jk">Jenis Kelamin</label>
 												<select name="jk" class="form-control" id="jk">
+												<option value="<?= $pasien['jk']?>"><?= $pasien['jk']?></option>
 													<option value="Laki-laki">Laki-laki</option>
 													<option value="Perempuan">Perempuan</option>
 											</select>
@@ -66,7 +67,7 @@
 
 			<script>
 
-					// $("#kecamatan").change(function(){
+					 $("#kecamatan").change(function(){
 
 							// variabel dari nilai combo box kecamatan
 							var id_kec = $("#kecamatan").val();
@@ -95,7 +96,7 @@
 
 							// Untuk sunting
 							
-					// });
+					 });
 
 				
 					

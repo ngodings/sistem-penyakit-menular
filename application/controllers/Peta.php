@@ -42,6 +42,7 @@ class Peta extends CI_Controller
         $data['id_kec'] = $id_kec;
         $data['kec'] = $this->db->get_where('kecamatan', array('id_kec'=>$id_kec))->result();
 		
+		
         
         $this->load->view('front/kecamatan', $data);
     }
@@ -102,7 +103,7 @@ class Peta extends CI_Controller
 		'lk_die_dewasa' => $this->PasienM->covid_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '1976-01-01', '1996-01-01'),
 		'pr_die_lansia' => $this->PasienM->covid_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '1940-01-01', '1975-01-01'),
 		'lk_die_lansia' => $this->PasienM->covid_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '1940-01-01', '1975-01-01'),
-			'nama_kelurahan' => $this->db->limit(1)->get_where('kelurahan', array('id_kel'=>$id_kel))->row()->nama_kelurahan
+		'nama_kelurahan' => $this->db->limit(1)->get_where('kelurahan', array('id_kel'=>$id_kel))->row()->nama_kelurahan
 		];
         echo json_encode($data);
     }
@@ -131,8 +132,10 @@ class Peta extends CI_Controller
     }
 	public function get_detail_tbc($id_kec=null)
     {
+	
         $data['id_kec'] = $id_kec;
         $data['kec'] = $this->db->get_where('kecamatan', array('id_kec'=>$id_kec))->result();
+		
 		
         
         $this->load->view('front/detail-tbc', $data);
