@@ -64,17 +64,44 @@ class Peta extends CI_Controller
 
 	public function corona_kel($id_kel=null)
     {
-		// $data =  // jumlah pasien
-        // $data_nama=$this->db->limit(1)->get_where('kecamatan', array('id_kec'=>$id_kec))->row()->nama_kecamatan;
+		$tgl=date('Y-m-d');
 
 		$data = [
-			'jumlah_pasien' => $this->PasienM->get_count_kel($id_kel),
-			'pr_aktif' => $this->PasienM->covid_kel_pr_aktif($id_kel),
-			'lk_aktif' => $this->PasienM->covid_kel_lk_aktif($id_kel),
-			'pr_sembuh' => $this->PasienM->covid_kel_pr_sembuh($id_kel),
-			'lk_sembuh' => $this->PasienM->covid_kel_lk_sembuh($id_kel),
-			'pr_die' => $this->PasienM->covid_kel_pr_die($id_kel),
-			'lk_die' => $this->PasienM->covid_kel_lk_die($id_kel),
+			'jumlah_pasien' => $this->PasienM->get_covid_kel($id_kel),
+		
+		//dalam perawatan
+		'pr_aktif_balita' => $this->PasienM->covid_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '2016-01-01', $tgl),
+		'lk_aktif_balita' => $this->PasienM->covid_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '2016-01-01', $tgl),
+		'pr_aktif_anak' => $this->PasienM->covid_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '2009-01-01', '2017-01-01'),
+		'lk_aktif_anak' => $this->PasienM->covid_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '2009-01-01', '2017-01-01'),
+		'pr_aktif_remaja' => $this->PasienM->covid_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '1997-01-01', '2008-01-01'),
+		'lk_aktif_remaja' => $this->PasienM->covid_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '1997-01-01', '2008-01-01'),
+		'pr_aktif_dewasa' => $this->PasienM->covid_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '1976-01-01', '1996-01-01'),
+		'lk_aktif_dewasa' => $this->PasienM->covid_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '1976-01-01', '1996-01-01'),
+		'pr_aktif_lansia' => $this->PasienM->covid_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '1940-01-01', '1975-01-01'),
+		'lk_aktif_lansia' => $this->PasienM->covid_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '1940-01-01', '1975-01-01'),
+		//sembuh
+		'pr_sembuh_balita' => $this->PasienM->covid_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '2016-01-01', $tgl),
+		'lk_sembuh_balita' => $this->PasienM->covid_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '2016-01-01', $tgl),
+		'pr_sembuh_anak' => $this->PasienM->covid_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '2009-01-01', '2017-01-01'),
+		'lk_sembuh_anak' => $this->PasienM->covid_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '2009-01-01', '2017-01-01'),
+		'pr_sembuh_remaja' => $this->PasienM->covid_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '1997-01-01', '2008-01-01'),
+		'lk_sembuh_remaja' => $this->PasienM->covid_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '1997-01-01', '2008-01-01'),
+		'pr_sembuh_dewasa' => $this->PasienM->covid_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '1976-01-01', '1996-01-01'),
+		'lk_sembuh_dewasa' => $this->PasienM->covid_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '1976-01-01', '1996-01-01'),
+		'pr_sembuh_lansia' => $this->PasienM->covid_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '1940-01-01', '1975-01-01'),
+		'lk_sembuh_lansia' => $this->PasienM->covid_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '1940-01-01', '1975-01-01'),
+		//meninggal
+		'pr_die_balita' => $this->PasienM->covid_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '2016-01-01', $tgl),
+		'lk_die_balita' => $this->PasienM->covid_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '2016-01-01', $tgl),
+		'pr_die_anak' => $this->PasienM->covid_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '2009-01-01', '2017-01-01'),
+		'lk_die_anak' => $this->PasienM->covid_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '2009-01-01', '2017-01-01'),
+		'pr_die_remaja' => $this->PasienM->covid_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '1997-01-01', '2008-01-01'),
+		'lk_die_remaja' => $this->PasienM->covid_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '1997-01-01', '2008-01-01'),
+		'pr_die_dewasa' => $this->PasienM->covid_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '1976-01-01', '1996-01-01'),
+		'lk_die_dewasa' => $this->PasienM->covid_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '1976-01-01', '1996-01-01'),
+		'pr_die_lansia' => $this->PasienM->covid_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '1940-01-01', '1975-01-01'),
+		'lk_die_lansia' => $this->PasienM->covid_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '1940-01-01', '1975-01-01'),
 			'nama_kelurahan' => $this->db->limit(1)->get_where('kelurahan', array('id_kel'=>$id_kel))->row()->nama_kelurahan
 		];
         echo json_encode($data);
@@ -113,17 +140,45 @@ class Peta extends CI_Controller
 
 	public function tbc_kel($id_kel=null)
     {
-		// $data =  // jumlah pasien
-        // $data_nama=$this->db->limit(1)->get_where('kecamatan', array('id_kec'=>$id_kec))->row()->nama_kecamatan;
+		$tgl=date('Y-m-d');
 
 		$data = [
 			'jumlah_pasien' => $this->PasienM->get_tbc_kel($id_kel),
-			'pr_aktif' => $this->PasienM->tbc_kel ($id_kel, 'Dalam Perawatan', 'Perempuan'),
-			'lk_aktif' => $this->PasienM->tbc_kel ($id_kel, 'Dalam Perawatan', 'Laki-laki'),
-			'pr_sembuh' => $this->PasienM->tbc_kel ($id_kel, 'Sembuh', 'Perempuan'),
-			'lk_sembuh' => $this->PasienM->tbc_kel ($id_kel, 'Sembuh', 'Laki-laki'),
-			'pr_die' => $this->PasienM->tbc_kel ($id_kel, 'Meninggal', 'Perempuan'),
-			'lk_die' => $this->PasienM->tbc_kel ($id_kel, 'Meninggal', 'Laki-laki'),
+			
+			//dalam perawatan
+			'pr_aktif_balita' => $this->PasienM->tbc_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '2016-01-01', $tgl),
+			'lk_aktif_balita' => $this->PasienM->tbc_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '2016-01-01', $tgl),
+			'pr_aktif_anak' => $this->PasienM->tbc_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '2009-01-01', '2017-01-01'),
+			'lk_aktif_anak' => $this->PasienM->tbc_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '2009-01-01', '2017-01-01'),
+			'pr_aktif_remaja' => $this->PasienM->tbc_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '1997-01-01', '2008-01-01'),
+			'lk_aktif_remaja' => $this->PasienM->tbc_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '1997-01-01', '2008-01-01'),
+			'pr_aktif_dewasa' => $this->PasienM->tbc_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '1976-01-01', '1996-01-01'),
+			'lk_aktif_dewasa' => $this->PasienM->tbc_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '1976-01-01', '1996-01-01'),
+			'pr_aktif_lansia' => $this->PasienM->tbc_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '1940-01-01', '1975-01-01'),
+			'lk_aktif_lansia' => $this->PasienM->tbc_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '1940-01-01', '1975-01-01'),
+			//sembuh
+			'pr_sembuh_balita' => $this->PasienM->tbc_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '2016-01-01', $tgl),
+			'lk_sembuh_balita' => $this->PasienM->tbc_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '2016-01-01', $tgl),
+			'pr_sembuh_anak' => $this->PasienM->tbc_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '2009-01-01', '2017-01-01'),
+			'lk_sembuh_anak' => $this->PasienM->tbc_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '2009-01-01', '2017-01-01'),
+			'pr_sembuh_remaja' => $this->PasienM->tbc_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '1997-01-01', '2008-01-01'),
+			'lk_sembuh_remaja' => $this->PasienM->tbc_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '1997-01-01', '2008-01-01'),
+			'pr_sembuh_dewasa' => $this->PasienM->tbc_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '1976-01-01', '1996-01-01'),
+			'lk_sembuh_dewasa' => $this->PasienM->tbc_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '1976-01-01', '1996-01-01'),
+			'pr_sembuh_lansia' => $this->PasienM->tbc_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '1940-01-01', '1975-01-01'),
+			'lk_sembuh_lansia' => $this->PasienM->tbc_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '1940-01-01', '1975-01-01'),
+			//meninggal
+			'pr_die_balita' => $this->PasienM->tbc_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '2016-01-01', $tgl),
+			'lk_die_balita' => $this->PasienM->tbc_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '2016-01-01', $tgl),
+			'pr_die_anak' => $this->PasienM->tbc_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '2009-01-01', '2017-01-01'),
+			'lk_die_anak' => $this->PasienM->tbc_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '2009-01-01', '2017-01-01'),
+			'pr_die_remaja' => $this->PasienM->tbc_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '1997-01-01', '2008-01-01'),
+			'lk_die_remaja' => $this->PasienM->tbc_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '1997-01-01', '2008-01-01'),
+			'pr_die_dewasa' => $this->PasienM->tbc_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '1976-01-01', '1996-01-01'),
+			'lk_die_dewasa' => $this->PasienM->tbc_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '1976-01-01', '1996-01-01'),
+			'pr_die_lansia' => $this->PasienM->tbc_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '1940-01-01', '1975-01-01'),
+			'lk_die_lansia' => $this->PasienM->tbc_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '1940-01-01', '1975-01-01'),
+
 			'nama_kelurahan' => $this->db->limit(1)->get_where('kelurahan', array('id_kel'=>$id_kel))->row()->nama_kelurahan
 		];
         echo json_encode($data);
@@ -161,16 +216,48 @@ class Peta extends CI_Controller
 			$this->load->view('front/detail-ims', $data);
 		}
 		public function ims_kel($id_kel=null)
-    {
+    	{
+
+			$tgl=date('Y-m-d');
+
 		
 		$data = [
 			'jumlah_pasien' => $this->PasienM->get_ims_kel($id_kel),
-			'pr_aktif' => $this->PasienM->ims_kel ($id_kel, 'Dalam Perawatan', 'Perempuan'),
-			'lk_aktif' => $this->PasienM->ims_kel ($id_kel, 'Dalam Perawatan', 'Laki-laki'),
-			'pr_sembuh' => $this->PasienM->ims_kel ($id_kel, 'Sembuh', 'Perempuan'),
-			'lk_sembuh' => $this->PasienM->ims_kel ($id_kel, 'Sembuh', 'Laki-laki'),
-			'pr_die' => $this->PasienM->ims_kel ($id_kel, 'Meninggal', 'Perempuan'),
-			'lk_die' => $this->PasienM->ims_kel ($id_kel, 'Meninggal', 'Laki-laki'),
+
+			//dalam perawatan
+			'pr_aktif_balita' => $this->PasienM->ims_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '2016-01-01', $tgl),
+			'lk_aktif_balita' => $this->PasienM->ims_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '2016-01-01', $tgl),
+			'pr_aktif_anak' => $this->PasienM->ims_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '2009-01-01', '2017-01-01'),
+			'lk_aktif_anak' => $this->PasienM->ims_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '2009-01-01', '2017-01-01'),
+			'pr_aktif_remaja' => $this->PasienM->ims_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '1997-01-01', '2008-01-01'),
+			'lk_aktif_remaja' => $this->PasienM->ims_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '1997-01-01', '2008-01-01'),
+			'pr_aktif_dewasa' => $this->PasienM->ims_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '1976-01-01', '1996-01-01'),
+			'lk_aktif_dewasa' => $this->PasienM->ims_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '1976-01-01', '1996-01-01'),
+			'pr_aktif_lansia' => $this->PasienM->ims_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '1940-01-01', '1975-01-01'),
+			'lk_aktif_lansia' => $this->PasienM->ims_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '1940-01-01', '1975-01-01'),
+			//sembuh
+			'pr_sembuh_balita' => $this->PasienM->ims_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '2016-01-01', $tgl),
+			'lk_sembuh_balita' => $this->PasienM->ims_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '2016-01-01', $tgl),
+			'pr_sembuh_anak' => $this->PasienM->ims_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '2009-01-01', '2017-01-01'),
+			'lk_sembuh_anak' => $this->PasienM->ims_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '2009-01-01', '2017-01-01'),
+			'pr_sembuh_remaja' => $this->PasienM->ims_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '1997-01-01', '2008-01-01'),
+			'lk_sembuh_remaja' => $this->PasienM->ims_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '1997-01-01', '2008-01-01'),
+			'pr_sembuh_dewasa' => $this->PasienM->ims_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '1976-01-01', '1996-01-01'),
+			'lk_sembuh_dewasa' => $this->PasienM->ims_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '1976-01-01', '1996-01-01'),
+			'pr_sembuh_lansia' => $this->PasienM->ims_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '1940-01-01', '1975-01-01'),
+			'lk_sembuh_lansia' => $this->PasienM->ims_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '1940-01-01', '1975-01-01'),
+			//meninggal
+			'pr_die_balita' => $this->PasienM->ims_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '2016-01-01', $tgl),
+			'lk_die_balita' => $this->PasienM->ims_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '2016-01-01', $tgl),
+			'pr_die_anak' => $this->PasienM->ims_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '2009-01-01', '2017-01-01'),
+			'lk_die_anak' => $this->PasienM->ims_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '2009-01-01', '2017-01-01'),
+			'pr_die_remaja' => $this->PasienM->ims_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '1997-01-01', '2008-01-01'),
+			'lk_die_remaja' => $this->PasienM->ims_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '1997-01-01', '2008-01-01'),
+			'pr_die_dewasa' => $this->PasienM->ims_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '1976-01-01', '1996-01-01'),
+			'lk_die_dewasa' => $this->PasienM->ims_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '1976-01-01', '1996-01-01'),
+			'pr_die_lansia' => $this->PasienM->ims_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '1940-01-01', '1975-01-01'),
+			'lk_die_lansia' => $this->PasienM->ims_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '1940-01-01', '1975-01-01'),
+
 			'nama_kelurahan' => $this->db->limit(1)->get_where('kelurahan', array('id_kel'=>$id_kel))->row()->nama_kelurahan
 		];
         echo json_encode($data);
@@ -209,20 +296,126 @@ class Peta extends CI_Controller
 			$this->load->view('front/detail-diare', $data);
 		}
 		public function diare_kel($id_kel=null)
-    {
-		
+    	{
+			$tgl=date('Y-m-d');
 		$data = [
 			'jumlah_pasien' => $this->PasienM->get_diare_kel($id_kel),
-			'pr_aktif' => $this->PasienM->diare_kel ($id_kel, 'Dalam Perawatan', 'Perempuan'),
-			'lk_aktif' => $this->PasienM->diare_kel ($id_kel, 'Dalam Perawatan', 'Laki-laki'),
-			'pr_sembuh' => $this->PasienM->diare_kel ($id_kel, 'Sembuh', 'Perempuan'),
-			'lk_sembuh' => $this->PasienM->diare_kel ($id_kel, 'Sembuh', 'Laki-laki'),
-			'pr_die' => $this->PasienM->diare_kel ($id_kel, 'Meninggal', 'Perempuan'),
-			'lk_die' => $this->PasienM->diare_kel ($id_kel, 'Meninggal', 'Laki-laki'),
+			//dalam perawatan
+			'pr_aktif_balita' => $this->PasienM->diare_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '2016-01-01', $tgl),
+			'lk_aktif_balita' => $this->PasienM->diare_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '2016-01-01', $tgl),
+			'pr_aktif_anak' => $this->PasienM->diare_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '2009-01-01', '2017-01-01'),
+			'lk_aktif_anak' => $this->PasienM->diare_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '2009-01-01', '2017-01-01'),
+			'pr_aktif_remaja' => $this->PasienM->diare_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '1997-01-01', '2008-01-01'),
+			'lk_aktif_remaja' => $this->PasienM->diare_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '1997-01-01', '2008-01-01'),
+			'pr_aktif_dewasa' => $this->PasienM->diare_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '1976-01-01', '1996-01-01'),
+			'lk_aktif_dewasa' => $this->PasienM->diare_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '1976-01-01', '1996-01-01'),
+			'pr_aktif_lansia' => $this->PasienM->diare_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '1940-01-01', '1975-01-01'),
+			'lk_aktif_lansia' => $this->PasienM->diare_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '1940-01-01', '1975-01-01'),
+			//sembuh
+			'pr_sembuh_balita' => $this->PasienM->diare_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '2016-01-01', $tgl),
+			'lk_sembuh_balita' => $this->PasienM->diare_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '2016-01-01', $tgl),
+			'pr_sembuh_anak' => $this->PasienM->diare_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '2009-01-01', '2017-01-01'),
+			'lk_sembuh_anak' => $this->PasienM->diare_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '2009-01-01', '2017-01-01'),
+			'pr_sembuh_remaja' => $this->PasienM->diare_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '1997-01-01', '2008-01-01'),
+			'lk_sembuh_remaja' => $this->PasienM->diare_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '1997-01-01', '2008-01-01'),
+			'pr_sembuh_dewasa' => $this->PasienM->diare_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '1976-01-01', '1996-01-01'),
+			'lk_sembuh_dewasa' => $this->PasienM->diare_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '1976-01-01', '1996-01-01'),
+			'pr_sembuh_lansia' => $this->PasienM->diare_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '1940-01-01', '1975-01-01'),
+			'lk_sembuh_lansia' => $this->PasienM->diare_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '1940-01-01', '1975-01-01'),
+			//meninggal
+			'pr_die_balita' => $this->PasienM->diare_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '2016-01-01', $tgl),
+			'lk_die_balita' => $this->PasienM->diare_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '2016-01-01', $tgl),
+			'pr_die_anak' => $this->PasienM->diare_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '2009-01-01', '2017-01-01'),
+			'lk_die_anak' => $this->PasienM->diare_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '2009-01-01', '2017-01-01'),
+			'pr_die_remaja' => $this->PasienM->diare_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '1997-01-01', '2008-01-01'),
+			'lk_die_remaja' => $this->PasienM->diare_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '1997-01-01', '2008-01-01'),
+			'pr_die_dewasa' => $this->PasienM->diare_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '1976-01-01', '1996-01-01'),
+			'lk_die_dewasa' => $this->PasienM->diare_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '1976-01-01', '1996-01-01'),
+			'pr_die_lansia' => $this->PasienM->diare_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '1940-01-01', '1975-01-01'),
+			'lk_die_lansia' => $this->PasienM->diare_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '1940-01-01', '1975-01-01'),
+			
 			'nama_kelurahan' => $this->db->limit(1)->get_where('kelurahan', array('id_kel'=>$id_kel))->row()->nama_kelurahan
 		];
         echo json_encode($data);
     }
+
+
+	//DBD DAN DETAIL DBD
+	public function DBD()
+	{
+	$data['judul'] = "Data Penyakit Menular";
+
+
+	$this->load->view('front/dbd', $data);
+	
+	}
+
+	public function get_dbd($id_kec=null)
+	{
+	
+
+		$data = [
+			'jumlah_pasien' => $this->PasienM->get_dbd($id_kec),
+			'aktif' => $this->PasienM->get_all_dbd($id_kec, 'Dalam Perawatan'),
+			'sembuh' => $this->PasienM->get_all_dbd($id_kec, 'Sembuh'),
+			'die' => $this->PasienM->get_all_dbd($id_kec, 'Meninggal'),
+			
+			'nama_kecamatan' => $this->db->limit(1)->get_where('kecamatan', array('id_kec'=>$id_kec))->row()->nama_kecamatan
+		];
+		echo json_encode($data);
+	}
+	public function get_detail_dbd($id_kec=null)
+	{
+		$data['id_kec'] = $id_kec;
+		$data['kec'] = $this->db->get_where('kecamatan', array('id_kec'=>$id_kec))->result();
+		
+		
+		$this->load->view('front/detail-dbd', $data);
+	}
+	public function dbd_kel($id_kel=null)
+	{
+		$tgl=date('Y-m-d');
+	
+	$data = [
+		'jumlah_pasien' => $this->PasienM->get_dbd_kel($id_kel),
+		
+		//dalam perawatan
+		'pr_aktif_balita' => $this->PasienM->dbd_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '2016-01-01', $tgl),
+		'lk_aktif_balita' => $this->PasienM->dbd_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '2016-01-01', $tgl),
+		'pr_aktif_anak' => $this->PasienM->dbd_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '2009-01-01', '2017-01-01'),
+		'lk_aktif_anak' => $this->PasienM->dbd_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '2009-01-01', '2017-01-01'),
+		'pr_aktif_remaja' => $this->PasienM->dbd_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '1997-01-01', '2008-01-01'),
+		'lk_aktif_remaja' => $this->PasienM->dbd_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '1997-01-01', '2008-01-01'),
+		'pr_aktif_dewasa' => $this->PasienM->dbd_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '1976-01-01', '1996-01-01'),
+		'lk_aktif_dewasa' => $this->PasienM->dbd_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '1976-01-01', '1996-01-01'),
+		'pr_aktif_lansia' => $this->PasienM->dbd_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '1940-01-01', '1975-01-01'),
+		'lk_aktif_lansia' => $this->PasienM->dbd_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '1940-01-01', '1975-01-01'),
+		//sembuh
+		'pr_sembuh_balita' => $this->PasienM->dbd_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '2016-01-01', $tgl),
+		'lk_sembuh_balita' => $this->PasienM->dbd_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '2016-01-01', $tgl),
+		'pr_sembuh_anak' => $this->PasienM->dbd_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '2009-01-01', '2017-01-01'),
+		'lk_sembuh_anak' => $this->PasienM->dbd_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '2009-01-01', '2017-01-01'),
+		'pr_sembuh_remaja' => $this->PasienM->dbd_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '1997-01-01', '2008-01-01'),
+		'lk_sembuh_remaja' => $this->PasienM->dbd_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '1997-01-01', '2008-01-01'),
+		'pr_sembuh_dewasa' => $this->PasienM->dbd_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '1976-01-01', '1996-01-01'),
+		'lk_sembuh_dewasa' => $this->PasienM->dbd_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '1976-01-01', '1996-01-01'),
+		'pr_sembuh_lansia' => $this->PasienM->dbd_kel_usia ($id_kel, 'Sembuh', 'Perempuan', '1940-01-01', '1975-01-01'),
+		'lk_sembuh_lansia' => $this->PasienM->dbd_kel_usia ($id_kel, 'Sembuh', 'Laki-laki', '1940-01-01', '1975-01-01'),
+		//meninggal
+		'pr_die_balita' => $this->PasienM->dbd_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '2016-01-01', $tgl),
+		'lk_die_balita' => $this->PasienM->dbd_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '2016-01-01', $tgl),
+		'pr_die_anak' => $this->PasienM->dbd_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '2009-01-01', '2017-01-01'),
+		'lk_die_anak' => $this->PasienM->dbd_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '2009-01-01', '2017-01-01'),
+		'pr_die_remaja' => $this->PasienM->dbd_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '1997-01-01', '2008-01-01'),
+		'lk_die_remaja' => $this->PasienM->dbd_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '1997-01-01', '2008-01-01'),
+		'pr_die_dewasa' => $this->PasienM->dbd_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '1976-01-01', '1996-01-01'),
+		'lk_die_dewasa' => $this->PasienM->dbd_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '1976-01-01', '1996-01-01'),
+		'pr_die_lansia' => $this->PasienM->dbd_kel_usia ($id_kel, 'Meninggal', 'Perempuan', '1940-01-01', '1975-01-01'),
+		'lk_die_lansia' => $this->PasienM->dbd_kel_usia ($id_kel, 'Meninggal', 'Laki-laki', '1940-01-01', '1975-01-01'),
+		'nama_kelurahan' => $this->db->limit(1)->get_where('kelurahan', array('id_kel'=>$id_kel))->row()->nama_kelurahan
+	];
+	echo json_encode($data);
+}
 
 
 	

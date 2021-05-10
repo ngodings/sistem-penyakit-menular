@@ -98,7 +98,7 @@
       <div class="carousel-inner" role="listbox">
 
         <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(<?= base_url()?>template/front/assets/img/std.jpg)">
+        <div class="carousel-item active" style="background-image: url(<?= base_url()?>template/front/assets/img/diare-1.gif)">
           <div class="container">
             <h2><span>Data Penyakit Diare di Kota Surakarta</span></h2>
             
@@ -305,7 +305,7 @@
 					info_bidang+="<a href='<?=base_url()?>peta/get_detail_diare/'"+id_kec+"'></a>";
 					info_bidang+="<div style='width:100%;text-align:center;margin-top:10px;'><a href='<?=base_url()?>peta/get_detail_diare/"+id_kec+"'> Detail </a></div>";
 					layer.bindPopup(info_bidang, {
-						maxWidth : 260,
+						maxWidth : 360,
 						closeButton : true,
 						offset : L.point(0, -20)
 					});

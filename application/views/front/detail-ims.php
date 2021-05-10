@@ -290,19 +290,65 @@
 					var info_bidang ="<h4 style='text-align:center'>Akumulasi Data Pasien IMS</h4>";
 					info_bidang+="<h5 style='text-align:center'>Data Kelurahan " + data.nama_kelurahan + "</h5>"
 					info_bidang+="<h6>Jumlah Pasien di seluruh Kasus : " + data.jumlah_pasien + "</h6>"
+					//dalam perawatan
 					info_bidang+="<h6>Data Pasien Terkonfirmasi: Dirawat (Kasus Aktif) <br></h6> "
-					info_bidang+="Perempuan : " + data.pr_aktif + "<br>"
-					info_bidang+="Laki-laki : " + data.lk_aktif + "<br>"
-					info_bidang+="<h6>Data Pasien Terkonfirmasi: Sembuh <br></h6> "
-					info_bidang+="Perempuan : " + data.pr_sembuh + "<br>"
-					info_bidang+="Laki-laki : " + data.lk_sembuh + "<br>"
-					info_bidang+="<h6>Data Pasien Terkonfirmasi: Meninggal <br></h6> "
-					info_bidang+="Perempuan : " + data.pr_die + "<br>"
-					info_bidang+="Laki-laki : " + data.lk_die + "<br>"
+					
+					info_bidang+="<b>Balita ( 0-5 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_aktif_balita + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_aktif_balita + "<br>"
+					info_bidang+="<b>Anak-anak ( 6-12 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_aktif_anak + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_aktif_anak + "<br>"
+					info_bidang+="<b>Remaja ( 13-24 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_aktif_remaja + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_aktif_remaja + "<br>"
+					info_bidang+="<b>Dewasa ( 25-45 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_aktif_dewasa + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_aktif_dewasa + "<br>"
+					info_bidang+="<b>Lansia( >45 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_aktif_lansia + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_aktif_lansia + "<br>"
+					//sembuh
+					info_bidang+="<br><h6>Data Pasien Terkonfirmasi: Sembuh <br></h6> "
+					
+					info_bidang+="<b>Balita ( 0-5 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_sembuh_balita + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_sembuh_balita + "<br>"
+					info_bidang+="<b>Anak-anak ( 6-12 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_sembuh_anak + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_sembuh_anak + "<br>"
+					info_bidang+="<b>Remaja ( 13-24 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_sembuh_remaja + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_sembuh_remaja + "<br>"
+					info_bidang+="<b>Dewasa ( 25-45 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_sembuh_dewasa + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_sembuh_dewasa + "<br>"
+					info_bidang+="<b>Lansia( >45 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_sembuh_lansia + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_sembuh_lansia + "<br>"
+					//meninggal
+					info_bidang+="<br><h6>Data Pasien Terkonfirmasi: Meninggal <br></h6> "
+					
+					info_bidang+="<b>Balita ( 0-5 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_die_balita + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_die_balita + "<br>"
+					info_bidang+="<b>Anak-anak ( 6-12 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_die_anak + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_die_anak + "<br>"
+					info_bidang+="<b>Remaja ( 13-24 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_die_remaja + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_die_remaja + "<br>"
+					info_bidang+="<b>Dewasa ( 25-45 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_die_dewasa + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_die_dewasa + "<br>"
+					info_bidang+="<b>Lansia( >45 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_die_lansia + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_die_lansia + "<br>"
 					
 				
 					layer.bindPopup(info_bidang, {
-						maxWidth : 260,
+						maxHeight : 360,
+						maxWidth : 460,
 						closeButton : true,
 						offset : L.point(0, -20)
 					});

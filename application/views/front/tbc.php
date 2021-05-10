@@ -295,7 +295,7 @@
 
 				$.getJSON(base_url+"peta/get_tbc/"+id_kec, function(data){
 				
-					var info_bidang ="<h4 style='text-align:center'>Akumulasi Data Pasien COVID-19</h4>";
+					var info_bidang ="<h4 style='text-align:center'>Akumulasi Data Pasien TBC</h4>";
 					info_bidang+="<h6 style='text-align:center'>Data Kecamatan " + data.nama_kecamatan + "</h6>"
 					
 					info_bidang+="<h6><br>Jumlah Seluruh Kasus 		: " + data.jumlah_pasien + "</h6>";
