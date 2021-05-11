@@ -289,8 +289,10 @@
 				
 					var info_bidang ="<h4 style='text-align:center'>Akumulasi Data Pasien DBD</h4>";
 					info_bidang+="<h5 style='text-align:center'>Data Kelurahan " + data.nama_kelurahan + "</h5>"
+					info_bidang+="<hr size = '1px'> "
 					info_bidang+="<h6>Jumlah Pasien di seluruh Kasus : " + data.jumlah_pasien + "</h6>"
 					//dalam perawatan
+					info_bidang+="<hr size = '1px'> "
 					info_bidang+="<h6>Data Pasien Terkonfirmasi: Dirawat (Kasus Aktif) <br></h6> "
 					
 					info_bidang+="<b>Balita ( 0-5 tahun) </b><br> "
@@ -308,7 +310,9 @@
 					info_bidang+="<b>Lansia( >45 tahun) </b><br> "
 					info_bidang+="Perempuan : " + data.pr_aktif_lansia + "<br>"
 					info_bidang+="Laki-laki : " + data.lk_aktif_lansia + "<br>"
+					
 					//sembuh
+					info_bidang+="<hr size = '1px'> "
 					info_bidang+="<br><h6>Data Pasien Terkonfirmasi: Sembuh <br></h6> "
 					
 					info_bidang+="<b>Balita ( 0-5 tahun) </b><br> "
@@ -326,7 +330,9 @@
 					info_bidang+="<b>Lansia( >45 tahun) </b><br> "
 					info_bidang+="Perempuan : " + data.pr_sembuh_lansia + "<br>"
 					info_bidang+="Laki-laki : " + data.lk_sembuh_lansia + "<br>"
+					
 					//meninggal
+					info_bidang+="<hr size = '1px'> "
 					info_bidang+="<br><h6>Data Pasien Terkonfirmasi: Meninggal <br></h6> "
 					
 					info_bidang+="<b>Balita ( 0-5 tahun) </b><br> "

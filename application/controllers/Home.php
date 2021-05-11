@@ -6,7 +6,7 @@ class Home extends CI_Controller
 	public function index()
 	{
 		$data = array(
-					'title' => 'View Maps',
+					'title' => 'Dashboard',
 					'isi' => 'v_home'
 		);
 		$this->load->view('template/v_wrapper', $data, FALSE);

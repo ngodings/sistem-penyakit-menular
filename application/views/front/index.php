@@ -7,7 +7,7 @@
       <div class="carousel-inner" role="listbox">
 
         <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(<?= base_url()?>template/front/assets/img/slide/slide-1.jpg)">
+        <div class="carousel-item active" style="background-image: url(<?= base_url()?>template/front/assets/img/dinkes-1.jpg)">
           <div class="container">
             <h2> <span>Sistem Penyakit Menular Dinas Kesehatan Surakarta</span></h2>
             <p> Dinas Kesehatan Kota Surakarta adalah unsur pelaksana otonomi daerah di Kota Surakarta yang diatur dalam Peraturan Wali Kota Surakarta Nomor 27 C Tahun 2016 tentang Kedudukan, Susunan Organisasi, Tugas, Fungsi dan Tata Kerja Perangkat Daerah Kota Surakarta. </p>
@@ -25,7 +25,7 @@
         </div>
 
         <!-- Slide 3 -->
-        <div class="carousel-item" style="background-image: url(<?= base_url()?>template/front/assets/img/slide/slide-3.jpg)">
+        <div class="carousel-item" style="background-image: url(<?= base_url()?>template/front/assets/img/dinkes.jpg)">
           <div class="container">
             <h2>Pejabat Pengelola Informasi dan Dokumentasi Pembantu Dinas Kesehatan Kota Surakarta</h2>
             <p>Sebagai Badan Publik, Dinas Kesehatan Kota Surakarta mempunyai kewajiban untuk membuka akses terhadap Informasi Publik yang berkaitan dengan bidang kesehatan kepada masyarakat luas. </p>

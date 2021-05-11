@@ -105,11 +105,28 @@ class Pasien extends CI_Controller
 		
 
 		$data = [
-			'pasien_covid' => $this->PasienM->get_count_covid($id_kec),
-			'pasien_tbc' => $this->PasienM->get_count_tbc($id_kec),
-			'pasien_ims' => $this->PasienM->get_count_ims($id_kec),
-			'pasien_diare' => $this->PasienM->get_count_diare($id_kec),
-			'pasien_dbd' => $this->PasienM->get_count_dbd($id_kec),
+			'covid_aktif' => $this->PasienM-> get_count_all($id_kec, 'Dalam Perawatan', 'COVID-19'),
+			'covid_sembuh' => $this->PasienM-> get_count_all($id_kec, 'Sembuh', 'COVID-19'),
+			'covid_die' => $this->PasienM-> get_count_all($id_kec, 'Meninggal', 'COVID-19'),
+
+			'tbc_aktif' => $this->PasienM-> get_count_all($id_kec, 'Dalam Perawatan', 'TBC'),
+			'tbc_sembuh' => $this->PasienM-> get_count_all($id_kec, 'Sembuh', 'TBC'),
+			'tbc_die' => $this->PasienM-> get_count_all($id_kec, 'Meninggal', 'TBC'),
+
+			'ims_aktif' => $this->PasienM-> get_count_all($id_kec, 'Dalam Perawatan', 'IMS'),
+			'ims_sembuh' => $this->PasienM-> get_count_all($id_kec, 'Sembuh', 'IMS'),
+			'ims_die' => $this->PasienM-> get_count_all($id_kec, 'Meninggal', 'IMS'),
+
+			'diare_aktif' => $this->PasienM-> get_count_all($id_kec, 'Dalam Perawatan', 'Diare'),
+			'diare_sembuh' => $this->PasienM-> get_count_all($id_kec, 'Sembuh', 'Diare'),
+			'diare_die' => $this->PasienM-> get_count_all($id_kec, 'Meninggal', 'Diare'),
+
+			'dbd_aktif' => $this->PasienM-> get_count_all($id_kec, 'Dalam Perawatan', 'DBD'),
+			'dbd_sembuh' => $this->PasienM-> get_count_all($id_kec, 'Sembuh', 'DBD'),
+			'dbd_die' => $this->PasienM-> get_count_all($id_kec, 'Meninggal', 'DBD'),
+			
+
+			
 			'nama_kecamatan' => $this->db->limit(1)->get_where('kecamatan', array('id_kec'=>$id_kec))->row()->nama_kecamatan
 		];
         echo json_encode($data);

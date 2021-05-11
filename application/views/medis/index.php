@@ -128,13 +128,24 @@
 				  	<?= $row['tanggal_terinfeksi']; ?>
 				  </td>
 				  <td>
-				  	<?= $row['status']; ?>
+				  	<?php if ($row['status'] == 'Dalam Perawatan') {?>
+					  <a class= "badge badge-warning"> <?= $row['status'];?> </a>
+					  <?php } else if ($row['status'] == 'Sembuh') {?>
+					  <a class= "badge badge-success"> <?= $row['status'];?> </a>
+					  <?php } else { ?>
+					  <a class= "badge badge-danger"> <?= $row['status'];?> </a>
+					  <?php }?>
 				  </td>
 				  <td>
 				  	<?= $row['nama_penyakit']; ?>
 				  </td>
 				  <td>
-				  	<?= $row['tanggal_sembuh']; ?>
+				  <?php if ($row['tanggal_sembuh'] == '0000-00-00') {?>
+					  <a class= "badge badge-danger"> - </a>
+					  <?php } else { ?>
+					   <?= $row['tanggal_sembuh'];?> 
+					  <?php }?>
+				  	
 				  </td>
 				  <td>
 				 	 <?= $row['keterangan']; ?>
