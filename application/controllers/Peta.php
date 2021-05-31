@@ -69,6 +69,9 @@ class Peta extends CI_Controller
 
 		$data = [
 			'jumlah_pasien' => $this->PasienM->get_covid_kel($id_kel),
+			'jumlah_pasien_aktif' => $this->PasienM->covid_kel($id_kel, 'Dalam Perawatan'),
+			'jumlah_pasien_sembuh' => $this->PasienM->covid_kel($id_kel, 'Sembuh'),
+			'jumlah_pasien_die' => $this->PasienM->covid_kel($id_kel, 'Meninggal'),
 		
 		//dalam perawatan
 		'pr_aktif_balita' => $this->PasienM->covid_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '2016-01-01', $tgl),
@@ -147,6 +150,9 @@ class Peta extends CI_Controller
 
 		$data = [
 			'jumlah_pasien' => $this->PasienM->get_tbc_kel($id_kel),
+			'jumlah_pasien_aktif' => $this->PasienM->tbc_kel($id_kel, 'Dalam Perawatan'),
+			'jumlah_pasien_sembuh' => $this->PasienM->tbc_kel($id_kel, 'Sembuh'),
+			'jumlah_pasien_die' => $this->PasienM->tbc_kel($id_kel, 'Meninggal'),
 			
 			//dalam perawatan
 			'pr_aktif_balita' => $this->PasienM->tbc_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '2016-01-01', $tgl),
@@ -226,6 +232,9 @@ class Peta extends CI_Controller
 		
 		$data = [
 			'jumlah_pasien' => $this->PasienM->get_ims_kel($id_kel),
+			'jumlah_pasien_aktif' => $this->PasienM->get_ims_status($id_kel, 'Dalam Perawatan'),
+			'jumlah_pasien_sembuh' => $this->PasienM->get_ims_status($id_kel, 'Sembuh'),
+			'jumlah_pasien_die' => $this->PasienM->get_ims_status($id_kel, 'Meninggal'),
 
 			//dalam perawatan
 			'pr_aktif_balita' => $this->PasienM->ims_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '2016-01-01', $tgl),
@@ -303,6 +312,9 @@ class Peta extends CI_Controller
 			$tgl=date('Y-m-d');
 		$data = [
 			'jumlah_pasien' => $this->PasienM->get_diare_kel($id_kel),
+			'jumlah_pasien_aktif' => $this->PasienM->diare_kel_status($id_kel, 'Dalam Perawatan'),
+			'jumlah_pasien_sembuh' => $this->PasienM->diare_kel_status($id_kel, 'Sembuh'),
+			'jumlah_pasien_die' => $this->PasienM->diare_kel_status($id_kel, 'Meninggal'),
 			//dalam perawatan
 			'pr_aktif_balita' => $this->PasienM->diare_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '2016-01-01', $tgl),
 			'lk_aktif_balita' => $this->PasienM->diare_kel_usia ($id_kel, 'Dalam Perawatan', 'Laki-laki', '2016-01-01', $tgl),
@@ -381,6 +393,13 @@ class Peta extends CI_Controller
 	
 	$data = [
 		'jumlah_pasien' => $this->PasienM->get_dbd_kel($id_kel),
+		'jumlah_pasien_aktif' => $this->PasienM->dbd_kel_status($id_kel, 'Dalam Perawatan'),
+		'jumlah_pasien_sembuh' => $this->PasienM->dbd_kel_status($id_kel, 'Sembuh'),
+		'jumlah_pasien_die' => $this->PasienM->dbd_kel_status($id_kel, 'Meninggal'),
+		
+
+		
+
 		
 		//dalam perawatan
 		'pr_aktif_balita' => $this->PasienM->dbd_kel_usia ($id_kel, 'Dalam Perawatan', 'Perempuan', '2016-01-01', $tgl),

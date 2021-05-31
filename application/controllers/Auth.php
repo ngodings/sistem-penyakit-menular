@@ -40,7 +40,7 @@ class Auth extends CI_Controller
 
 
         // JIKA USER ADA
-        if ($user) {
+        if ($user['username'] == $username) {
             
 			if ($passwordx) { //password_verify($password, $user['password'])
 				// echo "sama";

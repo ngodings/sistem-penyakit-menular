@@ -94,6 +94,8 @@ class PasienM extends CI_Model
     {
        
         $this->db->from("pasien");
+		$this->db->join('kecamatan', 'kecamatan.id_kec=pasien.id_kec');
+        $this->db->join('kelurahan', 'kelurahan.id_kel=pasien.id_kel');
         $this->db->where("id_pasien", $id);
         $this->db->delete("pasien");
     }
@@ -225,6 +227,21 @@ class PasienM extends CI_Model
 		$this->db->where('pasien.jk', $jk);
 		$this->db->where('pasien.tanggal_lahir >=', $tahun1);
 		$this->db->where('pasien.tanggal_lahir <=', $tahun2);
+		$this->db->where('rekam_medik.tanggal_terinfeksi >=', $tgl1);
+		$this->db->where('rekam_medik.tanggal_terinfeksi <=', $tgl);
+		$this->db->where('kelurahan.id_kel', $id_kel);
+
+		return $this->db->count_all_results('rekam_medik');
+	}
+	public function covid_kel ($id_kel, $status){
+		$tgl=date('Y-m-d');
+		$tgl1= '2020-01-01';
+		$this->db->join('penyakit', 'rekam_medik.id_penyakit = penyakit.id_penyakit');
+		$this->db->join('pasien','rekam_medik.id_pasien = pasien.id_pasien');
+		$this->db->join('kecamatan', 'pasien.id_kec = kecamatan.id_kec');
+		$this->db->join('kelurahan', 'pasien.id_kel = kelurahan.id_kel');
+		$this->db->where('penyakit.nama_penyakit', 'TBC');
+		$this->db->where('rekam_medik.status', $status);
 		$this->db->where('rekam_medik.tanggal_terinfeksi >=', $tgl1);
 		$this->db->where('rekam_medik.tanggal_terinfeksi <=', $tgl);
 		$this->db->where('kelurahan.id_kel', $id_kel);
@@ -368,7 +385,7 @@ class PasienM extends CI_Model
 
 		return $this->db->count_all_results('rekam_medik');
 	}
-	public function tbc_kel ($id_kel, $status, $jk){
+	public function tbc_kel ($id_kel, $status){
 		$tgl=date('Y-m-d');
 		$tgl1= '2015-01-01';
 		$this->db->join('penyakit', 'rekam_medik.id_penyakit = penyakit.id_penyakit');
@@ -377,7 +394,7 @@ class PasienM extends CI_Model
 		$this->db->join('kelurahan', 'pasien.id_kel = kelurahan.id_kel');
 		$this->db->where('penyakit.nama_penyakit', 'TBC');
 		$this->db->where('rekam_medik.status', $status);
-		$this->db->where('pasien.jk', $jk);
+	
 		$this->db->where('rekam_medik.tanggal_terinfeksi >=', $tgl1);
 		$this->db->where('rekam_medik.tanggal_terinfeksi <=', $tgl);
 		$this->db->where('kelurahan.id_kel', $id_kel);
@@ -455,6 +472,21 @@ class PasienM extends CI_Model
 		$this->db->where('rekam_medik.tanggal_terinfeksi >=', $tgl1);
 		$this->db->where('rekam_medik.tanggal_terinfeksi <=', $tgl);
 		//$this->db->where('rekam_medik.status', 'Dalam Perawatan');
+		$this->db->where('kelurahan.id_kel', $id_kel);
+
+		return $this->db->count_all_results('rekam_medik');
+	}
+	public function get_ims_status ($id_kel, $status){
+		$tgl=date('Y-m-d');
+		$tgl1= '2015-01-01';
+		$this->db->join('penyakit', 'rekam_medik.id_penyakit = penyakit.id_penyakit');
+		$this->db->join('pasien','rekam_medik.id_pasien = pasien.id_pasien');
+		$this->db->join('kecamatan', 'pasien.id_kec = kecamatan.id_kec');
+		$this->db->join('kelurahan', 'pasien.id_kel = kelurahan.id_kel');
+		$this->db->where('penyakit.nama_penyakit', 'IMS');
+		$this->db->where('rekam_medik.tanggal_terinfeksi >=', $tgl1);
+		$this->db->where('rekam_medik.tanggal_terinfeksi <=', $tgl);
+		$this->db->where('rekam_medik.status', $status);
 		$this->db->where('kelurahan.id_kel', $id_kel);
 
 		return $this->db->count_all_results('rekam_medik');
@@ -548,6 +580,21 @@ class PasienM extends CI_Model
 
 		return $this->db->count_all_results('rekam_medik');
 	}
+	public function diare_kel_status ($id_kel, $status){
+		$tgl=date('Y-m-d');
+		$tgl1= '2015-01-01';
+		$this->db->join('penyakit', 'rekam_medik.id_penyakit = penyakit.id_penyakit');
+		$this->db->join('pasien','rekam_medik.id_pasien = pasien.id_pasien');
+		$this->db->join('kecamatan', 'pasien.id_kec = kecamatan.id_kec');
+		$this->db->join('kelurahan', 'pasien.id_kel = kelurahan.id_kel');
+		$this->db->where('penyakit.nama_penyakit', 'Diare');
+		$this->db->where('rekam_medik.tanggal_terinfeksi >=', $tgl1);
+		$this->db->where('rekam_medik.tanggal_terinfeksi <=', $tgl);
+		$this->db->where('rekam_medik.status', $status);
+		$this->db->where('kelurahan.id_kel', $id_kel);
+
+		return $this->db->count_all_results('rekam_medik');
+	}
 	public function diare_kel ($id_kel, $status, $jk){
 		$tgl=date('Y-m-d');
 		$tgl1= '2015-01-01';
@@ -634,6 +681,21 @@ class PasienM extends CI_Model
 		$this->db->where('rekam_medik.tanggal_terinfeksi >=', $tgl1);
 		$this->db->where('rekam_medik.tanggal_terinfeksi <=', $tgl);
 		//$this->db->where('rekam_medik.status', 'Dalam Perawatan');
+		$this->db->where('kelurahan.id_kel', $id_kel);
+
+		return $this->db->count_all_results('rekam_medik');
+	}
+	public function dbd_kel_status ($id_kel, $status){
+		$tgl=date('Y-m-d');
+		$tgl1= '2015-01-01';
+		$this->db->join('penyakit', 'rekam_medik.id_penyakit = penyakit.id_penyakit');
+		$this->db->join('pasien','rekam_medik.id_pasien = pasien.id_pasien');
+		$this->db->join('kecamatan', 'pasien.id_kec = kecamatan.id_kec');
+		$this->db->join('kelurahan', 'pasien.id_kel = kelurahan.id_kel');
+		$this->db->where('penyakit.nama_penyakit', 'DBD');
+		$this->db->where('rekam_medik.tanggal_terinfeksi >=', $tgl1);
+		$this->db->where('rekam_medik.tanggal_terinfeksi <=', $tgl);
+		$this->db->where('rekam_medik.status', $status);
 		$this->db->where('kelurahan.id_kel', $id_kel);
 
 		return $this->db->count_all_results('rekam_medik');

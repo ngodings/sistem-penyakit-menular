@@ -28,7 +28,7 @@
 												<select name="status" class="form-control" id="status" value="<?= $rm['status']; ?>">
 													<option value="Dalam Perawatan">Dalam Perawatan</option>
 													<option value="Sembuh">Sembuh</option>
-													<option value="Sembuh">Meninggal</option>
+													<option value="Meninggal">Meninggal</option>
 											</select>
 											</div>
 											<div class="form-group">

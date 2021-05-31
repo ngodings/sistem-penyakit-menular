@@ -65,7 +65,7 @@ class Medis extends CI_Controller
     {
         $this->form_validation->set_rules('id_rm', 'ID ', 'required');
      
-        $this->form_validation->set_rules('tanggal_sembuh', 'tanggal_sembuh', 'required');
+        $this->form_validation->set_rules('status', 'status', 'required');
 		
 
         if ($this->form_validation->run() == false) {

@@ -291,6 +291,9 @@
 					info_bidang+="<h5 style='text-align:center'>Data Kelurahan " + data.nama_kelurahan + "</h5>"
 					info_bidang+="<hr size = '1px'> "
 					info_bidang+="<h6>Jumlah Pasien di seluruh Kasus : " + data.jumlah_pasien + "</h6>"
+					info_bidang+="<h6>Jumlah Pasien Aktif : " + data.jumlah_pasien_aktif + "</h6>"
+					info_bidang+="<h6>Jumlah Pasien Sembuh : " + data.jumlah_pasien_sembuh + "</h6>"
+					info_bidang+="<h6>Jumlah Pasien Meninggal : " + data.jumlah_pasien_die + "</h6>"
 					
 					//dalam perawatan
 					info_bidang+="<hr size = '1px'> "
