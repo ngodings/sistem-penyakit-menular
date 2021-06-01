@@ -94,8 +94,6 @@ class PasienM extends CI_Model
     {
        
         $this->db->from("pasien");
-		$this->db->join('kecamatan', 'kecamatan.id_kec=pasien.id_kec');
-        $this->db->join('kelurahan', 'kelurahan.id_kel=pasien.id_kel');
         $this->db->where("id_pasien", $id);
         $this->db->delete("pasien");
     }
