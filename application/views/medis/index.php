@@ -29,7 +29,7 @@
 											</div>
 											
 											<div class="form-group">
-												<label for="tanggal_terinfeksi">Tanggal Terinfeksi Penyakit</label>
+												<label for="tanggal_terinfeksi">Tanggal Mulai Kasus</label>
 												<input type="date" id="tanggal_terinfeksi" class="form-control" name="tanggal_terinfeksi">
 											</div>
 											<div class="form-group">
@@ -53,7 +53,7 @@
 												</select>
 											</div>
 											<div class="form-group">
-												<label for="tanggal_sembuh">Tanggal Dinyatakan Sembuh</label>
+												<label for="tanggal_sembuh">Tanggal Selesai Kasus</label>
 												<input type="date" id="tanggal_sembuh" class="form-control" name="tanggal_sembuh">
 											</div>
 											
@@ -100,10 +100,10 @@
                   <th>NIK Pasien</th>
 				  <th>Nama Pasien</th>
 				  <th>Alamat</th>
-				  <th>Tanggal Terinfeksi</th>
+				  <th>Tanggal Mulai Kasus</th>
 				  <th>Status</th>
 				  <th>Penyakit </th>
-				  <th>Tanggal Sembuh</th>
+				  <th>Tanggal Selesai Kasus</th>
 				  <th>Keterangan </th>
 				  <th>Nama Petugas </th>
 				  <th>Aksi </th>
