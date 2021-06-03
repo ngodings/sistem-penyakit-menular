@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="<?= base_url()?>template/dist/css/adminlte.min.css">
   <!-- DataTables -->
   <link rel="stylesheet" href="<?= base_url()?>template/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+	<link href="<?= base_url('assets'); ?>/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
   <link rel="stylesheet" href="<?= base_url()?>leaflet/leaflet.css" />
 	 <!-- Select2 -->
@@ -23,6 +24,12 @@
   <link rel="stylesheet" href="<?= base_url()?>template/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 	 <!-- Load file library jQuery melalui CDN -->
 	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
+	
+
+	 
 	
   <script src="<?= base_url()?>leaflet/leaflet.js"></script>
 </head>

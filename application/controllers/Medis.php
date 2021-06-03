@@ -9,6 +9,15 @@ class Medis extends CI_Controller
 		$this->load->helper(array('url','form'));
         $this->load->model('MedisM', '', TRUE);
         $this->load->library('form_validation');
+
+		$data['user'] = $this->db->get_where('user', [
+			'username' => $this->session->userdata('username')
+		])->row_array();
+		$auth = $data['user'];
+		if ($auth['level' != 'admin' ]){
+			redirect('auth');
+
+		}
     }
 	public function index()
 	{

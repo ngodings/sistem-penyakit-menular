@@ -9,6 +9,15 @@ class Penyakit extends CI_Controller
         parent::__construct();
         $this->load->model('PenyakitM', '', TRUE);
         $this->load->library('form_validation');
+
+		$data['user'] = $this->db->get_where('user', [
+			'username' => $this->session->userdata('username')
+		])->row_array();
+		$auth = $data['user'];
+		if ($auth['level' !== 'admin' ]){
+			redirect('auth');
+
+		}
     }
 	public function index()
 	{
