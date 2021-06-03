@@ -81,9 +81,9 @@
                   <th>Nama Pasien</th>
                   <th>Tanggal Lahir</th>
                   <th>Jenis Kelamin</th>
-					<th>Kecamatan</th>
-					<th>Kelurahan</th>
-					<th>Alamat Lengkap</th>
+				  <th>Kecamatan</th>
+				  <th>Kelurahan</th>
+				  <th>Alamat Lengkap</th>
                   <th width="250">Aksi</th>
                 </tr>
                 </thead>
