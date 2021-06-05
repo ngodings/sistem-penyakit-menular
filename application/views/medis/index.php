@@ -141,7 +141,7 @@
 				  </td>
 				  <td>
 				  <?php if ($row['tanggal_sembuh'] == '0000-00-00') {?>
-					  <a class= "badge badge-danger"> - </a>
+					  <a class= "badge badge-danger"> belum selesai </a>
 					  <?php } else { ?>
 					   <?= $row['tanggal_sembuh'];?> 
 					  <?php }?>

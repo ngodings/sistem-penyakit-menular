@@ -14,6 +14,7 @@ class Medis extends CI_Controller
 			'username' => $this->session->userdata('username')
 		])->row_array();
 		$auth = $data['user'];
+		
 		if ($auth['level' != 'admin' ]){
 			redirect('auth');
 
@@ -24,6 +25,8 @@ class Medis extends CI_Controller
 		$data['user'] = $this->db->get_where('user', [
             'username' => $this->session->userdata('username')
         ])->row_array();
+		// var_dump($data['user']);
+		// die;
 		$data = array(
 					'title' => 'Rekam Medik Pasien Penyakit Menular',
 					'isi' => 'medis/index'

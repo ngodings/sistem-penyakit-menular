@@ -6,7 +6,7 @@ class Auth extends CI_Controller
 	public function __construct()
     {
         parent::__construct();
-        $this->load->library('form_validation');
+        $this->load->library('form_validation', 'session');
         //$this->load->model('User');
         $this->load->database();
 
@@ -49,9 +49,15 @@ class Auth extends CI_Controller
 
 				$data = [
 					'username' => $user['username'],
+					'level' => $user['level']
 					
 				];
-					redirect('Home');
+				$this->session->set_userdata($data);
+                    if ($user['level'] == 'admin') {
+                        redirect('Home');
+                    } else {
+                        
+                    }
 			} else {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
 										Password salah!
