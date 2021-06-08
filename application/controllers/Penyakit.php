@@ -14,9 +14,9 @@ class Penyakit extends CI_Controller
 			'username' => $this->session->userdata('username')
 		])->row_array();
 		$auth = $data['user'];
-		if ($auth['level' !== 'admin' ]){
-			redirect('auth');
 
+		if ($auth['level'] != 'admin') {
+			redirect('auth');
 		}
     }
 	public function index()
