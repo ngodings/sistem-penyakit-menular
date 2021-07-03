@@ -93,7 +93,7 @@
 								<div class="form-group">
 									<label class="col-lg-2 col-sm-2 control-label">ID</label>
 									<div class="col-lg-10">
-									<input type="text" class="form-control" id="id_penyakit" name="id_penyakit" readonly>
+									<input type="text" class="form-control" id="id_penyakit" name="id_penyakit" value="<?php echo $row['id_penyakit'] ?>" readonly>
 									</div>
 								</div>
 								<div class="form-group">
@@ -121,7 +121,7 @@
 				console.log("Hello, WOrld")
 				$('#edit-data').on('show.bs.modal', function (event) {
 					var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
-					id_penyakit = div.data('id');
+					id_penyakit = div.data('id_penyakit');
 					nama_penyakit = div.data('nama');
 					console.log("id penyakit :" + id_penyakit)
 					console.log("nama penyakit : " + nama_penyakit)
@@ -131,7 +131,7 @@
             		// mengambil nilai data-id yang di click
 					// Isi nilai pada field
 					// console.log($('input#id_penyakit').val('Uji coba'))
-					$('input#id_penyakit').val(div.data('id'));
+					$('input#id_penyakit').val(div.data('id_penyakit'));
 					$('input#nama_penyakit').val(div.data('nama'));
 				});
 			});

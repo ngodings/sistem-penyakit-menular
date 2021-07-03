@@ -43,7 +43,7 @@
 		  
         </div>
 				<ul>
-							<li> Data yang diambil adalah akumulasi data yang masuk dari tahun 2020 hingga sekarang</li>
+							<li> Data yang diambil adalah akumulasi data yang masuk di sistem hingga sekarang</li>
               <li> Seluruh data ditulis/ dihitung berdasarkan status terakhir pasien</li>
               <li> Data Total Terkonfirmasi dapat berubah menyesuaikan status terakhir pasien</li>
 							<li> Klik bagian peta untuk melihat detail informasi</li>
@@ -53,6 +53,15 @@
 
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
+				<form>
+				<h6>Cari data pada kisaran tertentu: </h6>
+					<label for="tahun_awal">Tanggal Mulai : </label>
+					<input type="date" class="form-group" id="tahun_awal" name="tahun_awal" placeholder="Tanggal Mulai" value="" required>
+					
+					<label for="tahun_akhir">Tanggal Akhir: </label>
+					<input type="date" class="form-group" id="tahun_akhir" name="tahun_akhir" placeholder="Tanggal Akhir" value="" required>
+					<button type="button" name="search" id="search">Cari</button>
+				</form>
 			<div class="col-md-12">
 	  			<div id="solo"></div>
      	 	</div>

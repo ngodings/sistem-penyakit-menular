@@ -133,7 +133,7 @@
         </div>
 				
 			<ul>
-				<li> Data yang diambil adalah akumulasi data yang masuk dari tahun 2015 hingga sekarang</li>
+				<li> Data yang diambil adalah akumulasi data yang masuk ke sistem penyakit menular</li>
               	<li> Seluruh data ditulis/ dihitung berdasarkan status terakhir pasien</li>
               	<li> Data Total Terkonfirmasi dapat berubah menyesuaikan status terakhir pasien</li>
 				<li> Klik bagian peta untuk melihat detail informasi</li>
@@ -141,6 +141,16 @@
             </ul>
 						<br>
         <div class="row" data-aos="fade-up" data-aos-delay="100">
+		<form>
+				<h6>Cari data pada kisaran tertentu: </h6>
+					<label for="tahun_awal">Tanggal Mulai : </label>
+					<input type="date" class="form-group" id="tahun_awal" name="tahun_awal" placeholder="Tanggal Mulai" value="" required>
+					
+					<label for="tahun_akhir">Tanggal Akhir: </label>
+					<input type="date" class="form-group" id="tahun_akhir" name="tahun_akhir" placeholder="Tanggal Akhir" value="" required>
+					<button type="button" name="search" id="search" >Cari</button>
+					
+		</form>
 			<div class="col-md-12">
 	  			<div id="diare"></div>
      	 	</div>
@@ -367,6 +377,93 @@
 					});
 
 				});
+				$('#search').click(function(){	
+					tahun_awal = $('#tahun_awal').val()
+					tahun_akhir = $('#tahun_akhir').val()
+					penyakit = 'Diare'
+				
+					$.getJSON(`http://localhost:81/api-spm/api/penyakitKelFilter?id_kel=${id_kel}&penyakit=${penyakit}&tahun_awal=${tahun_awal}&tahun_akhir=${tahun_akhir}`, function(data){
+					var info_bidang ="<h4 style='text-align:center'> Akumulasi Data Pasien Diare </br> </h4>"+"<h6 style='text-align:center'> ( " +tahun_awal + " hingga "+tahun_akhir +" )</h6>";
+					info_bidang+="<h5 style='text-align:center'>Data Kelurahan " + data.nama_kelurahan + "</h5>"
+					info_bidang+="<hr size = '1px'> "
+					info_bidang+="<h6>Jumlah Pasien di seluruh Kasus : " + data.data_all + "</h6>"
+					info_bidang+="<h6>Jumlah Pasien Aktif : " + data.data_aktif + "</h6>"
+					info_bidang+="<h6>Jumlah Pasien Sembuh : " + data.data_sembuh + "</h6>"
+					info_bidang+="<h6>Jumlah Pasien Meninggal : " + data.data_die + "</h6>"
+					info_bidang+="<hr size = '1px'> "
+					//dalam perawatan
+					info_bidang+="<h6>Data Pasien Terkonfirmasi: Dirawat (Kasus Aktif) <br></h6> "
+					
+					info_bidang+="<b>Balita ( 0-5 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_aktif_balita + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_aktif_balita + "<br>"
+					info_bidang+="<b>Anak-anak ( 6-12 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_aktif_anak + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_aktif_anak + "<br>"
+					info_bidang+="<b>Remaja ( 13-24 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_aktif_remaja + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_aktif_remaja + "<br>"
+					info_bidang+="<b>Dewasa ( 25-45 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_aktif_dewasa + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_aktif_dewasa + "<br>"
+					info_bidang+="<b>Lansia( >45 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_aktif_lansia + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_aktif_lansia + "<br>"
+					info_bidang+="<hr size = '1px'> "
+					//sembuh
+					info_bidang+="<br><h6>Data Pasien Terkonfirmasi: Sembuh <br></h6> "
+					
+					info_bidang+="<b>Balita ( 0-5 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_sembuh_balita + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_sembuh_balita + "<br>"
+					info_bidang+="<b>Anak-anak ( 6-12 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_sembuh_anak + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_sembuh_anak + "<br>"
+					info_bidang+="<b>Remaja ( 13-24 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_sembuh_remaja + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_sembuh_remaja + "<br>"
+					info_bidang+="<b>Dewasa ( 25-45 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_sembuh_dewasa + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_sembuh_dewasa + "<br>"
+					info_bidang+="<b>Lansia( >45 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_sembuh_lansia + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_sembuh_lansia + "<br>"
+					//meninggal
+					info_bidang+="<hr size = '1px'> "
+					info_bidang+="<br><h6>Data Pasien Terkonfirmasi: Meninggal <br></h6> "
+					
+					info_bidang+="<b>Balita ( 0-5 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_die_balita + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_die_balita + "<br>"
+					info_bidang+="<b>Anak-anak ( 6-12 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_die_anak + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_die_anak + "<br>"
+					info_bidang+="<b>Remaja ( 13-24 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_die_remaja + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_die_remaja + "<br>"
+					info_bidang+="<b>Dewasa ( 25-45 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_die_dewasa + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_die_dewasa + "<br>"
+					info_bidang+="<b>Lansia( >45 tahun) </b><br> "
+					info_bidang+="Perempuan : " + data.pr_die_lansia + "<br>"
+					info_bidang+="Laki-laki : " + data.lk_die_lansia + "<br>"
+					
+					
+				
+					layer.bindPopup(info_bidang, {
+						maxHeight : 360,
+						maxWidth : 460,
+						closeButton : true,
+						offset : L.point(0, -20)
+					});
+
+					layer.on('click', function(){
+						layer.openPopup();
+					});
+
+				});
+
+			})
 
 				
 

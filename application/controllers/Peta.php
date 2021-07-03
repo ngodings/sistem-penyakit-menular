@@ -440,6 +440,46 @@ class Peta extends CI_Controller
 	echo json_encode($data);
 }
 
+	public function countFilter($id, $tahun1, $tahun2)
+	{
+		$tahun1 = $this->db->get('tahun_awal');
+		$tahun2 = $this->db->get('tahun_akhir');
+        $id = $this->db->get('id_kec');
+
+		
+		$data = [
+			'covid_all' => $this->Peta-> penyakit_kec($id, $tahun1, $tahun2, 'COVID-19'),
+			'covid_aktif' => $this->Peta-> penyakit_kec_tahun($id, 'Dalam Perawatan', $tahun1, $tahun2, 'COVID-19'),
+			'covid_sembuh' => $this->Peta-> penyakit_kec_tahun($id, 'Sembuh', $tahun1, $tahun2, 'COVID-19'),
+			'covid_die' => $this->Peta-> penyakit_kec_tahun($id, 'Meninggal', $tahun1, $tahun2, 'COVID-19'),
+
+			'TBC_all' => $this->Peta-> penyakit_kec($id, $tahun1, $tahun2, 'TBC'),
+			'TBC_aktif' => $this->Peta-> penyakit_kec_tahun($id, 'Dalam Perawatan', $tahun1, $tahun2, 'TBC'),
+			'TBC_sembuh' => $this->Peta-> penyakit_kec_tahun($id, 'Sembuh', $tahun1, $tahun2, 'TBC'),
+			'TBC_die' => $this->Peta-> penyakit_kec_tahun($id, 'Meninggal', $tahun1, $tahun2, 'TBC'),
+
+
+			'IMS_all' => $this->Peta-> penyakit_kec($id, $tahun1, $tahun2, 'IMS'),
+			'IMS_aktif' => $this->Peta-> penyakit_kec_tahun($id, 'Dalam Perawatan', $tahun1, $tahun2, 'IMS'),
+			'IMS_sembuh' => $this->Peta-> penyakit_kec_tahun($id, 'Sembuh', $tahun1, $tahun2, 'IMS'),
+			'IMS_die' => $this->Peta-> penyakit_kec_tahun($id, 'Meninggal', $tahun1, $tahun2, 'IMS'),
+			
+
+			'Diare_all' => $this->Peta-> penyakit_kec($id, $tahun1, $tahun2, 'Diare'),
+			'Diare_aktif' => $this->Peta-> penyakit_kec_tahun($id, 'Dalam Perawatan', $tahun1, $tahun2, 'Diare'),
+			'Diare_sembuh' => $this->Peta-> penyakit_kec_tahun($id, 'Sembuh', $tahun1, $tahun2, 'Diare'),
+			'Diare_die' => $this->Peta-> penyakit_kec_tahun($id, 'Meninggal', $tahun1, $tahun2, 'Diare'),
+
+			'DBD_all' => $this->Peta-> penyakit_kec($id, $tahun1, $tahun2, 'DBD'),
+			'DBD_aktif' => $this->Peta-> penyakit_kec_tahun($id, 'Dalam Perawatan', $tahun1, $tahun2, 'DBD'),
+			'DBD_sembuh' => $this->Peta-> penyakit_kec_tahun($id, 'Sembuh', $tahun1, $tahun2, 'DBD'),
+			'DBD_die' => $this->Peta-> penyakit_kec_tahun($id, 'Meninggal', $tahun1, $tahun2, 'DBD'),
+			
+			'nama_kecamatan' => $this->db->limit(1)->get_where('kecamatan', array('id_kec'=>$id))->row()->nama_kecamatan
+		];
+		echo json_encode($data);
+	}
+
 
 	
 

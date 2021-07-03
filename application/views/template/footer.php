@@ -160,6 +160,34 @@
 					});
 
 				});
+				$('#search').click(function(){	
+					tahun_awal = $('#tahun_awal').val()
+					tahun_akhir = $('#tahun_akhir').val()
+				
+					$.getJSON(`http://localhost:81/api-spm/api/countFilter?id_kec=${id_kec}&tahun_awal=${tahun_awal}&tahun_akhir=${tahun_akhir}`, function(data){
+					var info_bidang ="<h4 style='text-align:center'> Akumulasi Data Pasien COVID-19 </br> </h4>"+"<h6 style='text-align:center'> ( " +tahun_awal + " hingga "+tahun_akhir +" )</h6>"
+					info_bidang+="<h6 style='text-align:center'>Data Kecamatan " + data.nama_kecamatan + "</h6>"
+					
+					info_bidang+="<h6><br>Jumlah Seluruh Kasus 		: " + data.covid_all + "</h6>";
+					info_bidang+="<h6>Jumlah Pasien Aktif 	: " + data.covid_aktif + "</h6>";
+					info_bidang+="<h6>Jumlah Pasien Sembuh 	: " + data.covid_sembuh + "</h6>";
+					info_bidang+="<h6>Jumlah Pasien Meninggal	: " + data.covid_die + "</h6>";
+					
+					// info_bidang+="<a href='<?=base_url()?>peta/bidang_detail/'"+id_kec+"'></a>";
+					
+					// info_bidang+="<div style='width:100%;text-align:center;margin-top:10px;'><a href='<?=base_url()?>peta/bidang_detail/"+id_kec+"'> Detail </a></div>";
+					layer.bindPopup(info_bidang, {
+							maxWidth : 360,
+							closeButton : true,
+							offset : L.point(0, -20)
+						});
+
+						layer.on('click', function(){
+							layer.openPopup();
+						});
+
+					});
+				})
 
 				
 

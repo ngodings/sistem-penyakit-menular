@@ -128,19 +128,27 @@
         <div class="section-title">
 		<h2>Peta Sebaran Kasus Diare Kota Surakarta </h2>
           <p>Data berikut merupakan akumulasi data pasien Diare di Kota Surakarta </p>
-				
-				
 		  
         </div>
 				<ul>
-					<li> Data yang diambil adalah akumulasi data yang masuk dari tahun 2015 hingga sekarang</li>
+					<li> Data yang diambil adalah akumulasi data yang masuk di sistem hingga sekarang</li>
 					<li> Seluruh data ditulis/ dihitung berdasarkan status terakhir pasien</li>
 					<li> Data Total Terkonfirmasi dapat berubah menyesuaikan status terakhir pasien</li>
 					<li> Klik bagian peta untuk melihat detail informasi</li>
               
-            	</ul>
+        </ul>
 						<br>
         <div class="row" data-aos="fade-up" data-aos-delay="100">
+			
+				<form>
+				<h6>Cari data pada kisaran tertentu: </h6>
+					<label for="tahun_awal">Tanggal Mulai : </label>
+					<input type="date" class="form-group" id="tahun_awal" name="tahun_awal" placeholder="Tanggal Mulai" value="" required>
+					
+					<label for="tahun_akhir">Tanggal Akhir: </label>
+					<input type="date" class="form-group" id="tahun_akhir" name="tahun_akhir" placeholder="Tanggal Akhir" value="" required>
+					<button type="button" name="search" id="search">Cari</button>
+				</form>
 			<div class="col-md-12">
 	  			<div id="diare"></div>
      	 	</div>
@@ -315,6 +323,34 @@
 					});
 
 				});
+				$('#search').click(function(){	
+					tahun_awal = $('#tahun_awal').val()
+					tahun_akhir = $('#tahun_akhir').val()
+				
+					$.getJSON(`http://localhost:81/api-spm/api/countFilter?id_kec=${id_kec}&tahun_awal=${tahun_awal}&tahun_akhir=${tahun_akhir}`, function(data){
+					var info_bidang ="<h4 style='text-align:center'> Akumulasi Data Pasien Diare </br> </h4>"+"<h6 style='text-align:center'> ( " +tahun_awal + " hingga "+tahun_akhir +" )</h6>"
+					info_bidang+="<h6 style='text-align:center'>Data Kecamatan " + data.nama_kecamatan + "</h6>"
+					
+					info_bidang+="<h6><br>Jumlah Seluruh Kasus 		: " + data.Diare_all + "</h6>";
+					info_bidang+="<h6>Jumlah Pasien Aktif 	: " + data.Diare_aktif + "</h6>";
+					info_bidang+="<h6>Jumlah Pasien Sembuh 	: " + data.Diare_sembuh + "</h6>";
+					info_bidang+="<h6>Jumlah Pasien Meninggal	: " + data.Diare_die + "</h6>";
+					
+					info_bidang+="<a href='<?=base_url()?>peta/bidang_detail/'"+id_kec+"'></a>";
+					
+					info_bidang+="<div style='width:100%;text-align:center;margin-top:10px;'><a href='<?=base_url()?>peta/bidang_detail/"+id_kec+"'> Detail </a></div>";
+					layer.bindPopup(info_bidang, {
+							maxWidth : 360,
+							closeButton : true,
+							offset : L.point(0, -20)
+						});
+
+						layer.on('click', function(){
+							layer.openPopup();
+						});
+
+					});
+				})
 
 				
 
