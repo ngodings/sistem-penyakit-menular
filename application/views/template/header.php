@@ -77,27 +77,27 @@
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           <li class="active"><a href="">Beranda</a></li>
+					<li class="drop-down" id="penyakit"><a href="">Data Penyakit</a>
+          <ul>
+					<?php
+                                foreach ($penyakit as $nama){
+                                  if($nama['id_penyakit']){
+                                ?>
+																				<li><a href="#" value="<?php echo $nama['id_penyakit'];?>"><?php echo $nama['nama_penyakit'];?></a></li>
+                                        
+                               
+        
+                                <?php
+                                    }
+                                }
+                                ?>
+          </ul>
+        </li>
           <li><a href="#about">Profil</a></li>
           <li><a href="#berita">Berita</a></li>
           <li><a href="<?= base_url('peta/data'); ?>">Data</a></li>
           <li><a href="#layanan">Layanan</a></li>
-          <!-- <li class="drop-down"><a href="">Drop Down</a>
-          <ul>
-            <li><a href="#">Drop Down 1</a></li>
-            <li class="drop-down"><a href="#">Deep Drop Down</a>
-              <ul>
-                <li><a href="#">Deep Drop Down 1</a></li>
-                <li><a href="#">Deep Drop Down 2</a></li>
-                <li><a href="#">Deep Drop Down 3</a></li>
-                <li><a href="#">Deep Drop Down 4</a></li>
-                <li><a href="#">Deep Drop Down 5</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Drop Down 2</a></li>
-            <li><a href="#">Drop Down 3</a></li>
-            <li><a href="#">Drop Down 4</a></li>
-          </ul>
-        </li> -->
+          
           <li><a href="#contact">Contact</a></li>
 
         </ul>

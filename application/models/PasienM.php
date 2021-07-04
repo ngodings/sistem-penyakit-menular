@@ -122,7 +122,11 @@ class PasienM extends CI_Model
         $this->db->update( 'pasien', $data);
 
     }
-
+	public function view_penyakit()
+	{
+		$query = $this->db->get('penyakit');
+        return $query->result_array();
+    }
 	public function get_all_corona ($id_kec){
 		// $this->db->select('count(*)');
 		// $this->db->from('rekam_medik');

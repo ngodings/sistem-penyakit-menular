@@ -12,11 +12,14 @@ class Peta extends CI_Controller
     }
     public function index()
     {
-        $data['judul'] = "Selamat Datang ";
+		$data = [
+			'penyakit' => $this->PasienM->view_penyakit()
+		 ];
+        
 
 
         $this->load->view('template/header', $data);
-        $this->load->view('front/index', $data);
+        $this->load->view('data/index', $data);
         $this->load->view('template/footer');
     }
 
