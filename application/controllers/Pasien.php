@@ -31,6 +31,14 @@ class Pasien extends CI_Controller
 		);
 		//TAMBAH DATA
 		$data['id_unik'] = $this->PasienM->buat_kode();
+		$this->form_validation->set_rules(
+			'nik', 'nik',
+			'required|min_length[5]|max_length[20]|is_unique[pasien.nik]',
+			array(
+					'required'      => 'You have not provided %s.',
+					'is_unique'     => 'This %s already exists.'
+			)
+		);
         $this->form_validation->set_rules('nama', 'Nama Pasien', 'required');
 		//SELECT DATA PASIEN
 		$data['pasien'] = $this->PasienM->getJoin()->result_array();
@@ -39,6 +47,7 @@ class Pasien extends CI_Controller
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('template/v_wrapper', $data, FALSE);
         } else {
+			
             $this->PasienM->tambah();
             $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
                                              Tambah data berhasil dilakukan!
@@ -48,6 +57,14 @@ class Pasien extends CI_Controller
 
 		$this->load->view('template/v_wrapper', $data, FALSE);
 	}
+	function CheckNIK($nik){
+		if ($this->PasienM->check_nik($nik)==''){
+		   return true;
+		}else{
+		   $this->form_validation->set_message('nik', 'nik '. $nik .' telah terdaftar');
+		   return false;		
+		}
+	 }
 	
 	function get_kelurahan()
     {
@@ -140,5 +157,6 @@ class Pasien extends CI_Controller
 		];
         echo json_encode($data);
     }
+	
 
 }

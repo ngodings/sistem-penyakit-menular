@@ -32,7 +32,7 @@
 											</select>
 											</div>
 											<div class="form-group">
-												<label for="tanggal_sembuh">Tanggal Selesai Kasus/label>
+												<label for="tanggal_sembuh">Tanggal Selesai Kasus</label>
 												<input type="date" id="tanggal_sembuh" class="form-control" name="tanggal_sembuh" value="<?= $rm['tanggal_sembuh']; ?>">
 											</div>
 											

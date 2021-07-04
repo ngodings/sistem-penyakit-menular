@@ -80,10 +80,10 @@
 					<li class="drop-down" id="penyakit"><a href="">Data Penyakit</a>
           <ul>
 					<?php
-                                foreach ($penyakit as $nama){
-                                  if($nama['id_penyakit']){
+                                foreach ($penyakit as $item){
+                                  if($item['id_penyakit']){
                                 ?>
-																				<li><a href="#" value="<?php echo $nama['id_penyakit'];?>"><?php echo $nama['nama_penyakit'];?></a></li>
+																				<li><a href="<?= base_url() . 'peta/data_penyakit/' . $item['id_penyakit'] ?>" value="<?php echo $item['id_penyakit'];?>"><?php echo $item['nama_penyakit'];?></a></li>
                                         
                                
         

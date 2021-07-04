@@ -112,9 +112,6 @@ class PasienM extends CI_Model
 			'id_kec' => $this->input->post('kecamatan'),
 			'id_kel' => $this->input->post('kelurahan'),
 			'alamat' => $this->input->post('alamat'),
-            
-
-        
         ];
 
         
@@ -127,6 +124,26 @@ class PasienM extends CI_Model
 		$query = $this->db->get('penyakit');
         return $query->result_array();
     }
+
+	public function get_penyakit_by_id($id)
+	{
+		return $this->db->select('*')
+		->from('penyakit')
+		->where('id_penyakit', $id)->get()->row();
+	}
+	
+	//model
+	function check_nik($nik){
+		$this->db->select('nik');
+		$this->db->where('nik',$nik);		
+		$query =$this->db->get('pasien');
+		$row = $query->row();
+		if ($query->num_rows > 0){
+			return $row->nik; 
+		}else{
+			return "";
+	}
+	}
 	public function get_all_corona ($id_kec){
 		// $this->db->select('count(*)');
 		// $this->db->from('rekam_medik');

@@ -96,7 +96,7 @@
         <!-- Slide 1 -->
         <div class="carousel-item active" style="background-image: url(<?= base_url()?>template/front/assets/img/tbc-1.gif)">
           <div class="container">
-            <h2> <span>Peta Sebaran Kasus TBC</span></h2>
+            <h2> <span>Peta Sebaran Kasus <?= $penyakit->nama_penyakit ?></span></h2>
             
           </div>
         </div>
@@ -123,7 +123,7 @@
 
         <div class="section-title">
 		<h2>TBC</h2>
-          <p>Data berikut merupakan akumulasi data pasien TBC yang masuk di sistem </p>
+          <p>Data berikut merupakan akumulasi data pasien <?= $penyakit->nama_penyakit ?> yang masuk di sistem </p>
 		  
         </div>
 				
@@ -224,6 +224,7 @@
 		var map = L.map('tbc').setView([-7.5595759, 110.8541984], 13);
 		var base_url ="<?= base_url() ?>";
 		var id_kecamatan ="<?=$id_kec?>";
+		penyakit = '<?= $penyakit->nama_penyakit ?>';
 		
 
 		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

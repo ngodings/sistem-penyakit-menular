@@ -23,14 +23,24 @@ class Peta extends CI_Controller
         $this->load->view('template/footer');
     }
 
-    public function Data()
+    public function data_penyakit($id_penyakit)
     {
         $data['judul'] = "Data Penyakit Menular";
-
-
-        $this->load->view('template/head', $data);
-        $this->load->view('front/data', $data);
-        $this->load->view('template/footer');
+//		$data['id_penyakit'] = $id_penyakit;
+		$data['penyakit'] = $this->PasienM->get_penyakit_by_id($id_penyakit);
+        $this->load->view('data/data', $data);
+        
+    }
+	public function detail_penyakit($id_kec=null, $id_penyakit)
+    {
+		
+        $data['id_kec'] = $id_kec;
+		$data['penyakit'] = $this->PasienM->get_penyakit_by_id($id_penyakit);
+        $data['kec'] = $this->db->get_where('kecamatan', array('id_kec'=>$id_kec))->result();
+		
+		
+        
+        $this->load->view('data/detail-data', $data);
     }
 	public function TBC()
     {
@@ -40,7 +50,7 @@ class Peta extends CI_Controller
         $this->load->view('front/tbc', $data);
         
     }
-
+ 
     public function bidang_detail($id_kec=null)
     {
         $data['id_kec'] = $id_kec;
