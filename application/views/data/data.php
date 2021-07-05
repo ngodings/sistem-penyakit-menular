@@ -366,7 +366,7 @@
 				info_bidang+="Laki-laki : " + data.lk_die_lansia + "<br>"
 				info_bidang+="<hr size = '1px'> "
 				info_bidang+="<a href='<?=base_url()?>peta/get_detail_tbc/'"+id_kec+"'></a>";
-				info_bidang+="<div style='width:100%;text-align:center;margin-top:10px;'><a href='<?=base_url()?>peta/get_detail_tbc/"+id_kec+penyakit+"'> Detail </a></div>";
+				info_bidang+="<div style='width:100%;text-align:center;margin-top:10px;'><a href='<?=base_url()?>peta/get_detail_tbc/"+id_kec+'/'+penyakit+"'> Detail </a></div>";
 			
 			
 			

@@ -47,7 +47,6 @@ class Pasien extends CI_Controller
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('template/v_wrapper', $data, FALSE);
         } else {
-			
             $this->PasienM->tambah();
             $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
                                              Tambah data berhasil dilakukan!
