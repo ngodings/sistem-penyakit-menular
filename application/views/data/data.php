@@ -45,7 +45,7 @@
 		padding:5px;
 		margin-bottom: 5px;
 	}
-	#tbc { 
+	#peta { 
 		height: 480px; 
 	}
 </style>
@@ -93,7 +93,7 @@
       <div class="carousel-inner" role="listbox">
 
         <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(<?= base_url()?>template/front/assets/img/tbc-1.gif)">
+        <div class="carousel-item active" style="background-image: url(<?= base_url()?>template/front/assets/img/covid.gif)">
           <div class="container">
             <h2><span>Data Penyakit <?= $penyakit->nama_penyakit ?> di Kota Surakarta</span></h2>
             
@@ -146,7 +146,7 @@
 					
 				</form>
 			<div class="col-md-12">
-	  			<div id="tbc"></div>
+	  			<div id="peta"></div>
      	 	</div>
         </div>
 
@@ -223,7 +223,7 @@
 	
 	
 	//menampilkan map
-	var map = L.map('tbc').setView([-7.5595759, 110.8541984], 13);
+	var map = L.map('peta').setView([-7.5595759, 110.8541984], 13);
 	var base_url ="<?= base_url() ?>";
 	
 
@@ -364,9 +364,9 @@
 				info_bidang+="<b>Lansia( >45 tahun) </b><br> "
 				info_bidang+="Perempuan : " + data.pr_die_lansia + "<br>"
 				info_bidang+="Laki-laki : " + data.lk_die_lansia + "<br>"
-				info_bidang+="<hr size = '1px'> "
-				info_bidang+="<a href='<?=base_url()?>peta/get_detail_tbc/'"+id_kec+"'></a>";
-				info_bidang+="<div style='width:100%;text-align:center;margin-top:10px;'><a href='<?=base_url()?>peta/get_detail_tbc/"+id_kec+'/'+penyakit+"'> Detail </a></div>";
+				
+				info_bidang+="<a href='<?=base_url()?>peta/detail_penyakit/'"+id_kec+"/"+penyakit+"'></a>";
+				info_bidang+=`<div style='width:100%;text-align:center;margin-top:10px;'><a href='<?=base_url()?>peta/detail_penyakit/${id_kec}/<?= $penyakit->id_penyakit ?>'> Detail </a></div>`;
 			
 			
 			
@@ -385,10 +385,10 @@
 			$('#search').click(function(){	
 				tahun_awal = $('#tahun_awal').val()
 				tahun_akhir = $('#tahun_akhir').val()
-				penyakit = 'TBC'
-			
+				
+				penyakit = '<?= $penyakit->nama_penyakit ?>'
 				$.getJSON(`http://localhost:81/api-spm/api/penyakitKelFilter?id_kec=${id_kec}&penyakit=${penyakit}&tahun_awal=${tahun_awal}&tahun_akhir=${tahun_akhir}`, function(data){
-				var info_bidang ="<h4 style='text-align:center'> Akumulasi Data Pasien TBC </br> </h4>"+"<h6 style='text-align:center'> ( " +tahun_awal + " hingga "+tahun_akhir +" )</h6>";
+				var info_bidang ="<h4 style='text-align:center'> Akumulasi Data Pasien "+penyakit+" </br> </h4>"+"<h6 style='text-align:center'> ( " +tahun_awal + " hingga "+tahun_akhir +" )</h6>";
 				info_bidang+="<h5 style='text-align:center'>Data Kelurahan " + data.nama_kelurahan + "</h5>"
 				info_bidang+="<hr size = '1px'> "
 				info_bidang+="<h6>Jumlah Pasien di seluruh Kasus : " + data.data_all + "</h6>"

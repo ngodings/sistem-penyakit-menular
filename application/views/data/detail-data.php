@@ -45,7 +45,7 @@
 		padding:5px;
 		margin-bottom: 5px;
 	}
-	#tbc { 
+	#peta { 
 		height: 480px; 
 	}
 </style>
@@ -122,7 +122,7 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-		<h2>TBC</h2>
+		<h2><?= $penyakit->nama_penyakit ?></h2>
           <p>Data berikut merupakan akumulasi data pasien <?= $penyakit->nama_penyakit ?> yang masuk di sistem </p>
 		  
         </div>
@@ -147,7 +147,7 @@
 					
 		</form>
 			<div class="col-md-12">
-	  			<div id="tbc"></div>
+	  			<div id="peta"></div>
      	 	</div>
         </div>
 
@@ -221,7 +221,7 @@
 
 
   <script type="text/javascript">
-		var map = L.map('tbc').setView([-7.5595759, 110.8541984], 13);
+		var map = L.map('peta').setView([-7.5595759, 110.8541984], 13);
 		var base_url ="<?= base_url() ?>";
 		var id_kecamatan ="<?=$id_kec?>";
 		penyakit = '<?= $penyakit->nama_penyakit ?>';
@@ -291,15 +291,15 @@
 		
 				var id_kel = parseFloat(feature.properties.id_kel);
 
-				$.getJSON(base_url+"peta/tbc_kel/"+id_kel, function(data){
+				$.getJSON(`http://localhost:81/api-spm/api/penyakitKel?id_kel=${id_kel}&penyakit=${penyakit}`, function(data){
 				
-					var info_bidang ="<h4 style='text-align:center'>Akumulasi Data Pasien TBC</h4>";
+					var info_bidang ="<h4 style='text-align:center'>Akumulasi Data Pasien "+penyakit+"</h4>";
 					info_bidang+="<h5 style='text-align:center'>Data Kelurahan " + data.nama_kelurahan + "</h5>"
 					info_bidang+="<hr size = '1px'> "
-					info_bidang+="<h6>Jumlah Pasien di seluruh Kasus : " + data.jumlah_pasien + "</h6>"
-					info_bidang+="<h6>Jumlah Pasien Aktif : " + data.jumlah_pasien_aktif + "</h6>"
-					info_bidang+="<h6>Jumlah Pasien Sembuh : " + data.jumlah_pasien_sembuh + "</h6>"
-					info_bidang+="<h6>Jumlah Pasien Meninggal : " + data.jumlah_pasien_die + "</h6>"
+					info_bidang+="<h6>Jumlah Pasien di seluruh Kasus : " + data.data_all + "</h6>"
+					info_bidang+="<h6>Jumlah Pasien Aktif : " + data.data_aktif + "</h6>"
+					info_bidang+="<h6>Jumlah Pasien Sembuh : " + data.data_sembuh + "</h6>"
+					info_bidang+="<h6>Jumlah Pasien Meninggal : " + data.data_die + "</h6>"
 					
 					//dalam perawatan
 					info_bidang+="<hr size = '1px'> "
@@ -375,10 +375,10 @@
 				$('#search').click(function(){	
 					tahun_awal = $('#tahun_awal').val()
 					tahun_akhir = $('#tahun_akhir').val()
-					penyakit = 'TBC'
+					
 				
 					$.getJSON(`http://localhost:81/api-spm/api/penyakitKelFilter?id_kel=${id_kel}&penyakit=${penyakit}&tahun_awal=${tahun_awal}&tahun_akhir=${tahun_akhir}`, function(data){
-					var info_bidang ="<h4 style='text-align:center'> Akumulasi Data Pasien TBC </br> </h4>"+"<h6 style='text-align:center'> ( " +tahun_awal + " hingga "+tahun_akhir +" )</h6>";
+					var info_bidang ="<h4 style='text-align:center'> Akumulasi Data Pasien "+penyakit+" </br> </h4>"+"<h6 style='text-align:center'> ( " +tahun_awal + " hingga "+tahun_akhir +" )</h6>";
 					info_bidang+="<h5 style='text-align:center'>Data Kelurahan " + data.nama_kelurahan + "</h5>"
 					info_bidang+="<hr size = '1px'> "
 					info_bidang+="<h6>Jumlah Pasien di seluruh Kasus : " + data.data_all + "</h6>"

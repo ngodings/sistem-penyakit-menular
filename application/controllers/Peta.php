@@ -37,9 +37,9 @@ class Peta extends CI_Controller
         $data['id_kec'] = $id_kec;
 		$data['penyakit'] = $this->PasienM->get_penyakit_by_id($id_penyakit);
         $data['kec'] = $this->db->get_where('kecamatan', array('id_kec'=>$id_kec))->result();
+		// var_dump($data);
 		
-		
-        
+        // die;
         $this->load->view('data/detail-data', $data);
     }
 	public function TBC()
