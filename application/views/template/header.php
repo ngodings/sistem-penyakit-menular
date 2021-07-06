@@ -77,6 +77,8 @@
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           <li class="active"><a href="">Beranda</a></li>
+          <li><a href="#about">Profil</a></li>
+          <li><a href="#berita">Berita</a></li>
 					<li class="drop-down" id="penyakit"><a href="">Data Penyakit</a>
           <ul>
 					<?php
@@ -93,9 +95,7 @@
                                 ?>
           </ul>
         </li>
-          <li><a href="#about">Profil</a></li>
-          <li><a href="#berita">Berita</a></li>
-          <li><a href="<?= base_url('peta/data'); ?>">Data</a></li>
+          <!-- <li><a href="<?= base_url('peta/data'); ?>">Data</a></li> -->
           <li><a href="#layanan">Layanan</a></li>
           
           <li><a href="#contact">Contact</a></li>

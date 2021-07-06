@@ -25,7 +25,8 @@
 											</div>
 											<div class="form-group">
 												<label for="status">Status</label>
-												<select name="status" class="form-control" id="status" value="<?= $rm['status']; ?>">
+												<select name="status" class="form-control" id="status" >
+												<option value="<?= $rm['status']; ?>"><?= $rm['status']; ?></option>
 													<option value="Dalam Perawatan">Dalam Perawatan</option>
 													<option value="Sembuh">Sembuh</option>
 													<option value="Meninggal">Meninggal</option>

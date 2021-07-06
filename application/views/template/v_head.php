@@ -23,8 +23,8 @@
 	<link rel="stylesheet" href="<?= base_url()?>template/plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="<?= base_url()?>template/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 	 <!-- Load file library jQuery melalui CDN -->
-	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
 	

@@ -1,4 +1,28 @@
-<div class="col-md-12">
+	<div class="card">
+		<div class="card-header">
+			
+              <h3 class="card-title">Import Data  Rekam Medis Pasien</h3>
+			  
+        </div>
+		<div class="card-body">
+			<?php if(!empty($this->session->flashdata('status'))){ ?>
+			<div class="alert alert-info" role="alert"><?= $this->session->flashdata('status'); ?></div>
+			<?php } ?>
+			<form action="<?= base_url('Import/import_excel'); ?>" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<label>Pilih File Excel</label>
+					<input type="file" name="fileExcel">
+				</div>
+				<div>
+					<button class='btn btn-success' type="submit">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+			    		Import		
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+		<div class="col-md-12">
           <div class="card card-secondary">
 		  	<div class="card-header">
               <h3 class="card-title">Tambah Data Rekam Medis</h3>
@@ -18,6 +42,7 @@
 											</div>
 											<div class="form-group">
 												<label for="pasien">Pasien</label>
+												</br>
 												<select class="form-control select2bs4" name="pasien" id="pasien">
 													<?php
 													foreach ($pasien as $value) {
