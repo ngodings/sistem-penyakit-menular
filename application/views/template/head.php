@@ -32,6 +32,8 @@
   <!-- map -->
   <link href="<?php echo base_url("assets/leaflet/leaflet.css"); ?>" rel="stylesheet">
 
+	
+
   <!-- =======================================================
   * Template Name: Medicio - v2.1.1
   * Template URL: https://bootstrapmade.com/medicio-free-bootstrap-theme/

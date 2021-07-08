@@ -42,6 +42,7 @@ class PasienM extends CI_Model
           ->get()
           ->result();
     }
+	
 
 	function Kelurahan($id_kec)
     {
@@ -131,19 +132,152 @@ class PasienM extends CI_Model
 		->from('penyakit')
 		->where('id_penyakit', $id)->get()->row();
 	}
-	
+	public function get_kecamatan_by_id($id)
+	{
+		return $this->db->select('*')
+		->from('kecamatan')
+		->where('id_kec', $id)->get()->row();
+	}
+
+	public function getJoinCount($id, $status)
+    {
+        $this->db->select('*');
+        $this->db->from('rekam_medik');
+        $this->db->join('pasien', 'pasien.id_pasien=rekam_medik.id_pasien');
+        $this->db->join('penyakit', 'penyakit.id_penyakit=rekam_medik.id_penyakit');
+        $this->db->where('rekam_medik.id_penyakit', $id);
+		$this->db->where('rekam_medik.status', $status);
+        $query = $this->db->get();
+        return $query;
+    }
+	public function getJoinCountAll($id)
+    {
+        $this->db->select('*');
+        $this->db->from('rekam_medik');
+        $this->db->join('pasien', 'pasien.id_pasien=rekam_medik.id_pasien');
+        $this->db->join('penyakit', 'penyakit.id_penyakit=rekam_medik.id_penyakit');
+        $this->db->where('rekam_medik.id_penyakit', $id);
+        $query = $this->db->get();
+        return $query;
+    }
+	public function getJoinCountKec($id, $status, $id_kec)
+    {
+        $this->db->select('*');
+        $this->db->from('rekam_medik');
+        $this->db->join('pasien', 'pasien.id_pasien=rekam_medik.id_pasien');
+        $this->db->join('penyakit', 'penyakit.id_penyakit=rekam_medik.id_penyakit');
+        $this->db->join('kecamatan', 'pasien.id_kec = kecamatan.id_kec');
+        $this->db->where('rekam_medik.id_penyakit', $id);
+		$this->db->where('rekam_medik.status', $status);
+		$this->db->where('kecamatan.id_kec', $id_kec);
+        $query = $this->db->get();
+        return $query;
+    }
+	public function getJoinCountAllKec($id, $id_kec)
+    {
+        $this->db->select('*');
+        $this->db->from('rekam_medik');
+        $this->db->join('pasien', 'pasien.id_pasien=rekam_medik.id_pasien');
+        $this->db->join('penyakit', 'penyakit.id_penyakit=rekam_medik.id_penyakit');
+        $this->db->join('kecamatan', 'pasien.id_kec = kecamatan.id_kec');
+        $this->db->where('rekam_medik.id_penyakit', $id);
+		$this->db->where('kecamatan.id_kec', $id_kec);
+        $query = $this->db->get();
+        return $query;
+    }
 	//model
-	function check_nik($nik){
-		$this->db->select('nik');
-		$this->db->where('nik',$nik);		
-		$query =$this->db->get('pasien');
-		$row = $query->row();
-		if ($query->num_rows > 0){
-			return $row->nik; 
-		}else{
-			return "";
+    function check_nik($nik)
+    {
+        $this->db->select('nik');
+        $this->db->where('nik', $nik);
+        $query =$this->db->get('pasien');
+        $row = $query->row();
+        if ($query->num_rows > 0) {
+            return $row->nik;
+        } else {
+            return "";
+        }
+    }
+
+	public function getData($id_penyakit){
+		$sql = "
+		SELECT nama_kecamatan, 
+		coalesce(ps.total_ps,0 ) as total, 
+		coalesce(ps1.total_sembuh, 0) as sembuh,
+		coalesce(ps2.total_meninggal, 0) as meninggal,
+		coalesce(ps3.total_aktif, 0) as aktif
+		FROM (SELECT k1.id_kec, k1.nama_kecamatan
+			FROM kecamatan AS k1) AS kec
+				LEFT JOIN (SELECT p1.id_kec, count(*) AS total_ps
+					FROM pasien AS p1
+					JOIN rekam_medik AS rm1 ON rm1.id_pasien = p1.id_pasien
+					WHERE rm1.id_penyakit = '$id_penyakit'
+					GROUP BY p1.id_kec) AS ps
+				ON (kec.id_kec = ps.id_kec)
+				LEFT JOIN (SELECT p1.id_kec, count(*) AS total_sembuh
+					FROM pasien AS p1
+					JOIN rekam_medik AS rm1 ON rm1.id_pasien = p1.id_pasien
+						WHERE rm1.status = 'Sembuh' AND rm1.id_penyakit = '$id_penyakit'
+					GROUP BY p1.id_kec) AS ps1
+				ON (kec.id_kec = ps1.id_kec)
+				LEFT JOIN (SELECT p1.id_kec, count(*) AS total_meninggal
+					FROM pasien AS p1
+					JOIN rekam_medik AS rm1 ON rm1.id_pasien = p1.id_pasien
+						WHERE rm1.status = 'Meninggal' AND rm1.id_penyakit = '$id_penyakit'
+					GROUP BY p1.id_kec) AS ps2
+				ON (kec.id_kec = ps2.id_kec)
+				LEFT JOIN (SELECT p1.id_kec, count(*) AS total_aktif
+					FROM pasien AS p1
+					JOIN rekam_medik AS rm1 ON rm1.id_pasien = p1.id_pasien
+						WHERE rm1.status = 'Dalam Perawatan' AND rm1.id_penyakit = '$id_penyakit'
+					GROUP BY p1.id_kec) AS ps3
+				ON (kec.id_kec = ps3.id_kec)
+		
+		";
+		return $result = $this->db->query($sql);
+	
+
 	}
+	public function getDataKec($id_penyakit){
+		$sql = "
+		SELECT nama_kelurahan, 
+		coalesce(ps.total_ps,0 ) as total, 
+		coalesce(ps1.total_sembuh, 0) as sembuh,
+		coalesce(ps2.total_meninggal, 0) as meninggal,
+		coalesce(ps3.total_aktif, 0) as aktif
+		FROM (SELECT k1.id_kec, k1.nama_kelurahan
+			FROM kelurahan AS k1) AS kec
+				LEFT JOIN (SELECT p1.id_kec, count(*) AS total_ps
+					FROM pasien AS p1
+					JOIN rekam_medik AS rm1 ON rm1.id_pasien = p1.id_pasien
+					WHERE rm1.id_penyakit = '$id_penyakit' 
+					GROUP BY p1.id_kec) AS ps
+				ON (kec.id_kec = ps.id_kec)
+				LEFT JOIN (SELECT p1.id_kec, count(*) AS total_sembuh
+					FROM pasien AS p1
+					JOIN rekam_medik AS rm1 ON rm1.id_pasien = p1.id_pasien
+						WHERE rm1.status = 'Sembuh' AND rm1.id_penyakit = '$id_penyakit' 
+					GROUP BY p1.id_kec) AS ps1
+				ON (kec.id_kec = ps1.id_kec)
+				LEFT JOIN (SELECT p1.id_kec, count(*) AS total_meninggal
+					FROM pasien AS p1
+					JOIN rekam_medik AS rm1 ON rm1.id_pasien = p1.id_pasien
+						WHERE rm1.status = 'Meninggal' AND rm1.id_penyakit = '$id_penyakit' 
+					GROUP BY p1.id_kec) AS ps2
+				ON (kec.id_kec = ps2.id_kec)
+				LEFT JOIN (SELECT p1.id_kec, count(*) AS total_aktif
+					FROM pasien AS p1
+					JOIN rekam_medik AS rm1 ON rm1.id_pasien = p1.id_pasien
+						WHERE rm1.status = 'Dalam Perawatan' AND rm1.id_penyakit = '$id_penyakit' 
+					GROUP BY p1.id_kec) AS ps3
+				ON (kec.id_kec = ps3.id_kec)
+		
+		";
+		return $result = $this->db->query($sql);
+	
+
 	}
+	
 	public function get_all_corona ($id_kec){
 		// $this->db->select('count(*)');
 		// $this->db->from('rekam_medik');

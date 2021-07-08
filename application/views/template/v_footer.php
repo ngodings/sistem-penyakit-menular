@@ -54,13 +54,25 @@
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+
+<script data-require="jqueryui@*" data-semver="1.10.0" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.0/jquery-ui.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/jquery.dataTables.js" data-semver="1.9.4" data-require="datatables@*"></script>
+
 <script>
+		
   $(document).ready(function(){
-    $('#datatables').DataTable({
+
+		
+			var table = $('#datatables').DataTable({
 			
 			dom: 'Bfrtip',
-            buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
-		});
+		
+      buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+
+			
+			
+			});
+			
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
@@ -70,6 +82,10 @@
       "autoWidth": false,
     });
 
+		
+
+
+
 
 	//Initialize Select2 Elements
 	$('.select2').select2()
@@ -78,6 +94,9 @@
 	$('.select2bs4').select2({
 		theme: 'bootstrap4'
 	});
+
+	
+
   });
 </script>
 </body>

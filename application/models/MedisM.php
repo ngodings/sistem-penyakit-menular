@@ -143,6 +143,20 @@ class MedisM extends CI_Model
 
 		return $this->db->count_all_results('rekam_medik');
 	}
+	public function get_penyakit_filter($id_kec,  $tgl, $tgl1){
+		
+		$this->db->join('penyakit', 'rekam_medik.id_penyakit = penyakit.id_penyakit');
+		$this->db->join('pasien','rekam_medik.id_pasien = pasien.id_pasien');
+		$this->db->join('kecamatan', 'pasien.id_kec = kecamatan.id_kec');
+		$this->db->join('kelurahan', 'pasien.id_kel = kelurahan.id_kel');
+		$this->db->where('rekam_medik.tanggal_terinfeksi >=', $tgl);
+		$this->db->where('rekam_medik.tanggal_terinfeksi <=', $tgl1);
+		$this->db->where('kecamatan.id_kec', $id_kec);
+
+		return $this->db->get('rekam_medik')->result();
+	}
+
+	
 
 	
 	

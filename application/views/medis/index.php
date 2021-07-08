@@ -8,7 +8,7 @@
 			<?php if(!empty($this->session->flashdata('status'))){ ?>
 			<div class="alert alert-info" role="alert"><?= $this->session->flashdata('status'); ?></div>
 			<?php } ?>
-			<form action="<?= base_url('Import/import_excel'); ?>" method="post" enctype="multipart/form-data">
+			<form action="" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label>Pilih File Excel</label>
 					<input type="file" name="fileExcel">
@@ -118,6 +118,16 @@
 			
             <!-- /.card-header -->
             <div class="card-body">
+				<tr>
+					<td>Minimum age:</td>
+					<td><input type="text" id="min" name="min"></td>
+				</tr>
+				<tr>
+					<td>Maximum age:</td>
+					<td><input type="text" id="max" name="max"></td>
+				</tr>
+				<br>
+			</br>
               <table id="datatables" class="table table-bordered table-striped">
                 <thead>
                 <tr>

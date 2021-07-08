@@ -25,23 +25,111 @@ class Peta extends CI_Controller
 
     public function data_penyakit($id_penyakit)
     {
-        $data['judul'] = "Data Penyakit Menular";
-//		$data['id_penyakit'] = $id_penyakit;
-		$data['penyakit'] = $this->PasienM->get_penyakit_by_id($id_penyakit);
+		$data =  [
+			'judul' => 'Data Penyakit Menular',
+			'value' => $this->PasienM->view_penyakit(),
+			'penyakit' => $this->PasienM->get_penyakit_by_id($id_penyakit),
+			'all_data' => $this->PasienM-> getJoinCountAll($id_penyakit)->num_rows(),
+			'sembuh' => $this->PasienM-> getJoinCount($id_penyakit, 'Sembuh')->num_rows(),
+			'dalam_perawatan' => $this->PasienM-> getJoinCount($id_penyakit, 'Dalam Perawatan')->num_rows(),
+			'meninggal' => $this->PasienM-> getJoinCount($id_penyakit, 'Meninggal')->num_rows(),
+		];
+//         	$data['judul'] = "Data Penyakit Menular";
+// 			$data['id_penyakit'] = $id_penyakit;
+// 			$data['penyakit'] = $this->PasienM->get_penyakit_by_id($id_penyakit);
         $this->load->view('data/data', $data);
         
     }
 	public function detail_penyakit($id_kec=null, $id_penyakit)
     {
-		
-        $data['id_kec'] = $id_kec;
-		$data['penyakit'] = $this->PasienM->get_penyakit_by_id($id_penyakit);
-        $data['kec'] = $this->db->get_where('kecamatan', array('id_kec'=>$id_kec))->result();
+		$data = [
+			'id_kec' => $id_kec,
+			'kecamatan'=> $this->PasienM->get_kecamatan_by_id($id_kec),
+			'value' => $this->PasienM->view_penyakit(),
+			'penyakit' =>  $this->PasienM->get_penyakit_by_id($id_penyakit),
+			'kec' => $this->db->get_where('kecamatan', array('id_kec'=>$id_kec))->result(),
+			'all_data' => $this->PasienM-> getJoinCountAllKec($id_penyakit, $id_kec)->num_rows(),
+			'sembuh' => $this->PasienM-> getJoinCountKec($id_penyakit, 'Sembuh', $id_kec)->num_rows(),
+			'dalam_perawatan' => $this->PasienM-> getJoinCountKec($id_penyakit, 'Dalam Perawatan', $id_kec)->num_rows(),
+			'meninggal' => $this->PasienM-> getJoinCountKec($id_penyakit, 'Meninggal', $id_kec)->num_rows(),
+		];
+        // $data['id_kec'] = $id_kec;
+		// $data['penyakit'] = $this->PasienM->get_penyakit_by_id($id_penyakit);
+        // $data['kec'] = $this->db->get_where('kecamatan', array('id_kec'=>$id_kec))->result();
 		// var_dump($data);
 		
         // die;
         $this->load->view('data/detail-data', $data);
     }
+
+	public function tabelku($id_penyakit)
+     {
+
+          // Datatables Variables
+          $draw = intval($this->input->get("draw"));
+          $start = intval($this->input->get("start"));
+          $length = intval($this->input->get("length"));
+
+
+          $tabels = $this->PasienM->getData($id_penyakit);
+		  $data['penyakit'] = $this->PasienM->get_penyakit_by_id($id_penyakit);
+		
+          $data = array();
+
+          foreach($tabels->result() as $r) {
+
+               $data[] = array(
+                    $r->nama_kecamatan,
+                    $r->total,
+                    $r->sembuh,
+                    $r->meninggal,
+                    $r->aktif
+               );
+          }
+
+          $output = array(
+               "draw" => $draw,
+                 "recordsTotal" => $tabels->num_rows(),
+                 "recordsFiltered" => $tabels->num_rows(),
+                 "data" => $data
+            );
+          echo json_encode($output);
+          exit();
+     }
+	 public function myTabel($id_penyakit)
+     {
+
+          // Datatables Variables
+          $draw = intval($this->input->get("draw"));
+          $start = intval($this->input->get("start"));
+          $length = intval($this->input->get("length"));
+
+
+          $tabels = $this->PasienM->getDataKec($id_penyakit);
+		  $data['penyakit'] = $this->PasienM->get_penyakit_by_id($id_penyakit);
+		 // $data['kecamatan'] = $this->PasienM->get_kecamatan_by_id($id_kec);
+          $data = array();
+
+          foreach($tabels->result() as $r) {
+
+               $data[] = array(
+                    $r->nama_kelurahan,
+                    $r->total,
+                    $r->sembuh,
+                    $r->meninggal,
+                    $r->aktif
+               );
+          }
+
+          $output = array(
+               "draw" => $draw,
+                 "recordsTotal" => $tabels->num_rows(),
+                 "recordsFiltered" => $tabels->num_rows(),
+                 "data" => $data
+            );
+          echo json_encode($output);
+          exit();
+     }
 	public function TBC()
     {
         $data['judul'] = "Data Penyakit Menular";

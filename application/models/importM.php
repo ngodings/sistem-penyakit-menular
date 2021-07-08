@@ -42,5 +42,36 @@ class importM extends CI_Model {
         $this->db->insert('rekam_medik', $data_rm);
 		
     }
+	private $_batchImport;
+ 
+    public function setBatchImport($batchImport) {
+        $this->_batchImport = $batchImport;
+    }
+ 
+    // save data
+    public function importData() {
+        $data = $this->_batchImport;
+        $this->db->insert_batch('pasien', $data);
+		$insert = $this->db->insert_batch('rekam_medik', $data);
+    }
+	public function getJoin()
+    {
+        $this->db->select('*');
+        $this->db->from('rekam_medik');
+        $this->db->join('pasien', 'pasien.id_pasien=rekam_medik.id_pasien');
+        $this->db->join('penyakit', 'penyakit.id_penyakit=rekam_medik.id_penyakit');
+        $this->db->join('user', 'user.id_user=rekam_medik.id_user');
+
+        
+        $query = $this->db->get();
+        return $query;
+    }
+    // get employee list
+    public function employeeList() {
+        $this->db->select(array('e.id', 'e.first_name', 'e.last_name', 'e.email', 'e.dob', 'e.contact_no'));
+        $this->db->from('import as e');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 
 }

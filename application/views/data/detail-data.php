@@ -32,6 +32,18 @@
   <!-- map -->
   <link href="<?php echo base_url("assets/leaflet/leaflet.css"); ?>" rel="stylesheet">
 
+  	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
+	
+
+	<script src="http://code.jquery.com/jquery-2.0.3.min.js" data-semver="2.0.3" data-require="jquery"></script>
+	<link href="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/css/jquery.dataTables_themeroller.css" rel="stylesheet" data-semver="1.9.4" data-require="datatables@*" />
+	<link href="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/css/jquery.dataTables.css" rel="stylesheet" data-semver="1.9.4" data-require="datatables@*" />
+	<link href="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/css/demo_table_jui.css" rel="stylesheet" data-semver="1.9.4" data-require="datatables@*" />
+	<link href="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/css/demo_table.css" rel="stylesheet" data-semver="1.9.4" data-require="datatables@*" />
+	<link href="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/css/demo_page.css" rel="stylesheet" data-semver="1.9.4" data-require="datatables@*" />
+	<link data-require="jqueryui@*" data-semver="1.10.0" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.0/css/smoothness/jquery-ui-1.10.0.custom.min.css" />
+
   <!-- =======================================================
   * Template Name: Medicio - v2.1.1
   * Template URL: https://bootstrapmade.com/medicio-free-bootstrap-theme/
@@ -75,6 +87,22 @@
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           <li class="active"><a href="<?= base_url('peta'); ?>">Beranda</a></li>
+		  <li class="drop-down" id="penyakit"><a href="">Data Penyakit</a>
+          <ul>
+					<?php
+                                foreach ($value as $item){
+                                  if($item['id_penyakit']){
+                                ?>
+																				<li><a href="<?= base_url() . 'peta/data_penyakit/' . $item['id_penyakit'] ?>" value="<?php echo $item['id_penyakit'];?>"><?php echo $item['nama_penyakit'];?></a></li>
+                                        
+                               
+        
+                                <?php
+                                    }
+                                }
+                                ?>
+          </ul>
+        </li>
          
 
         </ul>
@@ -94,9 +122,10 @@
       <div class="carousel-inner" role="listbox">
 
         <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(<?= base_url()?>template/front/assets/img/tbc-1.gif)">
+        <div class="carousel-item active" style="background-image: url(<?= base_url()?>template/front/assets/img/covid-detail.gif)">
           <div class="container">
-            <h2> <span>Peta Sebaran Kasus <?= $penyakit->nama_penyakit ?></span></h2>
+            <h2> <span>Peta Sebaran Penyakit <?= $penyakit->nama_penyakit ?> di Kecamatan <?= $kecamatan->nama_kecamatan ?></span></h2>
+			
             
           </div>
         </div>
@@ -117,6 +146,44 @@
     </div>
   </section><!-- End Hero -->
 <main id="main">
+<!-- ======= Counts Section ======= -->
+<section id="counts" class="counts">
+      <div class="container" data-aos="fade-up">
+		
+        <div class="row no-gutters">
+		<div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+            <div class="count-box">
+              <i class="icofont-laboratory"></i>
+              <span data-toggle="counter-up"><?= $all_data; ?></span>
+              <p><strong>Total Konfirmasi</strong> </p>
+              
+            </div>
+          </div>
+		  <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+            <div class="count-box">
+              <i class="icofont-award"></i>
+              <span data-toggle="counter-up"><?= $sembuh; ?></span>
+              <p><strong>Sembuh</strong></p> 
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+            <div class="count-box">
+              <i class="icofont-patient-bed"></i>
+              <span data-toggle="counter-up"><?= $dalam_perawatan; ?></span>
+              <p><strong>Kasus Aktif (Dalam Perawatan)</strong> </p>
+            </div>
+          </div>
+		  <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+            <div class="count-box">
+              <i class="icofont-doctor-alt"></i>
+              <span data-toggle="counter-up"><?= $meninggal; ?></span>
+              <p><strong>Meninggal</strong> </p>
+            </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Counts Section -->
 	<!-- ======= covid Section ======= -->
     <section id="covid" class="covid">
       <div class="container" data-aos="fade-up">
@@ -153,6 +220,29 @@
 
       </div>
     </section><!-- End Departments Section -->
+	<!-- ======= tabel Section ======= -->
+    <section id="tabel" class="tabel">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+		<h2>Tabel Sebaran Penyakit <?= $penyakit->nama_penyakit ?> di Kecamatan <?= $kecamatan->nama_kecamatan ?></h2>
+          <p>Data berikut merupakan akumulasi data pasien <?= $penyakit->nama_penyakit ?> di Kecamatan <?= $kecamatan->nama_kecamatan ?> </p>
+		  
+		<br>
+		<br>	
+        
+		<table id="tabelku-detail" class="table table-bordered table-striped">
+			<thead>
+				<tr><td>Kelurahan</td><td>Total </td><td>Sembuh</td><td>Meninggal</td><td>Aktif (Dalam Perawatan)</td></tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+			
+       
+
+      </div>
+    </section><!-- End Departments Section onClick="window.location.reload();" -->
 
 </main><!-- End #main -->
 
@@ -218,9 +308,41 @@
 
   <script src="<?php echo base_url("assets/leaflet/leaflet.js"); ?>"></script>
 
+  <!-- Custom scripts for export-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 
 
   <script type="text/javascript">
+  $(document).ready(function() {
+		
+		let url = '<?= site_url('peta/myTabel/').$penyakit->id_penyakit  ?>'
+		
+    	$('#tabelku-detail').DataTable({
+			
+		
+			dom: 'Bfrtip',
+			buttons: [{
+			extend: 'excelHtml5',
+			header: false
+			}],
+  
+    
+			"ajax": {
+				url : url,
+				type : 'GET'
+			},
+    });
+	});
 		var map = L.map('peta').setView([-7.5595759, 110.8541984], 13);
 		var base_url ="<?= base_url() ?>";
 		var id_kecamatan ="<?=$id_kec?>";
