@@ -238,6 +238,45 @@ class PasienM extends CI_Model
 	
 
 	}
+	public function getDataKel($id_penyakit, $id_kec){
+		$sql = "
+		SELECT nama_kelurahan, 
+		coalesce(ps.total_ps,0 ) as total, 
+		coalesce(ps1.total_sembuh, 0) as sembuh,
+		coalesce(ps2.total_meninggal, 0) as meninggal,
+		coalesce(ps3.total_aktif, 0) as aktif
+		FROM (SELECT k1.id_kec, k1.id_kel, k1.nama_kelurahan
+			FROM kelurahan AS k1 WHERE k1.id_kec = '$id_kec') AS kec
+				LEFT JOIN (SELECT p1.id_kel, count(*) AS total_ps
+					FROM pasien AS p1
+					JOIN rekam_medik AS rm1 ON rm1.id_pasien = p1.id_pasien
+					WHERE rm1.id_penyakit = '$id_penyakit' 
+					GROUP BY p1.id_kel) AS ps
+				ON (kec.id_kel = ps.id_kel)
+				LEFT JOIN (SELECT p1.id_kel, count(*) AS total_sembuh
+					FROM pasien AS p1
+					JOIN rekam_medik AS rm1 ON rm1.id_pasien = p1.id_pasien
+						WHERE rm1.status = 'Sembuh' AND rm1.id_penyakit = '$id_penyakit' 
+					GROUP BY p1.id_kel) AS ps1
+				ON (kec.id_kel = ps1.id_kel)
+				LEFT JOIN (SELECT p1.id_kel, count(*) AS total_meninggal
+					FROM pasien AS p1
+					JOIN rekam_medik AS rm1 ON rm1.id_pasien = p1.id_pasien
+						WHERE rm1.status = 'Meninggal' AND rm1.id_penyakit = '$id_penyakit' 
+					GROUP BY p1.id_kel) AS ps2
+				ON (kec.id_kel = ps2.id_kel)
+				LEFT JOIN (SELECT p1.id_kel, count(*) AS total_aktif
+					FROM pasien AS p1
+					JOIN rekam_medik AS rm1 ON rm1.id_pasien = p1.id_pasien
+						WHERE rm1.status = 'Dalam Perawatan' AND rm1.id_penyakit = '$id_penyakit' 
+					GROUP BY p1.id_kel) AS ps3
+				ON (kec.id_kel = ps3.id_kel)
+		
+		";
+		return $result = $this->db->query($sql);
+	
+
+	}
 	public function getDataKec($id_penyakit){
 		$sql = "
 		SELECT nama_kelurahan, 

@@ -231,7 +231,7 @@
 		<br>
 		<br>	
         
-		<table id="tabelku-detail" class="table table-bordered table-striped">
+		<table id="tabelku-detail" class="table table-bordered table-striped" data-aos="fade-up">
 			<thead>
 				<tr><td>Kelurahan</td><td>Total </td><td>Sembuh</td><td>Meninggal</td><td>Aktif (Dalam Perawatan)</td></tr>
 			</thead>
@@ -325,7 +325,7 @@
   <script type="text/javascript">
   $(document).ready(function() {
 		
-		let url = '<?= site_url('peta/myTabel/').$penyakit->id_penyakit  ?>'
+		let url = '<?= site_url('peta/tabelKel/').$penyakit->id_penyakit .'/'. $kecamatan->id_kec  ?>'
 		
     	$('#tabelku-detail').DataTable({
 			

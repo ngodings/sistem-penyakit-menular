@@ -1,4 +1,4 @@
-	<div class="card">
+	<!-- <div class="card">
 		<div class="card-header">
 			
               <h3 class="card-title">Import Data  Rekam Medis Pasien</h3>
@@ -21,7 +21,7 @@
 				</div>
 			</form>
 		</div>
-	</div>
+	</div> -->
 		<div class="col-md-12">
           <div class="card card-secondary">
 		  	<div class="card-header">
@@ -118,14 +118,14 @@
 			
             <!-- /.card-header -->
             <div class="card-body">
-				<tr>
+				<!-- <tr>
 					<td>Minimum age:</td>
 					<td><input type="text" id="min" name="min"></td>
 				</tr>
 				<tr>
 					<td>Maximum age:</td>
 					<td><input type="text" id="max" name="max"></td>
-				</tr>
+				</tr> -->
 				<br>
 			</br>
               <table id="datatables" class="table table-bordered table-striped">

@@ -130,6 +130,40 @@ class Peta extends CI_Controller
           echo json_encode($output);
           exit();
      }
+	 public function tabelKel($id_penyakit, $id_kec)
+     {
+
+          // Datatables Variables
+          $draw = intval($this->input->get("draw"));
+          $start = intval($this->input->get("start"));
+          $length = intval($this->input->get("length"));
+
+
+          $tabels = $this->PasienM->getDataKel($id_penyakit, $id_kec);
+		  $data['penyakit'] = $this->PasienM->get_penyakit_by_id($id_penyakit);
+		 	$data['kecamatan'] = $this->PasienM->get_kecamatan_by_id($id_kec);
+          $data = array();
+
+          foreach($tabels->result() as $r) {
+
+               $data[] = array(
+                    $r->nama_kelurahan,
+                    $r->total,
+                    $r->sembuh,
+                    $r->meninggal,
+                    $r->aktif
+               );
+          }
+
+          $output = array(
+               "draw" => $draw,
+                 "recordsTotal" => $tabels->num_rows(),
+                 "recordsFiltered" => $tabels->num_rows(),
+                 "data" => $data
+            );
+          echo json_encode($output);
+          exit();
+     }
 	public function TBC()
     {
         $data['judul'] = "Data Penyakit Menular";

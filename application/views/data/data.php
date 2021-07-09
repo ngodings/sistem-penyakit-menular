@@ -231,9 +231,32 @@
 		<br>
 		<br>	
         
-		<table id="tabelku" class="table table-bordered table-striped">
+		<table id="tabelku" class="table table-bordered table-striped" data-aos="fade-up">
 			<thead>
 				<tr><td>Kecamatan</td><td>Total </td><td>Sembuh</td><td>Meninggal</td><td>Aktif (Dalam Perawatan)</td></tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+			
+       
+
+      </div>
+    </section><!-- End Departments Section onClick="window.location.reload();" -->
+	<!-- ======= tabel Section ======= -->
+    <section id="tabel" class="tabel">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+		<h2>Tabel Sebaran Penyakit <?= $penyakit->nama_penyakit ?> di seluruh Kelurahan Kota Surakarta</h2>
+          <p>Data berikut merupakan akumulasi data pasien <?= $penyakit->nama_penyakit ?> </p>
+		  
+		<br>
+		<br>	
+        
+		<table id="tabelku-detail" class="table table-bordered table-striped" data-aos="fade-up">
+			<thead>
+				<tr><td>Kelurahan</td><td>Total </td><td>Sembuh</td><td>Meninggal</td><td>Aktif (Dalam Perawatan)</td></tr>
 			</thead>
 			<tbody>
 			</tbody>
@@ -344,6 +367,23 @@
     
 			"ajax": {
 				url : url,
+				type : 'GET'
+			},
+    });
+	let url1 = '<?= site_url('peta/myTabel/').$penyakit->id_penyakit  ?>'
+		
+    	$('#tabelku-detail').DataTable({
+			
+		
+			dom: 'Bfrtip',
+			buttons: [{
+			extend: 'excelHtml5',
+			header: false
+			}],
+  
+    
+			"ajax": {
+				url : url1,
 				type : 'GET'
 			},
     });
