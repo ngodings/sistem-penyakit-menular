@@ -96,6 +96,40 @@ class Peta extends CI_Controller
           echo json_encode($output);
           exit();
      }
+	 public function tabelkuFilter($id_penyakit, $tahun1, $tahun2, $jk)
+     {
+
+          // Datatables Variables
+          $draw = intval($this->input->get("draw"));
+          $start = intval($this->input->get("start"));
+          $length = intval($this->input->get("length"));
+
+
+          $tabels = $this->PasienM->getDataFilter($id_penyakit, $tahun1, $tahun2, $jk);
+		  $data['penyakit'] = $this->PasienM->get_penyakit_by_id($id_penyakit);
+		
+          $data = array();
+
+          foreach($tabels->result() as $r) {
+
+               $data[] = array(
+                    $r->nama_kecamatan,
+                    $r->total,
+                    $r->sembuh,
+                    $r->meninggal,
+                    $r->aktif
+               );
+          }
+
+          $output = array(
+               "draw" => $draw,
+                 "recordsTotal" => $tabels->num_rows(),
+                 "recordsFiltered" => $tabels->num_rows(),
+                 "data" => $data
+            );
+          echo json_encode($output);
+          exit();
+     }
 	 public function myTabel($id_penyakit)
      {
 

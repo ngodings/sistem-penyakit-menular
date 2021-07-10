@@ -56,14 +56,7 @@ class Pasien extends CI_Controller
 
 		$this->load->view('template/v_wrapper', $data, FALSE);
 	}
-	function CheckNIK($nik){
-		if ($this->PasienM->check_nik($nik)==''){
-		   return true;
-		}else{
-		   $this->form_validation->set_message('nik', 'nik '. $nik .' telah terdaftar');
-		   return false;		
-		}
-	 }
+
 	
 	function get_kelurahan()
     {

@@ -81,6 +81,7 @@
       "info": true,
       "autoWidth": false,
     });
+		
 
 		
 

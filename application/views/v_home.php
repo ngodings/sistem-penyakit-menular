@@ -1,4 +1,4 @@
-<h3>Data akumulasi Penyakit Menular dari Tahun 2015 - sekarang</h3>
+
 </br>
 <div id="solo" style="width: 1400px; height: 500px;"></div>
 <script src="<?php echo base_url("assets/leaflet/leaflet.js"); ?>"></script>
@@ -31,51 +31,12 @@ var map = L.map('solo').setView([-7.5595759, 110.8541984], 13);
 
 	}
 	//menggunakan geojson untuk menandai suatu daerah
-	$.getJSON(base_url+"assets/geojson/solo.geojson", function(data){
+	$.getJSON(base_url+"assets/geojson/detail-solo-color.geojson", function(data){
 		//untuk konfigurasi tampilan map mark atau multi polygon
 		getLayer = L.geoJson(data, {
 			style: function(feature, layer) {
 
-				//membedakan multi polygon
-				var id = feature.properties.id;
-				if (id == 1){
-					return { //daerah satu
-						
-							fillOpacity: 0.1,
-							weight: 1,
-							opacity: 1,
-							color: "#f44242"
-						};
-				}else if(id == 2){
-					return { //daerah dua
-							fillOpacity: 0.5,
-							weight: 1,
-							opacity: 1,
-							color: "#6d96f7"
-						};
-
-				}else if(id == 3){
-					return { //daerah dua
-							fillOpacity: 0.5,
-							weight: 1,
-							opacity: 1,
-							color: "#faebd7"
-						};
-				}else if(id == 4){
-					return { //daerah dua
-							fillOpacity: 0.5,
-							weight: 1,
-							opacity: 1,
-							color: "#deb887"
-						};
-				}else if(id == 5){
-					return { //daerah dua
-							fillOpacity: 0.5,
-							weight: 1,
-							opacity: 1,
-							color: "#ff7f50"
-						};
-					}
+				
 
 				
 			},
@@ -83,43 +44,22 @@ var map = L.map('solo').setView([-7.5595759, 110.8541984], 13);
 			onEachFeature: function(feature, layer){
 				// mendapatkan kode
 		
-				var id_kec = parseFloat(feature.properties.id_kec);
+				//var id_kec = parseFloat(feature.properties.id_kec);
 
-				$.getJSON(base_url+"pasien/get_count/"+id_kec, function(data){
+				var id_kel = parseFloat(feature.properties.id_kel);
+
+				$.getJSON(`http://localhost:81/spm-new/home/getAllPenyakit/<><>${id_kel}`, function(data){
 				
-					var info_bidang ="<h4 style='text-align:center'>Akumulasi Seluruh Data</h4>";
-					info_bidang+="<h5 style='text-align:center'>Data Kecamatan " + data.nama_kecamatan + "</h5>"
+					var info_bidang ="<h4 style='text-align:center'>Akumulasi Data Pasien di Seluruh Penyakit Menular</h4>"
+					info_bidang+="<h5 style='text-align:center'>Data Kelurahan " + data.nama_kelurahan + "</h5>"
+					info_bidang+="<hr size = '1px'> "
+					info_bidang+="<h6>Jumlah Pasien di seluruh Kasus : " + data.data_all + "</h6>"
+					info_bidang+="<h6>Jumlah Pasien Aktif : " + data.data_aktif + "</h6>"
+					info_bidang+="<h6>Jumlah Pasien Sembuh : " + data.data_sembuh + "</h6>"
+					info_bidang+="<h6>Jumlah Pasien Meninggal : " + data.data_die + "</h6>"
 					
-					info_bidang+="<hr> "
-					info_bidang+="<h6><i>Data Penyakit COVID-19</i> <br></h6> "
-					info_bidang+="<b> Dirawat (Kasus Aktif) : " + data.covid_aktif + "</b><br>"
-					info_bidang+="<b> Sembuh : " + data.covid_sembuh + "</b><br>"
-					info_bidang+="<b> Telah meninggal : " + data.covid_die + "</b><br>"
-
-					info_bidang+="<hr> "
-					info_bidang+="<h6><i>Data Penyakit TBC</i> <br></h6> "
-					info_bidang+="<b> Dirawat (Kasus Aktif) : " + data.tbc_aktif + "</b><br>"
-					info_bidang+="<b> Sembuh : " + data.tbc_sembuh + "</b><br>"
-					info_bidang+="<b> Telah meninggal : " + data.tbc_die + "</b><br>"
-
-					info_bidang+="<hr> "
-					info_bidang+="<h6><i>Data Penyakit IMS</i> <br></h6> "
-					info_bidang+="<b> Dirawat (Kasus Aktif) : " + data.ims_aktif + "</b><br>"
-					info_bidang+="<b> Sembuh : " + data.ims_sembuh + "</b><br>"
-					info_bidang+="<b> Telah meninggal : " + data.ims_die + "</b><br>"
-
-					info_bidang+="<hr> "
-					info_bidang+="<h6><i>Data Penyakit Diare</i> <br></h6> "
-					info_bidang+="<b> Dirawat (Kasus Aktif) : " + data.diare_aktif + "</b><br>"
-					info_bidang+="<b> Sembuh : " + data.diare_sembuh + "</b><br>"
-					info_bidang+="<b> Telah meninggal : " + data.diare_die + "</b><br>"
-
-					info_bidang+="<hr> "
-					info_bidang+="<h6><i>Data Penyakit DBD</i> <br></h6> "
-					info_bidang+="<b> Dirawat (Kasus Aktif) : " + data.dbd_aktif + "</b><br>"
-					info_bidang+="<b> Sembuh : " + data.dbd_sembuh + "</b><br>"
-					info_bidang+="<b> Telah meninggal : " + data.dbd_die + "</b><br>"
 					
+				
 					layer.bindPopup(info_bidang, {
 						maxHeight : 360,
 						maxWidth : 460,

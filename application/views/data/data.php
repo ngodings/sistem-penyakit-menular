@@ -230,14 +230,45 @@
 		  
 		<br>
 		<br>	
-        
+       
 		<table id="tabelku" class="table table-bordered table-striped" data-aos="fade-up">
+		
 			<thead>
 				<tr><td>Kecamatan</td><td>Total </td><td>Sembuh</td><td>Meninggal</td><td>Aktif (Dalam Perawatan)</td></tr>
 			</thead>
 			<tbody>
 			</tbody>
 		</table>
+		<br>
+		<br>
+		<!-- <form >
+				<h5>Cari data pada parameter tertentu: </h5>
+					<label for="tahun1">Tanggal Mulai : </label>
+					&nbsp;
+					<input type="date" class="form-group" id="tahun1" name="tahun1" placeholder="Tanggal Mulai" value="" required>
+					&nbsp;
+					<label for="tahun2">Tanggal Akhir : </label>
+					&nbsp;
+					<input type="date" class="form-group" id="tahun2" name="tahun2" placeholder="Tanggal Akhir" value="" required>
+					&nbsp;
+					<label for="jk"> Jenis Kelamin </label>
+					&nbsp;
+						<select name="jk" class="form-group" id="jk">
+							<option value="Laki-laki">Laki-laki</option>
+							<option value="Perempuan">Perempuan</option>
+						</select>
+						&nbsp;
+					<button type="button" class="form-group" name="submit" id="submit" > Cari</button>
+					
+				</form> -->
+				<!-- <table id="tabelku-filter" class="table table-bordered table-striped" data-aos="fade-up">
+		
+			<thead>
+				<tr><td>Kecamatan</td><td>Total </td><td>Sembuh</td><td>Meninggal</td><td>Aktif (Dalam Perawatan)</td></tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table> -->
 			
        
 
@@ -253,7 +284,7 @@
 		  
 		<br>
 		<br>	
-        
+       
 		<table id="tabelku-detail" class="table table-bordered table-striped" data-aos="fade-up">
 			<thead>
 				<tr><td>Kelurahan</td><td>Total </td><td>Sembuh</td><td>Meninggal</td><td>Aktif (Dalam Perawatan)</td></tr>
@@ -362,7 +393,7 @@
 			dom: 'Bfrtip',
 			buttons: [{
 			extend: 'excelHtml5',
-			header: false
+			header: true
 			}],
     
 			"ajax": {
@@ -378,7 +409,7 @@
 			dom: 'Bfrtip',
 			buttons: [{
 			extend: 'excelHtml5',
-			header: false
+			header: true
 			}],
   
     
@@ -386,6 +417,37 @@
 				url : url1,
 				type : 'GET'
 			},
+    });
+
+	$('#submit').click(function(){
+		
+		// var url = "<?= site_url('peta/tabelkuFilter/').$penyakit->id_penyakit ?>"
+		// var tahun1 = $('#tahun1').val()
+		// var	tahun2 = $('#tahun2').val()
+		// var	jk = $('#jk').val()
+		// var url_filter = url +'/'+tahun_awal+'/'+tahun_akhir+'/'+jk
+		var penyakit = '<?= $penyakit->id_penyakit ?>'
+		var tahun1 = $('#tahun1').val()
+		var tahun2 = $('#tahun2').val()
+		var	jk = $('#jk').val()
+		var url_filter = `http://localhost:81/spm-new/peta/tabelkuFilter/${penyakit}/${tahun1}/${tahun2}/${jk}`
+		
+		
+		$('#tabelku-filter').DataTable({
+			
+		
+			dom: 'Bfrtip',
+			buttons: [{
+			extend: 'excelHtml5',
+			header: true
+			}],
+  
+    
+			"ajax": {
+				url : url_filter,
+				type : 'GET'
+			},
+    	});
     });
 	
 	});
