@@ -617,9 +617,9 @@
 				tahun_akhir = $('#tahun_akhir').val()
 				
 				penyakit = '<?= $penyakit->nama_penyakit ?>'
-				$.getJSON(`http://localhost:81/api-spm/api/penyakitKelFilter?id_kec=${id_kec}&penyakit=${penyakit}&tahun_awal=${tahun_awal}&tahun_akhir=${tahun_akhir}`, function(data){
+				$.getJSON(`http://localhost:81/api-spm/api/countPenyakit?id_kec=${id_kec}&penyakit=${penyakit}&tahun_awal=${tahun_awal}&tahun_akhir=${tahun_akhir}`, function(data){
 				var info_bidang ="<h4 style='text-align:center'> Akumulasi Data Pasien "+penyakit+" </br> </h4>"+"<h6 style='text-align:center'> ( " +tahun_awal + " hingga "+tahun_akhir +" )</h6>";
-				info_bidang+="<h5 style='text-align:center'>Data Kelurahan " + data.nama_kelurahan + "</h5>"
+				info_bidang+="<h5 style='text-align:center'>Data Kecamatan " + data.nama_kecamatan + "</h5>"
 				info_bidang+="<hr size = '1px'> "
 				info_bidang+="<h6>Jumlah Pasien di seluruh Kasus : " + data.data_all + "</h6>"
 				info_bidang+="<h6>Jumlah Pasien Aktif : " + data.data_aktif + "</h6>"

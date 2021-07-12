@@ -63,7 +63,7 @@ class MedisM extends CI_Model
         $this->db->join('pasien', 'pasien.id_pasien=rekam_medik.id_pasien');
         $this->db->join('penyakit', 'penyakit.id_penyakit=rekam_medik.id_penyakit');
         $this->db->join('user', 'user.id_user=rekam_medik.id_user');
-		$this->db->order_by('id_rm', 'DESC');
+		//$this->db->order_by('id_rm', 'DESC');
 
         
         $query = $this->db->get();
