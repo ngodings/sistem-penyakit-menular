@@ -10,7 +10,7 @@
             <!-- /.card-header -->
             <div class="card-body">
 				<form >
-						<h5>Cari data pada parameter tertentu: </h5>
+						<h5>Cari data pada data tertentu: </h5>
 						<label for="penyakit_menular" >Jenis Penyakit</label>
 								<select class="form-control " name="penyakit_menular" id="penyakit_menular">
 									<?php

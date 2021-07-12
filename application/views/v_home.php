@@ -48,7 +48,7 @@ var map = L.map('solo').setView([-7.5595759, 110.8541984], 13);
 
 				var id_kel = parseFloat(feature.properties.id_kel);
 
-				$.getJSON(`http://localhost:81/spm-new/home/getAllPenyakit/<><>${id_kel}`, function(data){
+				$.getJSON(`http://localhost:81/spm-new/home/getAllPenyakit/${id_kel}`, function(data){
 				
 					var info_bidang ="<h4 style='text-align:center'>Akumulasi Data Pasien di Seluruh Penyakit Menular</h4>"
 					info_bidang+="<h5 style='text-align:center'>Data Kelurahan " + data.nama_kelurahan + "</h5>"
@@ -68,10 +68,11 @@ var map = L.map('solo').setView([-7.5595759, 110.8541984], 13);
 					});
 
 					layer.on('click', function(){
-						layer.openPopup();
-					});
-
+					layer.openPopup();
 				});
+
+			});
+				
 
 				
 
