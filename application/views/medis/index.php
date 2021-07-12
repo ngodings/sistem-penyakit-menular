@@ -1,14 +1,14 @@
-	<!-- <div class="card">
+	<div class="card">
 		<div class="card-header">
 			
               <h3 class="card-title">Import Data  Rekam Medis Pasien</h3>
 			  
         </div>
 		<div class="card-body">
-			<?php if(!empty($this->session->flashdata('status'))){ ?>
+		<?php if(!empty($this->session->flashdata('status'))){ ?>
 			<div class="alert alert-info" role="alert"><?= $this->session->flashdata('status'); ?></div>
 			<?php } ?>
-			<form action="" method="post" enctype="multipart/form-data">
+			<form action="<?= base_url('ImportController/import_excel'); ?>" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label>Pilih File Excel</label>
 					<input type="file" name="fileExcel">
@@ -20,8 +20,13 @@
 					</button>
 				</div>
 			</form>
+			<br>
+			
+			<a class='btn btn-success' href="https://docs.google.com/spreadsheets/d/1D4TY22ZAD1vCbCPzekTq6lfu3fjIqz09rEX9A4ncu1s/edit?usp=sharing">format import</a>
 		</div>
-	</div> -->
+
+	</div>
+	
 		<div class="col-md-12">
           <div class="card card-secondary">
 		  	<div class="card-header">

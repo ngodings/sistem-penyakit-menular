@@ -27,12 +27,12 @@
 													
 												</select>
 
-							<label for="jenis_kelamin"> Jenis Kelamin </label>
+							<!-- <label for="jenis_kelamin"> Jenis Kelamin </label>
 							
 							<select name="jenis_kelamin" class="form-control" id="jenis_kelamin">
 								<option value="Laki-laki">Laki-laki</option>
 								<option value="Perempuan">Perempuan</option>
-							</select>
+							</select> -->
 
 							
 												<!-- <label for="kecamatan">Kecamatan</label>
@@ -266,7 +266,10 @@
 			var tgl2 = $('#tgl2').val()
 			
 			//console.log(penyakit)
-			var url = `http://localhost:81/spm-new/laporan/myTabelFilter/${penyakit}/${status}/${jenis_kelamin}/${tgl1}/${tgl2}`
+			// if (penyakit == NULL){
+
+			// }
+			var url = `http://localhost:81/spm-new/laporan/myTabelFilter/${penyakit}/${status}/${tgl1}/${tgl2}`
 			
 			
 			$('#tabelFilter').DataTable({

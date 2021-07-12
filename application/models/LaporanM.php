@@ -48,7 +48,7 @@ class LaporanM extends CI_Model
             ->result();
     }
 	//, 
-	public function getJoin($id_penyakit, $status, $jk,  $tgl1, $tgl2)
+	public function getJoin($id_penyakit, $status,  $tgl1, $tgl2)
     {
         $this->db->select('nik');
 		$this->db->select('nama');
@@ -64,7 +64,7 @@ class LaporanM extends CI_Model
         $this->db->join('user', 'user.id_user=rekam_medik.id_user');
 		$this->db->where('penyakit.id_penyakit', $id_penyakit);
 		$this->db->where('rekam_medik.status', $status);
-		$this->db->where('pasien.jk', $jk);
+		//$this->db->where('pasien.jk', $jk);
 		// $this->db->where('kecamatan.id_kec', $id_kec);
 		// $this->db->where('kelurahan.id_kel', $id_kel);
 		$this->db->where('rekam_medik.tanggal_terinfeksi >=', $tgl1);

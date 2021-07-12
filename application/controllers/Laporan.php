@@ -87,7 +87,7 @@ class Laporan extends CI_Controller
 		 echo json_encode($output);
 		 exit();
 	}
-	public function myTabelFilter($id_penyakit, $status, $jk, $tgl1, $tgl2)
+	public function myTabelFilter($id_penyakit, $status, $tgl1, $tgl2)
 	{
 
 		 // Datatables Variables
@@ -96,7 +96,7 @@ class Laporan extends CI_Controller
 		 $length = intval($this->input->get("length"));
 
 
-		 $tabels = $this->LaporanM->getJoin($id_penyakit, $status, $jk, $tgl1, $tgl2);
+		 $tabels = $this->LaporanM->getJoin($id_penyakit, $status, $tgl1, $tgl2);
 		 $data['penyakit'] = $this->LaporanM->get_penyakit_by_id($id_penyakit);
 	   
 		 $data = array();

@@ -20,7 +20,7 @@
 												<input type="date" id="tanggal_terinfeksi" class="form-control" name="tanggal_terinfeksi" value="<?= $rm['tanggal_terinfeksi']; ?>">
 											</div>
 											<div class="form-group">
-												<label for="penyakit">ID </label>
+												<label for="penyakit">Nama Penyakit</label>
 												<input type="text" name="penyakit" class="form-control" id="penyakit" value="<?= $rm['nama_penyakit']; ?>" readonly>
 											</div>
 											<div class="form-group">
