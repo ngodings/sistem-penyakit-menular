@@ -36,6 +36,14 @@ class MedisM extends CI_Model
           ->get()
           ->result();
     }
+	public function user_by_session ()
+	{
+		$data = $this->db->get_where('user', [
+            'username' => $this->session->userdata('username')
+        ]);
+		return $data->row();
+
+	}
 
     public function buat_kode()
     {

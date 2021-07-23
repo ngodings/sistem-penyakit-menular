@@ -93,14 +93,10 @@
 											</div>
 											<div class="form-group">
 												<label for="user">Petugas</label>
-												<select class="form-control select2bs4" name="user" id="user">
-													<?php
-													foreach ($user as $value) {
-															echo "<option value='$value->id_user'>$value->username</option>";
-													}
-													?>
-												</select>
-												
+												 <select name="user" id="user" class="form-control custom-select" disabled>
+													<option value="<?= $petugas->id_user ?>" selected><?= $petugas->username ?></option>
+												 </select> 
+										<!-- <input type="text" name="user" value="<?= $petugas->id_user ?>" class="form-control" id="user" readonly><?= $petugas->username ?> -->
 											</div>
 								<div class="col-12">
 									<input type="submit" value="Tambah Data" class="btn btn-success float-right">

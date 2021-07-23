@@ -28,13 +28,17 @@ class Medis extends CI_Controller
 		// die;
 		$data = array(
 					'title' => 'Rekam Medik Pasien Penyakit Menular',
-					'isi' => 'medis/index'
+					'isi' => 'medis/index',
+				
 		);
+
 		
+		$data['petugas'] = $this->MedisM->user_by_session();
+		//  var_dump($data);
+		//  die;
 		//SELECT DATA PASIEN
 		$data['rm'] = $this->MedisM->getJoin()->result_array();
-		// var_dump($data);
-		// die;
+		
 
 		//TAMBAH DATA
 		$data['id_unik'] = $this->MedisM->buat_kode();
@@ -45,7 +49,9 @@ class Medis extends CI_Controller
 		$data['pasien']=$this->MedisM->Pasien();
 		//select data penyakit
 		$data['penyakit']=$this->MedisM->Penyakit();
-		$data['user']=$this->MedisM->User();
+		// var_dump($data);
+		// die;
+		//$data['user']=$this->MedisM->User();
 		if ($this->form_validation->run() == FALSE) {
 
 			$this->load->view('template/v_wrapper', $data, FALSE);

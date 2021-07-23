@@ -49,6 +49,7 @@
 													data-id_kelurahan="<?= $pasien['id_kel'] ?>" 
 													data-nama_kelurahan="<?= $pasien['nama_kelurahan'] ?>"></div>
 												<select class="form-control" name="kelurahan" id="kelurahan" >
+													<option value="<?= $pasien['id_kel'] ?>"><?= $pasien['nama_kelurahan']?></option>
 													<!--  akan diload menggunakan ajax, dan ditampilkan disini -->
 
 												</select>
@@ -82,6 +83,7 @@
 									success: function(data){
 											let id_kel_terpilih = $('#kelurahan_pasien').data('id_kelurahan');
 											let nama_kel_terpilih = $('#kelurahan_pasien').data('nama_kelurahan');
+											
 											var html = '<option value='+ id_kel_terpilih +'>'+ nama_kel_terpilih +'</option>';
 											var i;
 

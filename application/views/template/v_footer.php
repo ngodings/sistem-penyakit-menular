@@ -43,7 +43,7 @@
 <script src="<?= base_url()?>template/plugins/select2/js/select2.full.min.js"></script>
 
 <!-- Custom scripts for export-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> -->
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
@@ -100,5 +100,28 @@
 
   });
 </script>
+
+	<script>
+			$(document).ready(function() {
+				// Untuk sunting
+				//console.log("Hello, WOrld")
+				$('#edit-data').on('show.bs.modal', function (event) {
+					console.log("Hello, WOrld")
+					var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+					id_penyakit = div.data('id');
+					nama_penyakit = div.data('nama');
+					console.log("id penyakit :" + id_penyakit)
+					console.log("nama penyakit : " + nama_penyakit)
+					// console.log(modal.find('#id_penyakit').attr("value"))
+					// console.log(div)
+					// console.log(modal)
+            		// mengambil nilai data-id yang di click
+					// Isi nilai pada field
+					// console.log($('input#id_penyakit').val('Uji coba'))
+					$('input#id_penyakit').val(div.data('id'));
+					$('input#nama_penyakit').val(div.data('nama'));
+				});
+			});
+		</script>
 </body>
 </html>

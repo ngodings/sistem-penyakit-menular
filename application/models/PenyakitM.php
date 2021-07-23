@@ -15,6 +15,11 @@ class PenyakitM extends CI_Model
         ]);
         return $query;
     }
+	function ubah($data, $id){
+		$this->db->where('id_penyakit',$id);
+		$this->db->update('penyakit', $data);
+		return TRUE;
+	}
 
     public function buat_kode()
     {
@@ -47,11 +52,7 @@ class PenyakitM extends CI_Model
         $this->db->insert('penyakit', $data);
     }
 
-	function ubah($data, $id){
-		$this->db->where('id_penyakit',$id);
-		$this->db->update('penyakit', $data);
-		return TRUE;
-	}
+	
 
     public function hapusDataPenyakit($id)
     {

@@ -10,9 +10,9 @@ class ImportModel extends CI_Model {
 		}
 	}
 
-	public function get_pasien($nama){
+	public function get_pasien($nik){
 		$this->db->select("id_pasien");
-		return $this->db->get_where("pasien", array('nama' => $nama))->row();
+		return $this->db->get_where("pasien", array('nik' => $nik))->row();
 	}
 	
 	public function get_penyakit($nama){

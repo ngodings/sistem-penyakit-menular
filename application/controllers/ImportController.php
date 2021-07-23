@@ -37,12 +37,12 @@ class ImportController extends CI_Controller {
 					$status = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
 					$akhir = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
 					$ket = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
-					$user = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
+					//$user = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
 					
 					// ambil id_pasien sesuai nama pasien dari excel
-					$nama_pasien = $this->ImportModel->get_pasien($pasien);
-					if($nama_pasien == NULL){
-						$this->session->set_flashdata('status', '<span class="glyphicon glyphicon-ok"></span> Nama Pasien pada baris ke-'.$row.' belum terdaftar ');
+					$nik = $this->ImportModel->get_pasien($pasien);
+					if($nik == NULL){
+						$this->session->set_flashdata('status', '<span class="glyphicon glyphicon-ok"></span> NIK pada baris ke-'.$row.' belum terdaftar ');
 						redirect($_SERVER['HTTP_REFERER']);
 					}	
 					// ambil id_penyakit sesuai nama penyakit dari excel
@@ -52,20 +52,17 @@ class ImportController extends CI_Controller {
 						redirect($_SERVER['HTTP_REFERER']);
 					}
 
-					if($this->ImportModel->query("select id_user from user where id_user = '$user'") == NULL){
-						$this->session->set_flashdata('status', '<span class="glyphicon glyphicon-ok"></span> User pada baris ke-'.$row.' tidak terdaftar');
-						redirect($_SERVER['HTTP_REFERER']);
-					}
+					
 
 					$temp_data = array(
 						'id_rm' => $this->MedisM->buat_kode(), //id_rm udah otomatis 
-						'id_pasien'	=> $nama_pasien->id_pasien, 
+						'id_pasien'	=> $nik->id_pasien, 
 						'tanggal_terinfeksi'	=> $awal,
 						'id_penyakit' => $nama_penyakit->id_penyakit, 
 						'status'	=> $status,
 						'tanggal_sembuh' => $akhir,
 						'keterangan'	=> $ket,
-						'id_user'	=> $user,
+						'id_user'	=> 'AD001',
 
 					); 	
 					$insert = $this->ImportModel->insert($temp_data);
